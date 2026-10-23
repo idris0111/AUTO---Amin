@@ -1,0 +1,31 @@
+from app.routers import (
+    addresses,
+    admin,
+    admin_catalog,
+    admin_coupons,
+    admin_orders,
+    ai_mechanic,
+    auth,
+    catalog,
+    commerce,
+    shipping,
+    social,
+    users,
+    vehicles,
+)
+
+__all__ = [
+    "addresses",
+    "admin",
+    "admin_catalog",
+    "admin_coupons",
+    "admin_orders",
+    "ai_mechanic",
+    "auth",
+    "catalog",
+    "commerce",
+    "shipping",
+    "social",
+    "users",
+    "vehicles",
+]

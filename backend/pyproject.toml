@@ -1,0 +1,19 @@
+[project]
+name = "autouniverse-backend"
+version = "1.0.0"
+description = "AUTO UNIVERSE — premium automotive parts e-commerce API"
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+exclude = [".venv", "alembic/versions"]
+
+[tool.ruff.lint]
+select = ["F", "E", "W"]
+
+[tool.ruff.lint.per-file-ignores]
+"app/seed.py" = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

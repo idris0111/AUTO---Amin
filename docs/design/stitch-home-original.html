@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AUTO PARTS PREMIUM — Премиальные автокомпоненты OEM &amp; Motorsport</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-tertiary-container": "#242a34",
+            "surface": "#111318",
+            "inverse-on-surface": "#2e3036",
+            "error": "#ffb4ab",
+            "on-surface-variant": "#e5bdbb",
+            "surface-dim": "#111318",
+            "on-error": "#690005",
+            "surface-container-high": "#282a2f",
+            "primary-fixed-dim": "#ffb3b0",
+            "inverse-surface": "#e2e2e9",
+            "surface-variant": "#33353a",
+            "primary": "#ffb3b0",
+            "surface-bright": "#37393f",
+            "on-secondary": "#002e6a",
+            "tertiary-fixed-dim": "#c1c6d4",
+            "background": "#111318",
+            "on-tertiary-fixed-variant": "#414752",
+            "surface-container-lowest": "#0c0e13",
+            "on-background": "#e2e2e9",
+            "primary-container": "#ff5357",
+            "on-surface": "#e2e2e9",
+            "on-primary-container": "#5c000c",
+            "surface-container-highest": "#33353a",
+            "tertiary-fixed": "#dde2f0",
+            "on-secondary-container": "#e6ecff",
+            "on-secondary-fixed-variant": "#004395",
+            "tertiary": "#c1c6d4",
+            "error-container": "#93000a",
+            "secondary-container": "#0566d9",
+            "outline-variant": "#5c3f3e",
+            "secondary-fixed": "#d8e2ff",
+            "on-primary": "#68000f",
+            "on-tertiary-fixed": "#161c26",
+            "on-tertiary": "#2b313b",
+            "on-primary-fixed-variant": "#930019",
+            "primary-fixed": "#ffdad8",
+            "secondary": "#adc6ff",
+            "on-secondary-fixed": "#001a42",
+            "on-primary-fixed": "#410006",
+            "inverse-primary": "#bf0124",
+            "outline": "#ac8886",
+            "on-error-container": "#ffdad6",
+            "surface-tint": "#ffb3b0",
+            "tertiary-container": "#8b919e",
+            "surface-container": "#1e1f25",
+            "surface-container-low": "#1a1b21",
+            "secondary-fixed-dim": "#adc6ff"
+          },
+          borderRadius: {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          spacing: {
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-xl": "2.5rem",
+            "gutter": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter-mobile": "0.75rem",
+            "margin": "2.5rem",
+            "margin-mobile": "1rem"
+          },
+          fontFamily: {
+            "display-hero-mobile": ["Space Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "body-sm": ["Inter"],
+            "headline-xl-mobile": ["Space Grotesk"],
+            "code-tabular": ["Space Grotesk"],
+            "headline-lg": ["Space Grotesk"],
+            "headline-xl": ["Space Grotesk"],
+            "body-lg": ["Inter"],
+            "label-caps": ["Space Grotesk"],
+            "price-xl": ["Space Grotesk"],
+            "display-hero": ["Space Grotesk"],
+            "body-md": ["Inter"],
+            "headline-sm": ["Space Grotesk"]
+          },
+          fontSize: {
+            "display-hero-mobile": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "headline-md": ["22px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "body-sm": ["13px", { lineHeight: "18px", letterSpacing: "0.005em", fontWeight: "400" }],
+            "headline-xl-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "700" }],
+            "code-tabular": ["14px", { lineHeight: "20px", letterSpacing: "0.04em", fontWeight: "500" }],
+            "headline-lg": ["30px", { lineHeight: "38px", letterSpacing: "-0.015em", fontWeight: "600" }],
+            "headline-xl": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "body-lg": ["17px", { lineHeight: "26px", letterSpacing: "-0.005em", fontWeight: "400" }],
+            "label-caps": ["11px", { lineHeight: "14px", letterSpacing: "0.12em", fontWeight: "700" }],
+            "price-xl": ["32px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "display-hero": ["56px", { lineHeight: "64px", letterSpacing: "-0.03em", fontWeight: "700" }],
+            "body-md": ["15px", { lineHeight: "22px", letterSpacing: "0em", fontWeight: "400" }],
+            "headline-sm": ["18px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+    .red-glow {
+      box-shadow: 0 0 24px -4px rgba(255, 83, 87, 0.45);
+    }
+    .cad-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(51, 53, 58, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(51, 53, 58, 0.25) 1px, transparent 1px);
+    }
+    .technical-panel {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface antialiased selection:bg-primary-container selection:text-white min-h-screen flex flex-col font-body-md text-body-md">
+<!-- TOP SHARED NAVBAR (PREDICTED JSON COMPONENT) -->
+<header class="bg-surface-container-low dark:bg-surface-container-low border-b border-surface-variant dark:border-surface-variant docked full-width top-0 sticky z-50 shadow-2xl shadow-surface-container-lowest/80">
+<div class="flex justify-between items-center w-full px-6 py-3 max-w-[1440px] mx-auto gap-4">
+<!-- Brand Logo + Catalog Button -->
+<div class="flex items-center gap-6">
+<a class="flex items-center gap-2 group" href="#">
+<div class="w-2 h-7 bg-primary-container transform -skew-x-12"></div>
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface dark:text-on-surface uppercase">
+            AUTO PARTS <span class="text-primary-container">PREMIUM</span>
+</span>
+</a>
+<button class="hidden lg:flex items-center gap-2 bg-surface-container-high hover:bg-surface-variant text-on-surface px-4 py-2 rounded-lg border border-surface-variant transition-all duration-150">
+<span class="material-symbols-outlined text-primary-container">grid_view</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider">Каталог</span>
+</button>
+</div>
+<!-- Center Search Bar (on_left in navigation layout context) -->
+<div class="flex-1 max-w-xl mx-2 hidden md:block">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-tertiary">search</span>
+<input class="w-full bg-surface-container-lowest border border-surface-variant rounded-lg pl-10 pr-24 py-2 font-code-tabular text-code-tabular text-on-surface placeholder:text-tertiary-container focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container" placeholder="Поиск по номеру OEM, артикулу или VIN..." type="text"/>
+<span class="absolute right-3 font-label-caps text-label-caps bg-surface-container px-2 py-0.5 rounded border border-surface-variant text-tertiary">
+            CTRL + K
+          </span>
+</div>
+</div>
+<!-- Trailing Action Badges & Profile Links -->
+<div class="flex items-center gap-4">
+<!-- Quick Vehicle Selector Badge -->
+<button class="hidden xl:flex items-center gap-2.5 bg-surface-container hover:border-primary-container/60 px-3.5 py-1.5 rounded-lg border border-surface-variant transition-colors group">
+<span class="material-symbols-outlined text-primary-container group-hover:scale-110 transition-transform">directions_car</span>
+<div class="text-left">
+<span class="block font-label-caps text-[10px] leading-3 text-tertiary uppercase tracking-wider">Гараж (1)</span>
+<span class="block font-body-sm text-body-sm font-semibold text-on-surface">Porsche 911 GT3 (992)</span>
+</div>
+<span class="material-symbols-outlined text-tertiary text-sm">expand_more</span>
+</button>
+<div class="h-6 w-px bg-surface-variant hidden xl:block"></div>
+<!-- Regional selector -->
+<div class="hidden sm:flex items-center gap-1 font-code-tabular text-code-tabular text-tertiary">
+<span>RUB / RU</span>
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-1">
+<button class="p-2 rounded hover:bg-surface-container-high text-tertiary hover:text-primary transition-colors" title="Гараж">
+<span class="material-symbols-outlined">directions_car</span>
+</button>
+<button class="p-2 rounded hover:bg-surface-container-high text-tertiary hover:text-primary transition-colors relative" title="Корзина">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute top-1 right-1 bg-primary-container text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+</button>
+<button class="p-2 rounded hover:bg-surface-container-high text-tertiary hover:text-primary transition-colors" title="Личный кабинет">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Secondary Nav Strip (Desktop) -->
+<div class="border-t border-surface-variant/40 bg-surface-container-lowest/60 backdrop-blur">
+<nav class="max-w-[1440px] mx-auto px-6 flex items-center gap-8 overflow-x-auto py-2 text-sm no-scrollbar">
+<a class="border-b-2 border-primary-container text-on-surface dark:text-on-surface font-semibold pb-1 font-body-sm text-body-sm" href="#">Каталог</a>
+<a class="text-tertiary dark:text-tertiary hover:text-on-surface dark:hover:text-on-surface pb-1 transition-colors font-body-sm text-body-sm" href="#">VIN-Подбор</a>
+<a class="text-tertiary dark:text-tertiary hover:text-on-surface dark:hover:text-on-surface pb-1 transition-colors font-body-sm text-body-sm" href="#">Тормозные системы</a>
+<a class="text-tertiary dark:text-tertiary hover:text-on-surface dark:hover:text-on-surface pb-1 transition-colors font-body-sm text-body-sm" href="#">Двигатель и наддув</a>
+<a class="text-tertiary dark:text-tertiary hover:text-on-surface dark:hover:text-on-surface pb-1 transition-colors font-body-sm text-body-sm" href="#">Подвеска GT</a>
+<a class="text-tertiary dark:text-tertiary hover:text-on-surface dark:hover:text-on-surface pb-1 transition-colors font-body-sm text-body-sm" href="#">Спецзаказ OEM</a>
+</nav>
+</div>
+</header>
+<main class="flex-1">
+<!-- HERO SECTION WITH INTEGRATED TELEMETRY BLUEPRINT -->
+<section class="relative cad-grid border-b border-surface-variant overflow-hidden py-12 md:py-20">
+<!-- Glow Gradients -->
+<div class="absolute top-0 right-1/4 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute bottom-0 left-10 w-80 h-80 bg-secondary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-[1440px] mx-auto px-6 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Hero Copy Left (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-primary-container/10 border border-primary-container/40 text-primary-container font-label-caps text-label-caps uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+                OEM Motorsport Grade
+              </span>
+<span class="font-code-tabular text-code-tabular text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary">verified</span> Проверено по каталогам 2025
+              </span>
+</div>
+<h1 class="font-display-hero-mobile md:font-display-hero text-display-hero-mobile md:text-display-hero text-on-surface tracking-tight uppercase">
+              Запчасти для тех, кто <span class="text-primary-container underline decoration-primary-container/50 underline-offset-8">выбирает</span> качество
+            </h1>
+<p class="font-body-lg text-body-lg text-tertiary max-w-2xl leading-relaxed">
+              Официальные поставки сертифицированных компонентов OEM и Motorsport для суперкаров, спорткаров и премиального сегмента с гарантией 100% подлинности.
+            </p>
+<div class="flex flex-wrap items-center gap-4 pt-2">
+<a class="h-11 px-6 rounded-lg bg-primary-container text-white font-headline-sm text-sm uppercase font-bold tracking-wider inline-flex items-center justify-center gap-2 hover:bg-[#d92330] red-glow transition-all duration-150 active:scale-[0.98]" href="#parts-catalog">
+<span>Перейти в каталог</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+<a class="h-11 px-6 rounded-lg bg-surface-container border border-surface-variant hover:border-secondary hover:text-secondary text-on-surface font-headline-sm text-sm uppercase font-bold tracking-wider inline-flex items-center justify-center gap-2 transition-all" href="#3d-explorer">
+<span class="material-symbols-outlined text-primary-container">view_in_ar</span>
+<span>3D Конфигуратор систем</span>
+</a>
+</div>
+<!-- Mini Spec Telemetry Ribbon -->
+<div class="grid grid-cols-3 gap-4 pt-4 border-t border-surface-variant/60 max-w-xl">
+<div>
+<span class="block font-price-xl text-2xl text-on-surface">14,800+</span>
+<span class="block font-label-caps text-label-caps text-tertiary uppercase">Компонентов OEM</span>
+</div>
+<div>
+<span class="block font-price-xl text-2xl text-on-surface">0.0%</span>
+<span class="block font-label-caps text-label-caps text-tertiary uppercase">Риск фальсификата</span>
+</div>
+<div>
+<span class="block font-price-xl text-2xl text-primary-container">24 Часа</span>
+<span class="block font-label-caps text-label-caps text-tertiary uppercase">Доставка на трек</span>
+</div>
+</div>
+</div>
+<!-- Hero Image & Interactive CAD Canvas (5 cols) -->
+<div class="lg:col-span-5 relative">
+<div class="relative bg-surface-container-low border border-surface-variant rounded-xl p-4 overflow-hidden technical-panel shadow-2xl">
+<div class="flex items-center justify-between pb-3 border-b border-surface-variant text-xs font-code-tabular text-tertiary">
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-ping"></span>
+                  TELEMETRY VIN SYNC
+                </span>
+<span class="text-primary-container uppercase font-semibold">CHASSIS: WPOZZZ99ZNS</span>
+</div>
+<div class="relative my-4 aspect-[4/3] rounded-lg overflow-hidden bg-surface-container-lowest flex items-center justify-center">
+<img class="w-full h-full object-cover opacity-90 transition-transform duration-700 hover:scale-105" data-alt="Close up dramatic technical photograph of a high-performance carbon-ceramic Brembo brake rotor and forged red caliper glowing under studio dark ambient lights. Titanium lug nuts and aerodynamic carbon fiber ducting visible in high contrast motorsport engineering setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBwqY0G2PKcP-5FwSHVF_m2kWkwy7kgmpXRk9LB1vuu4EC5m6i0-ws0_Xork03KlDJOijawcGX2XsDfUnlkwS1zAX_x3kkg71JwFlExp4n14yjgYCSsFYLoiiCCGouRjQGWoGVx4OkYzkkHf4Dy3sckD-px6eyu4ojPBy2y6IsCjVUQUky68v1UE4eixwX1sYgz34sH7tIOysln2NEkhFkcwZQLaYPZDfmjn7TZmmoo3Vgb4PPAeI"/>
+<!-- Overlay HUD Markers -->
+<div class="absolute top-4 left-4 bg-surface-container-lowest/80 backdrop-blur px-2.5 py-1 rounded border border-surface-variant text-[11px] font-code-tabular text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-xs text-primary-container">thermostat</span>
+<span>Тормозной ротор: 780°C Max</span>
+</div>
+<div class="absolute bottom-4 right-4 bg-surface-container-lowest/80 backdrop-blur px-2.5 py-1 rounded border border-surface-variant text-[11px] font-code-tabular text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-xs text-secondary">verified_user</span>
+<span>100% Fitment Certified</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-xs font-code-tabular text-tertiary pt-1">
+<span>PORSCHE MOTORSPORT ARCHIVE</span>
+<span class="text-on-surface">REV 2.8.4</span>
+</div>
+</div>
+</div>
+</div>
+<!-- INTEGRATED VEHICLE SEARCH BAR WIDGET -->
+<div class="mt-12 bg-surface-container border border-surface-variant rounded-xl p-6 technical-panel shadow-2xl">
+<!-- Filter Tabs -->
+<div class="flex flex-wrap items-center justify-between gap-4 border-b border-surface-variant pb-4 mb-6">
+<div class="flex items-center gap-2">
+<button class="px-4 py-2 rounded bg-surface-container-high border-b-2 border-primary-container text-on-surface font-headline-sm text-sm uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-sm">directions_car</span>
+                По марке и модели
+              </button>
+<button class="px-4 py-2 rounded hover:bg-surface-container-high text-tertiary hover:text-on-surface font-headline-sm text-sm uppercase transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">pin</span>
+                По VIN-коду
+              </button>
+<button class="px-4 py-2 rounded hover:bg-surface-container-high text-tertiary hover:text-on-surface font-headline-sm text-sm uppercase transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">tag</span>
+                По артикулу или OEM
+              </button>
+</div>
+<div class="flex items-center gap-2 text-xs font-code-tabular text-tertiary">
+<span class="material-symbols-outlined text-sm text-green-500">check_circle</span>
+              База обновлена сегодня в 08:30 МСК
+            </div>
+</div>
+<!-- Select Inputs Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
+<div>
+<label class="block font-label-caps text-label-caps text-tertiary uppercase mb-1.5">Марка автомобиля</label>
+<select class="w-full h-12 bg-surface-container-lowest border border-surface-variant rounded text-on-surface font-body-sm px-3 focus:outline-none focus:border-primary-container">
+<option selected="">Porsche Motorsport</option>
+<option>BMW M Power</option>
+<option>Mercedes-AMG</option>
+<option>Audi Sport (RS)</option>
+<option>Ferrari Competizioni</option>
+</select>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-tertiary uppercase mb-1.5">Модель</label>
+<select class="w-full h-12 bg-surface-container-lowest border border-surface-variant rounded text-on-surface font-body-sm px-3 focus:outline-none focus:border-primary-container">
+<option selected="">911 GT3 (992)</option>
+<option>911 GT3 RS (992)</option>
+<option>718 Cayman GT4 RS</option>
+<option>M5 CS (F90)</option>
+<option>AMG GT Black Series</option>
+</select>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-tertiary uppercase mb-1.5">Год выпуска</label>
+<select class="w-full h-12 bg-surface-container-lowest border border-surface-variant rounded text-on-surface font-body-sm px-3 focus:outline-none focus:border-primary-container">
+<option selected="">2024</option>
+<option>2023</option>
+<option>2022</option>
+<option>2021</option>
+</select>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-tertiary uppercase mb-1.5">Модификация / Двигатель</label>
+<select class="w-full h-12 bg-surface-container-lowest border border-surface-variant rounded text-on-surface font-body-sm px-3 focus:outline-none focus:border-primary-container">
+<option selected="">4.0L Boxer-6 (525 л.с.)</option>
+<option>4.0L Twin-Turbo V8</option>
+<option>3.8L Twin-Turbo (650 л.с.)</option>
+</select>
+</div>
+<div>
+<button class="w-full h-12 rounded bg-primary-container hover:bg-[#d92330] text-white font-headline-sm text-sm uppercase tracking-wider flex items-center justify-center gap-2 red-glow transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-sm">search</span>
+<span>Найти детали (1,480+)</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TRUST & SERVICE BAR -->
+<section class="border-b border-surface-variant bg-surface-container-low py-6">
+<div class="max-w-[1440px] mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="flex items-start gap-3">
+<div class="p-2.5 rounded bg-surface-container border border-surface-variant text-primary-container">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold">100% Гарантия OEM</h4>
+<p class="font-body-sm text-body-sm text-tertiary mt-0.5">Номерной паспорт завода и таможенные декларации подлинности.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="p-2.5 rounded bg-surface-container border border-surface-variant text-primary-container">
+<span class="material-symbols-outlined">flight_takeoff</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold">Доставка спецбортом</h4>
+<p class="font-body-sm text-body-sm text-tertiary mt-0.5">Прямая экспресс-поставка на трек или в партнерский сервис за 24 часа.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="p-2.5 rounded bg-surface-container border border-surface-variant text-primary-container">
+<span class="material-symbols-outlined">engineering</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold">Инженерный подбор</h4>
+<p class="font-body-sm text-body-sm text-tertiary mt-0.5">Верификация совместимости по VIN с точностью до миллиметра.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="p-2.5 rounded bg-surface-container border border-surface-variant text-primary-container">
+<span class="material-symbols-outlined">shield</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold">Гарантия Motorsport 2 года</h4>
+<p class="font-body-sm text-body-sm text-tertiary mt-0.5">Полное гарантийное покрытие без ограничений по трек-дням.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FEATURED CATEGORIES GRID -->
+<section class="py-16 border-b border-surface-variant bg-surface-container-lowest" id="parts-catalog">
+<div class="max-w-[1440px] mx-auto px-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+<div>
+<span class="font-label-caps text-label-caps text-primary-container uppercase tracking-wider block mb-1">Архитектура узлов</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">Каталог специализированных систем</h2>
+</div>
+<a class="inline-flex items-center gap-1.5 font-body-sm text-body-sm text-tertiary hover:text-primary-container transition-colors" href="#">
+<span>Развернуть полный каталог (28 категорий)</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Category 1 -->
+<div class="group bg-surface-container border border-surface-variant hover:border-primary-container/80 rounded-xl overflow-hidden transition-all duration-300 technical-panel">
+<div class="h-48 overflow-hidden relative bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" data-alt="Studio close-up of a high-performance carbon-ceramic ventilated brake disc with perforated patterns and gold-anodized center bell in clinical dark garage setting with high-contrast red reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc1vNvdSptXU1LZg55Pu_ldc-JAAHy0qBK17T6PHk7jpzbRxzsAgPrv9MH7p_lKlVBLmh_otiwgURmnv7KTW3APYpw6-dQ1TsUQIwZ3icbcd3LKzwQFkaqWFx0kYPUw7qNMUQD80J6uicuQY3zAX9eE5pREDnVY3AI2Fr9FIHYqW0NvQd5KiF7LA5vi51_25IaRnUexhPNFwTANXW9xopnQ6jNmCLnU4D0OEShSu-MhjpsLx4sorI"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 px-2.5 py-1 rounded text-[11px] font-label-caps uppercase text-primary-container border border-primary-container/30">
+                Track Certified
+              </div>
+</div>
+<div class="p-6">
+<span class="font-code-tabular text-code-tabular text-tertiary block mb-1">BREMBO RACING / AP RACING</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Тормозные системы Carbon-Ceramic &amp; Big Brake Kit</h3>
+<p class="font-body-sm text-body-sm text-tertiary mt-2">Карбон-керамические роторы, 6-поршневые моноблочные суппорты и термостойкие колодки.</p>
+<div class="mt-4 pt-4 border-t border-surface-variant flex items-center justify-between font-label-caps text-label-caps text-tertiary">
+<span>342 позиции в наличии</span>
+<span class="text-on-surface group-hover:translate-x-1 transition-transform inline-flex items-center">Смотреть →</span>
+</div>
+</div>
+</div>
+<!-- Category 2 -->
+<div class="group bg-surface-container border border-surface-variant hover:border-primary-container/80 rounded-xl overflow-hidden transition-all duration-300 technical-panel">
+<div class="h-48 overflow-hidden relative bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" data-alt="Ultralight titanium performance exhaust system manifold with precision TIG welds displaying purple and blue heat discoloration in dark moody workshop with sleek industrial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUtEkef16wOGUBAqlAePhfC7l635aojpE0A9UrdCuBAboc-U8rtOQFjsY_yJxZFOoIVKsiMlLdyU0yv1wzrS4XKSpRPJq0I1y4ZWSIZnYx9sHEP8a1hq1PSyTeryPZd7tTzfMc8QhV1bZ7-jO3nUjv2LvbMSLB6J10ZUemKgZ6yc-3Dku9QTVXXDhpKIHDqM3bTXWE9panVk7bXG8qrSEULLwZcvGSIbZWcWgfq21ZlG8NfgX8LDE"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 px-2.5 py-1 rounded text-[11px] font-label-caps uppercase text-secondary border border-secondary/30">
+                Titanium Ultralight
+              </div>
+</div>
+<div class="p-6">
+<span class="font-code-tabular text-code-tabular text-tertiary block mb-1">AKRAPOVIČ / CAPRISTO</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Выхлопные системы из титана</h3>
+<p class="font-body-sm text-body-sm text-tertiary mt-2">Эволюционные титановые пайпы, спортивные даунпайпы 200 cell и беспроводные клапаны управления звуком.</p>
+<div class="mt-4 pt-4 border-t border-surface-variant flex items-center justify-between font-label-caps text-label-caps text-tertiary">
+<span>186 позиций в наличии</span>
+<span class="text-on-surface group-hover:translate-x-1 transition-transform inline-flex items-center">Смотреть →</span>
+</div>
+</div>
+</div>
+<!-- Category 3 -->
+<div class="group bg-surface-container border border-surface-variant hover:border-primary-container/80 rounded-xl overflow-hidden transition-all duration-300 technical-panel">
+<div class="h-48 overflow-hidden relative bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" data-alt="High tech forged turbocharger compressor wheel paired with carbon fiber intake ducts in dark clinical high performance engine test room illuminated by subtle LED strips." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqC04nxoXqInu0uBnGyuwqoJMlTQcVX_PPdZhqWW-icPxNZsdIlzbTnEqE--Wzy1NgVGq2vb3I1-pHD8JhR67Jyx3GoWnrryPU5-W-48luAbCof7SNQg769qCKqYAmuTgahp0rsiah_LaRnVdFL4uQVCSD8dN3aelUKnkxdYbBKJdjCFZ_n9ly0b1T5dz3sbnZ13cGpjurW6FbG2_ljg6a7pQlrM0nkRTc2hp3AcJ_4cWz1lM3VcY"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 px-2.5 py-1 rounded text-[11px] font-label-caps uppercase text-primary-container border border-primary-container/30">
+                Stage 2 / Stage 3
+              </div>
+</div>
+<div class="p-6">
+<span class="font-code-tabular text-code-tabular text-tertiary block mb-1">GARRETT / EVENTURI</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Двигатель, наддув и интеркулеры</h3>
+<p class="font-body-sm text-body-sm text-tertiary mt-2">Турбины G-серии, цельнокарбоновые системы холодного впуска и высокопроизводительные теплообменники.</p>
+<div class="mt-4 pt-4 border-t border-surface-variant flex items-center justify-between font-label-caps text-label-caps text-tertiary">
+<span>512 позиций в наличии</span>
+<span class="text-on-surface group-hover:translate-x-1 transition-transform inline-flex items-center">Смотреть →</span>
+</div>
+</div>
+</div>
+<!-- Category 4 -->
+<div class="group bg-surface-container border border-surface-variant hover:border-primary-container/80 rounded-xl overflow-hidden transition-all duration-300 technical-panel">
+<div class="h-48 overflow-hidden relative bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" data-alt="Precision motorsport coilover suspension strut with yellow spring and anodized purple adjustment rings placed vertically against deep black carbon fiber textured background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHAofSbG0g381SUusa_3OMyowyMJxVMuAZ85TPuEaFd8_S-0tYy8t1-EPzReE0HoqUb3S3MdDH6agsHg8dgN4VUVHaPwhe7wCJvOSZqAHIF4z0oCWcKGoBIgerje7cq9CTDDApl8Ll1yf7QSZtm0qkGTeAE4gOLcNWSRDtCWFkHdbxSepQihRMwoyLMLfWFIR30g7Nl_kk0e4q3hlBhVwGRcr-BDpmY7Iggy42ZP8Ynv4wLm6Xsdg"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 px-2.5 py-1 rounded text-[11px] font-label-caps uppercase text-secondary border border-secondary/30">
+                Nürburgring Spec
+              </div>
+</div>
+<div class="p-6">
+<span class="font-code-tabular text-code-tabular text-tertiary block mb-1">KW SUSPENSIONS / BILSTEIN / ÖHLINS</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Винтовая подвеска &amp; койловеры</h3>
+<p class="font-body-sm text-body-sm text-tertiary mt-2">3-полосные и 4-полосные регулируемые стойки Clubsport с внешними резервуарами давления азота.</p>
+<div class="mt-4 pt-4 border-t border-surface-variant flex items-center justify-between font-label-caps text-label-caps text-tertiary">
+<span>274 позиции в наличии</span>
+<span class="text-on-surface group-hover:translate-x-1 transition-transform inline-flex items-center">Смотреть →</span>
+</div>
+</div>
+</div>
+<!-- Category 5 -->
+<div class="group bg-surface-container border border-surface-variant hover:border-primary-container/80 rounded-xl overflow-hidden transition-all duration-300 technical-panel">
+<div class="h-48 overflow-hidden relative bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" data-alt="Twin plate racing clutch assembly with lightweight billet flywheel and sintered friction pads displayed under focused surgical workshop spotlighting with deep dark shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUKEBgYLuW3dvMGffd-CT--tYDYoOd1jTM6Hp38XcuUHlVc1IfHsqVEHTCRCEv7Xv488MQRMEDRDiJinRkAABywb-3xyxMHLwD6Y54JjfIhROy8fPVu53R3V8irdZQsJqkF80AGyvOJnzZ5A0G0izjRlni2SYVIFBFB7ZHoFocCdCBtY-RsKvZ7bWhXsTD_kdtIUbb_Gf3yISrPu6s0hxPQ9bJpRULrLnTbMrs6vVD62DGGcVY_jQ"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 px-2.5 py-1 rounded text-[11px] font-label-caps uppercase text-primary-container border border-primary-container/30">
+                1000+ NM TORQUE
+              </div>
+</div>
+<div class="p-6">
+<span class="font-code-tabular text-code-tabular text-tertiary block mb-1">SACHS RACE ENGINEERING / DREXLER</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Трансмиссия и сцепление</h3>
+<p class="font-body-sm text-body-sm text-tertiary mt-2">Усиленные пакеты сцепления PDK/DCT, дисковые самоблокирующиеся дифференциалы LSD.</p>
+<div class="mt-4 pt-4 border-t border-surface-variant flex items-center justify-between font-label-caps text-label-caps text-tertiary">
+<span>129 позиций в наличии</span>
+<span class="text-on-surface group-hover:translate-x-1 transition-transform inline-flex items-center">Смотреть →</span>
+</div>
+</div>
+</div>
+<!-- Category 6 -->
+<div class="group bg-surface-container border border-surface-variant hover:border-primary-container/80 rounded-xl overflow-hidden transition-all duration-300 technical-panel">
+<div class="h-48 overflow-hidden relative bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" data-alt="Genuine factory OEM maintenance packaging boxes with Porsche and AMG holographic security seals and spark plugs in clinical luxury dark storage environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpzUs_zxIFWOrux3Z94knoZkH5i32eEiKBPEyxccpSJiaKJBeBcd81W-30nbD3S2FA4aeaqR33874jtvuRzxJl38dCsnr2hl_DlEQqojR6pg8iGGvrlPR-vlrelhwt6C9s2eYaHMzDbAJNLvc48giQXkniH0I9mM0C-5sHMb7O0mZK4wjDOwbcUPf32MYLmysu4xlQalh0jJ7VDl4wFi6ayUFxVc8qYv5KDaFPOEmEr_YuvkJbwvI"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 px-2.5 py-1 rounded text-[11px] font-label-caps uppercase text-green-400 border border-green-500/30">
+                100% Genuine
+              </div>
+</div>
+<div class="p-6">
+<span class="font-code-tabular text-code-tabular text-tertiary block mb-1">ORIGINAL TEILE OEM</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Оригинальные расходники OEM</h3>
+<p class="font-body-sm text-body-sm text-tertiary mt-2">Фильтры, свечи зажигания motorsport, специализированные жидкости Motul 300V и комплекты регламентного ТО.</p>
+<div class="mt-4 pt-4 border-t border-surface-variant flex items-center justify-between font-label-caps text-label-caps text-tertiary">
+<span>980 позиций в наличии</span>
+<span class="text-on-surface group-hover:translate-x-1 transition-transform inline-flex items-center">Смотреть →</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- INTERACTIVE 3D PARTS EXPLORER PREVIEW SECTION -->
+<section class="py-20 border-b border-surface-variant bg-surface-container-low relative overflow-hidden" id="3d-explorer">
+<div class="max-w-[1440px] mx-auto px-6">
+<div class="bg-surface-container-lowest border border-surface-variant rounded-2xl p-8 relative overflow-hidden">
+<!-- Ambient Grid Background -->
+<div class="absolute inset-0 cad-grid opacity-30 pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+<div class="lg:col-span-4 flex flex-col gap-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-secondary-container/20 border border-secondary-container/50 text-secondary font-label-caps text-label-caps uppercase w-max">
+<span class="material-symbols-outlined text-xs">view_in_ar</span>
+                Interactive CAD Studio
+              </span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface uppercase">
+                3D Эксплорер шасси &amp; агрегатов
+              </h2>
+<p class="font-body-md text-body-md text-tertiary">
+                Интерактивная проекция подвески, тормозной магистрали и трансмиссии. Выберите контрольную точку на чертеже спорткара для моментальной декомпозиции узла до каждого крепежного болта OEM.
+              </p>
+<div class="flex flex-col gap-3 my-2">
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-lg border border-surface-variant">
+<span class="w-3 h-3 rounded-full bg-primary-container animate-ping"></span>
+<div>
+<span class="block font-headline-sm text-sm text-on-surface">Тормозной ротор 410мм CCM-R</span>
+<span class="block font-code-tabular text-xs text-tertiary">Передняя ось / OEM 992.351.405</span>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-lg border border-surface-variant">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<div>
+<span class="block font-headline-sm text-sm text-on-surface">Твин-турбо Garrett G35-900</span>
+<span class="block font-code-tabular text-xs text-tertiary">Блок наддува Stage 3</span>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-lg border border-surface-variant">
+<span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+<div>
+<span class="block font-headline-sm text-sm text-on-surface">Амортизаторы KW V4 Clubsport</span>
+<span class="block font-code-tabular text-xs text-tertiary">Активная демпфирующая система</span>
+</div>
+</div>
+</div>
+<button class="h-12 rounded bg-primary-container hover:bg-[#d92330] text-white font-headline-sm text-sm uppercase tracking-wider flex items-center justify-center gap-2 red-glow transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-sm">explore</span>
+<span>Открыть 3D Эксплорер запчастей</span>
+</button>
+</div>
+<!-- Wireframe Chassis Visualizer Simulation -->
+<div class="lg:col-span-8 relative aspect-[16/9] rounded-xl overflow-hidden border border-surface-variant bg-surface-container flex items-center justify-center">
+<img class="w-full h-full object-cover opacity-85" data-alt="Digital isometric high tech blueprint rendering of a sleek Porsche 911 chassis cutaway with illuminated glowing red telemetry node points hovering above the brake discs, suspension springs, and engine exhaust in futuristic dark CAD software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiHkEh276Sftiu7fHpILt7LC0kJMqQbyK3GbKRWzmMxgEYRLmywO3gXhHksF6gu7jFW3omEmKqhlIkTKL2rKgRM-tQhljPUKSnhFMf4dtMf5QanxLPM2xPHxaIdB6wJcqnju1Lfot-iK1EWkRpJdNY_m50W8gTKWPAMAzzTq7LZdfu-4rzid0XBlqE3fkKBLxfifZ6q8VkPix7eE6QC9FinMbmybcMFfKR7wDnt5pXP5bGJmbhBWw"/>
+<!-- Overlay Interactive Hotspots -->
+<div class="absolute top-1/3 left-1/4 group cursor-pointer">
+<span class="relative flex h-5 w-5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span>
+<span class="relative inline-flex rounded-full h-5 w-5 bg-primary-container border-2 border-white items-center justify-center text-[10px] font-bold text-white">1</span>
+</span>
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden group-hover:flex flex-col bg-surface-container-lowest/95 border border-primary-container p-2 rounded shadow-2xl w-48 text-left z-20">
+<span class="text-xs font-bold text-on-surface">Brembo CCM-R 410mm</span>
+<span class="text-[10px] font-code-tabular text-primary-container">В НАЛИЧИИ (4 ШТ.)</span>
+</div>
+</div>
+<div class="absolute top-1/2 right-1/3 group cursor-pointer">
+<span class="relative flex h-5 w-5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-5 w-5 bg-secondary border-2 border-white items-center justify-center text-[10px] font-bold text-white">2</span>
+</span>
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden group-hover:flex flex-col bg-surface-container-lowest/95 border border-secondary p-2 rounded shadow-2xl w-48 text-left z-20">
+<span class="text-xs font-bold text-on-surface">Garrett G35-900 Turbo</span>
+<span class="text-[10px] font-code-tabular text-secondary">В НАЛИЧИИ (2 ШТ.)</span>
+</div>
+</div>
+<div class="absolute bottom-1/4 left-1/3 group cursor-pointer">
+<span class="relative flex h-5 w-5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-500 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-5 w-5 bg-yellow-500 border-2 border-white items-center justify-center text-[10px] font-bold text-white">3</span>
+</span>
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden group-hover:flex flex-col bg-surface-container-lowest/95 border border-yellow-500 p-2 rounded shadow-2xl w-48 text-left z-20">
+<span class="text-xs font-bold text-on-surface">KW V4 Clubsport Kit</span>
+<span class="text-[10px] font-code-tabular text-yellow-500">РЕКОМЕНДОВАНО GT3</span>
+</div>
+</div>
+<!-- Top Floating Controls -->
+<div class="absolute top-4 right-4 flex items-center gap-2">
+<span class="bg-surface-container-lowest/80 backdrop-blur border border-surface-variant px-3 py-1 rounded text-xs font-code-tabular text-tertiary">
+                  ROTATION: 360° AUTO
+                </span>
+<button class="p-1.5 rounded bg-surface-container-lowest/80 border border-surface-variant text-tertiary hover:text-on-surface">
+<span class="material-symbols-outlined text-sm">fullscreen</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- BESTSELLING PARTS / ХИТЫ ПРОДАЖ -->
+<section class="py-16 border-b border-surface-variant bg-surface-container-lowest">
+<div class="max-w-[1440px] mx-auto px-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+<div>
+<span class="font-label-caps text-label-caps text-primary-container uppercase tracking-wider block mb-1">Складской запас в Москве</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">Хиты продаж: Сертифицированные позиции</h2>
+</div>
+<!-- Segmented Filter Pills -->
+<div class="flex items-center gap-2 bg-surface-container-low p-1 rounded-lg border border-surface-variant">
+<button class="px-3 py-1.5 rounded bg-surface-container-high text-on-surface font-label-caps text-label-caps uppercase border border-surface-variant">Все узлы</button>
+<button class="px-3 py-1.5 rounded text-tertiary hover:text-on-surface font-label-caps text-label-caps uppercase">Тормоза</button>
+<button class="px-3 py-1.5 rounded text-tertiary hover:text-on-surface font-label-caps text-label-caps uppercase">Выхлоп</button>
+<button class="px-3 py-1.5 rounded text-tertiary hover:text-on-surface font-label-caps text-label-caps uppercase">Подвеска</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Part Card 1 -->
+<div class="bg-surface-container border border-surface-variant hover:border-primary-container/80 rounded-xl overflow-hidden flex flex-col justify-between technical-panel group transition-all duration-300">
+<div>
+<!-- Top Card Info Bar -->
+<div class="p-4 pb-2 flex items-center justify-between border-b border-surface-variant/60">
+<span class="font-label-caps text-[10px] text-primary-container uppercase tracking-wider font-bold">BREMBO RACING</span>
+<span class="font-code-tabular text-[11px] text-tertiary">OEM 992.351.405.CB</span>
+</div>
+<!-- Product Image -->
+<div class="aspect-[4/3] bg-surface-container-lowest relative overflow-hidden flex items-center justify-center p-4">
+<img class="max-h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="Technical product photography of Brembo CCM-R carbon-ceramic front brake disc with lightweight drilled vents and dark titanium mounting hardware in luxury studio lighting on dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjtNo9_ooSAlXTy9Ra67B6KEP9O4V0r0TJn4e1PeQVc9aqmjik5ImWR6Kgx9YxtuVwuVN9AMFifqr6jR_82LKhswgGFWU1HKwN-XI165dniilpBmSzDiDTf3WGD5BhLaHk-2nmsQwbG5zbHZ8y9qTtlkTx872Yp_ubgWFl7HNSGNfSBLXgVM8cYXDct4ANsmiZ1N0kEjVXYlc6nnxsHxJpVjX2kFKZjovfMKq5ZoULXHc805O8f-k"/>
+<span class="absolute top-2 left-2 bg-green-500/10 border border-green-500/40 text-green-400 font-label-caps text-[10px] px-2 py-0.5 rounded">
+                  В наличии: 4 шт.
+                </span>
+</div>
+<!-- Card Body -->
+<div class="p-5">
+<h3 class="font-headline-sm text-base text-on-surface font-semibold group-hover:text-primary transition-colors">
+                  Карбон-керамический тормозной диск Brembo CCM-R 410x36mm
+                </h3>
+<div class="mt-3 flex items-center gap-1.5 text-xs text-green-400 font-code-tabular">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span>Совместим с Porsche 911 (992) GT3</span>
+</div>
+<div class="mt-2 text-xs text-tertiary font-body-sm">
+                  Крепление 10-point floating bell, рабочая температура до 1000°C.
+                </div>
+</div>
+</div>
+<!-- Price and Buy Action -->
+<div class="p-5 pt-0">
+<div class="pt-3 border-t border-surface-variant flex items-baseline justify-between mb-4">
+<div>
+<span class="block text-xs line-through text-tertiary font-code-tabular">520 000 ₽</span>
+<span class="font-price-xl text-2xl text-on-surface">485 000 ₽</span>
+</div>
+<span class="font-label-caps text-[11px] text-primary-container bg-primary-container/10 px-2 py-1 rounded">
+                  -7% OEM SALE
+                </span>
+</div>
+<button class="w-full h-11 rounded bg-primary-container hover:bg-[#d92330] text-white font-headline-sm text-xs uppercase font-bold tracking-wider flex items-center justify-center gap-2 red-glow transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-sm">shopping_cart</span>
+<span>В корзину</span>
+</button>
+</div>
+</div>
+<!-- Part Card 2 -->
+<div class="bg-surface-container border border-surface-variant hover:border-primary-container/80 rounded-xl overflow-hidden flex flex-col justify-between technical-panel group transition-all duration-300">
+<div>
+<div class="p-4 pb-2 flex items-center justify-between border-b border-surface-variant/60">
+<span class="font-label-caps text-[10px] text-secondary uppercase tracking-wider font-bold">AKRAPOVIČ MOTORSPORT</span>
+<span class="font-code-tabular text-[11px] text-tertiary">OEM S-PO/TI/18</span>
+</div>
+<div class="aspect-[4/3] bg-surface-container-lowest relative overflow-hidden flex items-center justify-center p-4">
+<img class="max-h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="Studio photograph of Akrapovic Evolution Line titanium exhaust system with dual carbon tailpipes and exhaust flaps isolated on dark slate gray background with red ambient rim lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS6pXdvSYe-uNwqJC6IPWKW1dAU4UMof6CtmXZzVVX9W4D9jVi5WLYz8H-DTbtdZhD13XsmhmbumsMsFCXujQ-w_Rh2GT8qQcyVvDHb0AeiGxaiqHKnTH70BnYl9NizITlXWKxPdDX9ubHdF6aD6Xo2DOPFQogZEmqyLZMTEGf2t3otgjJbI6gPJJvLr_MN0gKCHEKqOy8Oj8ofh1HFxftbrfpS9-msFcqL1WudWEoOxkj1Facd8M"/>
+<span class="absolute top-2 left-2 bg-green-500/10 border border-green-500/40 text-green-400 font-label-caps text-[10px] px-2 py-0.5 rounded">
+                  В наличии: 2 шт.
+                </span>
+</div>
+<div class="p-5">
+<h3 class="font-headline-sm text-base text-on-surface font-semibold group-hover:text-primary transition-colors">
+                  Титановая выпускная система Akrapovič Evolution Line
+                </h3>
+<div class="mt-3 flex items-center gap-1.5 text-xs text-green-400 font-code-tabular">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span>Совместим с Porsche 911 GT3 / RS</span>
+</div>
+<div class="mt-2 text-xs text-tertiary font-body-sm">
+                  Снижение массы на 11.8 кг, прибавка +16.7 л.с. и +21.4 Нм крутящего момента.
+                </div>
+</div>
+</div>
+<div class="p-5 pt-0">
+<div class="pt-3 border-t border-surface-variant flex items-baseline justify-between mb-4">
+<div>
+<span class="block text-xs text-tertiary font-code-tabular">Оригинальный комплект</span>
+<span class="font-price-xl text-2xl text-on-surface">890 000 ₽</span>
+</div>
+<span class="font-label-caps text-[11px] text-tertiary bg-surface-container-high px-2 py-1 rounded">
+                  TITANIUM
+                </span>
+</div>
+<button class="w-full h-11 rounded bg-primary-container hover:bg-[#d92330] text-white font-headline-sm text-xs uppercase font-bold tracking-wider flex items-center justify-center gap-2 red-glow transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-sm">shopping_cart</span>
+<span>В корзину</span>
+</button>
+</div>
+</div>
+<!-- Part Card 3 -->
+<div class="bg-surface-container border border-surface-variant hover:border-primary-container/80 rounded-xl overflow-hidden flex flex-col justify-between technical-panel group transition-all duration-300">
+<div>
+<div class="p-4 pb-2 flex items-center justify-between border-b border-surface-variant/60">
+<span class="font-label-caps text-[10px] text-yellow-400 uppercase tracking-wider font-bold">KW SUSPENSIONS</span>
+<span class="font-code-tabular text-[11px] text-tertiary">OEM 35271890</span>
+</div>
+<div class="aspect-[4/3] bg-surface-container-lowest relative overflow-hidden flex items-center justify-center p-4">
+<img class="max-h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="Complete set of four KW Clubsport 3-Way adjustable racing coilovers with separate nitrogen reservoirs and purple helper springs on high tech dark garage surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYV5cLLDSuqPQCb2SqpvR1oLSWF5_u2E3aNOvPVu3lvlK1Duk9abId17Bun8InujyD38O3UoW3zoFzgEL8HmLl0jO7opyy2n6s8pqmJSlAO_uQPYg4S4q222bShnZoC2Znb0dUSuJHEdSGW3db7q-zQrEE5ECIcY7DKP_sbi8gJ87gedirgzpWRufKsPtyBlWPOvO9T6nallIbMkkJTM65eZRPF7Vsp2AREmVvN0BrLtUJ2il1DiU"/>
+<span class="absolute top-2 left-2 bg-green-500/10 border border-green-500/40 text-green-400 font-label-caps text-[10px] px-2 py-0.5 rounded">
+                  3 комплекта
+                </span>
+</div>
+<div class="p-5">
+<h3 class="font-headline-sm text-base text-on-surface font-semibold group-hover:text-primary transition-colors">
+                  Комплект регулируемой подвески KW Clubsport 3-Way
+                </h3>
+<div class="mt-3 flex items-center gap-1.5 text-xs text-green-400 font-code-tabular">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span>Совместим с BMW M5 CS (F90)</span>
+</div>
+<div class="mt-2 text-xs text-tertiary font-body-sm">
+                  Независимая регулировка сжатия на высоких/низких скоростях и отбоя.
+                </div>
+</div>
+</div>
+<div class="p-5 pt-0">
+<div class="pt-3 border-t border-surface-variant flex items-baseline justify-between mb-4">
+<div>
+<span class="block text-xs text-tertiary font-code-tabular">Включает опоры Unibal</span>
+<span class="font-price-xl text-2xl text-on-surface">375 000 ₽</span>
+</div>
+<span class="font-label-caps text-[11px] text-yellow-400 bg-yellow-400/10 px-2 py-1 rounded">
+                  RACE SPEC
+                </span>
+</div>
+<button class="w-full h-11 rounded bg-primary-container hover:bg-[#d92330] text-white font-headline-sm text-xs uppercase font-bold tracking-wider flex items-center justify-center gap-2 red-glow transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-sm">shopping_cart</span>
+<span>В корзину</span>
+</button>
+</div>
+</div>
+<!-- Part Card 4 -->
+<div class="bg-surface-container border border-surface-variant hover:border-primary-container/80 rounded-xl overflow-hidden flex flex-col justify-between technical-panel group transition-all duration-300">
+<div>
+<div class="p-4 pb-2 flex items-center justify-between border-b border-surface-variant/60">
+<span class="font-label-caps text-[10px] text-primary-container uppercase tracking-wider font-bold">EVENTURI INTAKE</span>
+<span class="font-code-tabular text-[11px] text-tertiary">OEM EVE-992-INT</span>
+</div>
+<div class="aspect-[4/3] bg-surface-container-lowest relative overflow-hidden flex items-center justify-center p-4">
+<img class="max-h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="High gloss prepreg carbon fiber airbox and aerodynamic Venturi intake tubes with cone air filter shown against clean matte dark industrial background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn23B2HJzfJLgG0gEKTqEu_nqZ_U1tz2zvjYbW7kM-ZNlyh10EqxCn7IIOrHue2dbjtvdoVVqNdT-E_nYQaCp18ol01K6vm4PE2xMmCH3c9jkItYcQVe87vkzYGweWStuILh9cLlXRyHaBo5vmF3LSAHLYBb5jxL2olIg4wflfhiNuSHOFpZaboEu4cFrw4X-TGOUc6hbG0WBq-pW5ujygEg8-txaPO8SACuXNXO85k-d_bCvn0b4"/>
+<span class="absolute top-2 left-2 bg-green-500/10 border border-green-500/40 text-green-400 font-label-caps text-[10px] px-2 py-0.5 rounded">
+                  В наличии: 6 шт.
+                </span>
+</div>
+<div class="p-5">
+<h3 class="font-headline-sm text-base text-on-surface font-semibold group-hover:text-primary transition-colors">
+                  Карбоновый впуск Eventuri Carbon Intake System
+                </h3>
+<div class="mt-3 flex items-center gap-1.5 text-xs text-green-400 font-code-tabular">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span>Совместим с Porsche 911 (992)</span>
+</div>
+<div class="mt-2 text-xs text-tertiary font-body-sm">
+                  100% автоклавный препрег-карбон, эффект Вентури для ламинарного потока воздуха.
+                </div>
+</div>
+</div>
+<div class="p-5 pt-0">
+<div class="pt-3 border-t border-surface-variant flex items-baseline justify-between mb-4">
+<div>
+<span class="block text-xs text-tertiary font-code-tabular">Сертификат TUV</span>
+<span class="font-price-xl text-2xl text-on-surface">210 000 ₽</span>
+</div>
+<span class="font-label-caps text-[11px] text-primary-container bg-primary-container/10 px-2 py-1 rounded">
+                  PRE-PREG
+                </span>
+</div>
+<button class="w-full h-11 rounded bg-primary-container hover:bg-[#d92330] text-white font-headline-sm text-xs uppercase font-bold tracking-wider flex items-center justify-center gap-2 red-glow transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-sm">shopping_cart</span>
+<span>В корзину</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- AI AUTOMOTIVE ASSISTANT PREVIEW BANNER -->
+<section class="py-16 border-b border-surface-variant bg-surface-container-low relative overflow-hidden">
+<div class="max-w-[1440px] mx-auto px-6">
+<div class="relative bg-gradient-to-r from-surface-container-lowest via-surface-container to-surface-container-high border border-surface-variant rounded-2xl p-8 lg:p-12 overflow-hidden shadow-2xl">
+<div class="absolute -right-20 -bottom-20 w-96 h-96 bg-primary-container/15 rounded-full blur-3xl pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+<div class="lg:col-span-8 flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-primary-container text-white font-label-caps text-label-caps uppercase">
+<span class="material-symbols-outlined text-xs">smart_toy</span>
+                  Neural Diagnostics 4.0
+                </span>
+<span class="font-code-tabular text-xs text-tertiary">Допуск точности: ± 0.1 мм</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface uppercase">
+                Интеллектуальный подбор деталей по VIN и фото узла
+              </h2>
+<p class="font-body-lg text-body-lg text-tertiary max-w-3xl">
+                Задайте вопрос AI-инженеру: точная проверка совместимости с допуском до 0.1 мм и поиск аналогов OEM по заводским взрыв-схемам в режиме реального времени.
+              </p>
+<!-- Live AI Input Mock -->
+<div class="mt-4 flex flex-col sm:flex-row items-center gap-3 bg-surface-container-lowest p-2 rounded-xl border border-surface-variant max-w-2xl">
+<div class="flex items-center gap-2 px-3 py-1.5 flex-1 w-full">
+<span class="material-symbols-outlined text-primary-container">psychology</span>
+<input class="bg-transparent border-none text-on-surface placeholder:text-tertiary-container focus:ring-0 text-sm w-full font-body-sm" placeholder="Пример: Подойдет ли суппорт Akebono на кулак M5 F90 LCI?" type="text"/>
+</div>
+<div class="flex items-center gap-2 w-full sm:w-auto">
+<button class="p-2.5 rounded-lg bg-surface-container hover:bg-surface-variant text-tertiary hover:text-on-surface" title="Загрузить фото детали">
+<span class="material-symbols-outlined text-sm">photo_camera</span>
+</button>
+<button class="px-5 py-2.5 rounded-lg bg-primary-container hover:bg-[#d92330] text-white font-headline-sm text-xs uppercase font-bold tracking-wider red-glow transition-all whitespace-nowrap w-full sm:w-auto">
+                    Спросить AI
+                  </button>
+</div>
+</div>
+</div>
+<!-- AI Telemetry Badge Preview -->
+<div class="lg:col-span-4 flex flex-col gap-3 font-code-tabular text-xs">
+<div class="bg-surface-container-lowest/90 border border-surface-variant p-4 rounded-xl">
+<div class="flex items-center justify-between text-tertiary mb-2">
+<span>AI MATCH ENGINE</span>
+<span class="text-green-400">STATUS: ACTIVE</span>
+</div>
+<p class="text-on-surface font-mono">
+                  &gt; Анализ 24,000+ сервисных бюллетеней Porsche TSB<br/>
+                  &gt; Проверка допусков крутящего момента болтов<br/>
+                  &gt; Кросс-верификация с каталогами PET2 &amp; ETK
+                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- OFFICIAL BRANDS CAROUSEL / GRID -->
+<section class="py-16 border-b border-surface-variant bg-surface-container-lowest">
+<div class="max-w-[1440px] mx-auto px-6">
+<div class="text-center max-w-2xl mx-auto mb-12">
+<span class="font-label-caps text-label-caps text-primary-container uppercase tracking-wider block mb-1">Прямые контракты</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">Официальные партнеры Motorsport</h2>
+<p class="font-body-sm text-body-sm text-tertiary mt-2">Поставки напрямую с европейских фабрик и гоночных подразделений заводов-изготовителей.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+<div class="bg-surface-container border border-surface-variant p-6 rounded-lg flex flex-col items-center justify-center text-center hover:border-primary-container transition-all group">
+<span class="font-headline-sm text-sm font-bold tracking-tighter text-tertiary group-hover:text-primary transition-colors uppercase">BREMBO</span>
+<span class="font-label-caps text-[9px] text-tertiary/60 mt-1 uppercase">Official OEM</span>
+</div>
+<div class="bg-surface-container border border-surface-variant p-6 rounded-lg flex flex-col items-center justify-center text-center hover:border-primary-container transition-all group">
+<span class="font-headline-sm text-sm font-bold tracking-tighter text-tertiary group-hover:text-primary transition-colors uppercase">AKRAPOVIČ</span>
+<span class="font-label-caps text-[9px] text-tertiary/60 mt-1 uppercase">Titanium Line</span>
+</div>
+<div class="bg-surface-container border border-surface-variant p-6 rounded-lg flex flex-col items-center justify-center text-center hover:border-primary-container transition-all group">
+<span class="font-headline-sm text-sm font-bold tracking-tighter text-tertiary group-hover:text-primary transition-colors uppercase">KW SUSPENSIONS</span>
+<span class="font-label-caps text-[9px] text-tertiary/60 mt-1 uppercase">Motorsport Part</span>
+</div>
+<div class="bg-surface-container border border-surface-variant p-6 rounded-lg flex flex-col items-center justify-center text-center hover:border-primary-container transition-all group">
+<span class="font-headline-sm text-sm font-bold tracking-tighter text-tertiary group-hover:text-primary transition-colors uppercase">BILSTEIN</span>
+<span class="font-label-caps text-[9px] text-tertiary/60 mt-1 uppercase">Clubsport Tech</span>
+</div>
+<div class="bg-surface-container border border-surface-variant p-6 rounded-lg flex flex-col items-center justify-center text-center hover:border-primary-container transition-all group">
+<span class="font-headline-sm text-sm font-bold tracking-tighter text-tertiary group-hover:text-primary transition-colors uppercase">ÖHLINS</span>
+<span class="font-label-caps text-[9px] text-tertiary/60 mt-1 uppercase">TTX Series</span>
+</div>
+<div class="bg-surface-container border border-surface-variant p-6 rounded-lg flex flex-col items-center justify-center text-center hover:border-primary-container transition-all group">
+<span class="font-headline-sm text-sm font-bold tracking-tighter text-tertiary group-hover:text-primary transition-colors uppercase">BOSCH MOTORSPORT</span>
+<span class="font-label-caps text-[9px] text-tertiary/60 mt-1 uppercase">ECU &amp; Sensors</span>
+</div>
+<div class="bg-surface-container border border-surface-variant p-6 rounded-lg flex flex-col items-center justify-center text-center hover:border-primary-container transition-all group">
+<span class="font-headline-sm text-sm font-bold tracking-tighter text-tertiary group-hover:text-primary transition-colors uppercase">MOTUL 300V</span>
+<span class="font-label-caps text-[9px] text-tertiary/60 mt-1 uppercase">Racing Fluids</span>
+</div>
+<div class="bg-surface-container border border-surface-variant p-6 rounded-lg flex flex-col items-center justify-center text-center hover:border-primary-container transition-all group">
+<span class="font-headline-sm text-sm font-bold tracking-tighter text-tertiary group-hover:text-primary transition-colors uppercase">MICHELIN CUP</span>
+<span class="font-label-caps text-[9px] text-tertiary/60 mt-1 uppercase">Track Tyres</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FOOTER (PREDICTED JSON COMPONENT) -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-surface-variant dark:border-surface-variant docked full-width bottom-0">
+<div class="w-full max-w-[1440px] mx-auto px-6 py-12 flex flex-col gap-8">
+<!-- Top Footer Cluster -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+<div class="lg:col-span-2 flex flex-col gap-4">
+<a class="flex items-center gap-2" href="#">
+<div class="w-2 h-6 bg-primary-container transform -skew-x-12"></div>
+<span class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface uppercase">
+              AUTO PARTS <span class="text-primary-container">PREMIUM</span>
+</span>
+</a>
+<p class="font-body-sm text-body-sm text-tertiary max-w-sm">
+            Официальный поставщик сертифицированных компонентов OEM &amp; Motorsport. Инженерное сопровождение трек-дней и поставок оригинальных запчастей из Германии, Италии и Великобритании.
+          </p>
+<div class="flex items-center gap-4 text-tertiary">
+<span class="font-code-tabular text-code-tabular text-on-surface">+7 (495) 890-22-11</span>
+<span class="text-xs bg-surface-container px-2 py-0.5 rounded border border-surface-variant">24/7 SUPPORT</span>
+</div>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-3">Каталог узлов</h4>
+<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-tertiary">
+<li><a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Тормозные системы CCM</a></li>
+<li><a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Титановый выпуск</a></li>
+<li><a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Винтовые подвески KW</a></li>
+<li><a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Карбоновые впуски</a></li>
+<li><a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Кованые диски моноблоки</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-3">Сервис &amp; Гарантия</h4>
+<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-tertiary">
+<li><a class="text-primary dark:text-primary font-medium hover:text-primary transition-colors" href="#">Проверка подлинности VIN</a></li>
+<li><a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Сертифицированная гарантия</a></li>
+<li><a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Экспресс-доставка трек/город</a></li>
+<li><a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Партнеры OEM Motorsport</a></li>
+<li><a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Технический регламент</a></li>
+<li><a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Возврат и рекламации</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-3">Центр телеметрии</h4>
+<div class="flex flex-col gap-3 font-body-sm text-body-sm text-tertiary">
+<p>Москва, Новорижское ш., Автодром Moscow Raceway, Бокс 14</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="font-code-tabular text-xs text-on-surface">Склад Motorsport: Онлайн</span>
+</div>
+<a class="inline-flex items-center gap-1 font-label-caps text-label-caps text-primary-container uppercase mt-2" href="#">
+<span>Запросить расчет поставки</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Copyright Sub-strip -->
+<div class="pt-8 border-t border-surface-variant flex flex-col md:flex-row items-center justify-between gap-4">
+<p class="font-body-sm text-body-sm text-tertiary">
+          © 2025 AUTO PARTS PREMIUM. Официальный поставщик сертифицированных компонентов OEM &amp; Motorsport. Все права защищены.
+        </p>
+<div class="flex items-center gap-6 font-label-caps text-label-caps text-tertiary uppercase">
+<a class="hover:text-on-surface transition-colors" href="#">Политика конфиденциальности</a>
+<a class="hover:text-on-surface transition-colors" href="#">Сертификаты FIA &amp; TUV</a>
+<a class="hover:text-on-surface transition-colors" href="#">Отказ от ответственности</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

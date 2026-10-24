@@ -5,7 +5,6 @@ import {
   AlertCircle,
   AlertTriangle,
   BarChart3,
-  TrendingUp,
   BookOpen,
   ExternalLink,
   Globe,
@@ -39,7 +38,8 @@ import { useTranslation } from 'react-i18next'
 
 import { api } from '../lib/api'
 import { useAuth } from '../stores/auth'
-import type { AnalyticsDashboardResponse, ArticleCategory, ArticleDetail as ArticleDetailType, ArticleListResponse, ArticleSummary, Brand, Category, TicketDetail, TicketListResponse, User } from '../types'
+import { ExecutiveCockpit } from '../components/cockpit/ExecutiveCockpit'
+import type { ArticleCategory, ArticleDetail as ArticleDetailType, ArticleListResponse, ArticleSummary, Brand, Category, TicketDetail, TicketListResponse, User } from '../types'
 
 const FIELD =
   'w-full rounded-lg border px-3.5 py-2.5 text-sm outline-none transition focus:border-premium focus:ring-1 focus:ring-premium'
@@ -714,17 +714,6 @@ export default function Admin() {
   }
 
 
-  // Analytics state
-  const [analyticsDays, setAnalyticsDays] = useState(7)
-  const adminAnalyticsQuery = useQuery({
-    queryKey: ['admin-analytics', analyticsDays],
-    queryFn: () =>
-      api.get<AnalyticsDashboardResponse>('/admin/analytics/dashboard', {
-        days: analyticsDays,
-      }),
-    enabled: isAdmin && tab === 'analytics',
-  })
-
   if (!user) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-20 text-center">
@@ -732,7 +721,7 @@ export default function Admin() {
         <p className="mt-3 text-muted">{t('authRequired')} доступа к админке.</p>
         <Link
           to="/login"
-          className="mt-6 inline-block rounded-lg bg-premium px-6 py-3 font-semibold text-white transition hover:opacity-90"
+          className="mt-6 inline-block rounded-lg bg-premium px-6 py-3 font-semibold text-ink transition hover:opacity-90"
         >
           {t('login')}
         </Link>
@@ -825,444 +814,26 @@ export default function Admin() {
 
       {/* TAB: ANALYTICS & BI — EXECUTIVE HIGH-DENSITY TELEMETRY COCKPIT */}
       {tab === 'analytics' && (
-        <div className="mt-8 space-y-5 animate-fade-in">
-          {/* Top Telemetry Header & Dynamic Filters */}
-          <div className="flex flex-col gap-3 rounded-2xl border border-[#242A32] bg-gradient-to-r from-[#12161D] via-[#151C26] to-[#0B0D10] p-4 sm:flex-row sm:items-center sm:justify-between shadow-xl">
-            <div className="flex items-center gap-3">
-              <div className="grid size-9 place-items-center rounded-xl bg-[#00F0FF]/15 text-[#00F0FF] border border-[#00F0FF]/30">
-                <BarChart3 className="size-5" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#00F0FF]">
-                    EXECUTIVE BI TELEMETRY
-                  </span>
-                  <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 font-mono text-[9px] font-bold text-emerald-400 border border-emerald-500/20">
-                    <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    LIVE
-                  </span>
-                </div>
-                <h2 className="text-base sm:text-lg font-black text-white tracking-tight">
-                  Аналитика и финансовые показатели
-                </h2>
-              </div>
+        <div className="mt-8 space-y-6 animate-fade-in">
+          {/* Quick Jump Pill to Full Screen Cockpit */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-3.5 rounded-xl border border-outline-variant bg-surface-container-low">
+            <div className="flex items-center gap-2.5 font-mono text-xs">
+              <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
+              <span className="text-on-surface font-semibold">Stitch Executive Commerce Intelligence:</span>
+              <span className="text-outline">Полнофункциональный режим мониторинга</span>
             </div>
-
-            {/* Time period filter pills */}
-            <div className="flex items-center gap-1.5 bg-[#0B0D10]/80 p-1 rounded-xl border border-[#242A32]">
-              {[7, 14, 30, 90].map((days) => (
-                <button
-                  key={days}
-                  onClick={() => setAnalyticsDays(days)}
-                  className={`rounded-lg px-3 py-1 font-mono text-xs font-bold transition-all ${
-                    analyticsDays === days
-                      ? 'bg-gradient-to-r from-[#00F0FF]/20 to-[#0080FF]/30 text-[#00F0FF] border border-[#00F0FF]/50 shadow-[0_0_12px_rgba(0,240,255,0.25)]'
-                      : 'text-[#A5ACB5] hover:text-white hover:bg-white/5 border border-transparent'
-                  }`}
-                >
-                  {days} ДН
-                </button>
-              ))}
-              <button
-                onClick={() => adminAnalyticsQuery.refetch()}
-                className="rounded-lg p-1.5 text-[#A5ACB5] hover:text-[#00F0FF] transition hover:bg-white/5"
-                title="Обновить данные"
-              >
-                <RefreshCw className={`size-3.5 ${adminAnalyticsQuery.isFetching ? 'animate-spin' : ''}`} />
-              </button>
-            </div>
+            <Link
+              to="/cockpit"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded bg-primary-container text-on-primary-container font-mono text-xs font-bold hover:brightness-110 transition shadow-lg shadow-sky-500/20"
+            >
+              <span>Открыть Fullscreen Cockpit</span>
+              <ExternalLink className="size-3.5" />
+            </Link>
           </div>
 
-          {adminAnalyticsQuery.isLoading && (
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="h-24 animate-pulse rounded-2xl bg-[#15191F] border border-[#242A32]" />
-              ))}
-            </div>
-          )}
-
-          {adminAnalyticsQuery.isError && (
-            <div className="flex items-center justify-between rounded-xl border border-red-500/30 bg-red-500/10 p-4 font-mono text-xs text-red-400">
-              <div className="flex items-center gap-2">
-                <AlertCircle className="size-4 text-red-500" />
-                <span>Не удалось загрузить данные аналитики. Проверьте соединение с сервером.</span>
-              </div>
-              <button
-                onClick={() => adminAnalyticsQuery.refetch()}
-                className="rounded-lg bg-red-500/20 px-3 py-1 font-bold text-white hover:bg-red-500/30"
-              >
-                Повторить
-              </button>
-            </div>
-          )}
-
-          {adminAnalyticsQuery.data && (
-            <>
-              {/* Primary 4 Compact Executive KPI Cards */}
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                {/* 1. Revenue Card */}
-                <div className="rounded-2xl border border-[#242A32] bg-gradient-to-b from-[#151C26] to-[#0E131A] p-4 shadow-lg hover:border-[#00F0FF]/50 transition-all group">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#00F0FF]">
-                      Выручка ({analyticsDays} дн.)
-                    </span>
-                    <span className="grid size-7 place-items-center rounded-lg bg-[#00F0FF]/15 text-[#00F0FF] group-hover:scale-110 transition">
-                      <TrendingUp className="size-3.5" />
-                    </span>
-                  </div>
-                  <div className="mt-2.5 flex items-baseline gap-1.5 font-mono">
-                    <span className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                      {Number(adminAnalyticsQuery.data.total_revenue).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                    </span>
-                    <span className="text-xs font-bold text-[#00F0FF]">TJS</span>
-                  </div>
-                  <div className="mt-2 flex items-center justify-between font-mono text-[11px] text-[#A5ACB5] pt-2 border-t border-[#242A32]/60">
-                    <span>Оформлено заказов:</span>
-                    <span className="font-bold text-white">{adminAnalyticsQuery.data.total_orders} шт.</span>
-                  </div>
-                </div>
-
-                {/* 2. Average Order Value Card */}
-                <div className="rounded-2xl border border-[#242A32] bg-gradient-to-b from-[#1C1815] to-[#120E0D] p-4 shadow-lg hover:border-[#F59E0B]/50 transition-all group">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#F59E0B]">
-                      Средний чек (AOV)
-                    </span>
-                    <span className="grid size-7 place-items-center rounded-lg bg-[#F59E0B]/15 text-[#F59E0B] group-hover:scale-110 transition">
-                      <Wallet className="size-3.5" />
-                    </span>
-                  </div>
-                  <div className="mt-2.5 flex items-baseline gap-1.5 font-mono">
-                    <span className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                      {Number(adminAnalyticsQuery.data.average_order_value).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                    </span>
-                    <span className="text-xs font-bold text-[#F59E0B]">TJS</span>
-                  </div>
-                  <div className="mt-2 flex items-center justify-between font-mono text-[11px] text-[#A5ACB5] pt-2 border-t border-[#242A32]/60">
-                    <span>Доставлено успешно:</span>
-                    <span className="font-bold text-emerald-400">
-                      {adminAnalyticsQuery.data.orders_by_status.find((s) => s.status === 'delivered')?.count || 0} зак.
-                    </span>
-                  </div>
-                </div>
-
-                {/* 3. Stock Health Card */}
-                <div className="rounded-2xl border border-[#242A32] bg-gradient-to-b from-[#131E18] to-[#0D1510] p-4 shadow-lg hover:border-[#10B981]/50 transition-all group">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#10B981]">
-                      Наличие на складе
-                    </span>
-                    <span className="grid size-7 place-items-center rounded-lg bg-[#10B981]/15 text-[#10B981] group-hover:scale-110 transition">
-                      <Warehouse className="size-3.5" />
-                    </span>
-                  </div>
-                  <div className="mt-2.5 flex items-baseline gap-1 font-mono">
-                    <span className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                      {adminAnalyticsQuery.data.stock_health.in_stock}
-                    </span>
-                    <span className="text-xs text-[#A5ACB5]">/ {adminAnalyticsQuery.data.stock_health.total_skus} SKU</span>
-                    <span className="ml-auto text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">
-                      {Math.round((adminAnalyticsQuery.data.stock_health.in_stock / Math.max(1, adminAnalyticsQuery.data.stock_health.total_skus)) * 100)}%
-                    </span>
-                  </div>
-                  <div className="mt-2 flex items-center justify-between font-mono text-[11px] text-[#A5ACB5] pt-2 border-t border-[#242A32]/60">
-                    <span>Критический остаток:</span>
-                    <span className="font-bold text-amber-400">{adminAnalyticsQuery.data.stock_health.low_stock} SKU</span>
-                  </div>
-                </div>
-
-                {/* 4. Support Service SLA Card */}
-                <div className="rounded-2xl border border-[#242A32] bg-gradient-to-b from-[#1A1524] to-[#110D18] p-4 shadow-lg hover:border-[#8B5CF6]/50 transition-all group">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#8B5CF6]">
-                      Клиентский сервис
-                    </span>
-                    <span className="grid size-7 place-items-center rounded-lg bg-[#8B5CF6]/15 text-[#8B5CF6] group-hover:scale-110 transition">
-                      <LifeBuoy className="size-3.5" />
-                    </span>
-                  </div>
-                  <div className="mt-2.5 flex items-baseline gap-1.5 font-mono">
-                    <span className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                      {adminAnalyticsQuery.data.support_metrics.open_tickets}
-                    </span>
-                    <span className="text-xs text-[#A5ACB5]">открытых тикетов</span>
-                  </div>
-                  <div className="mt-2 flex items-center justify-between font-mono text-[11px] text-[#A5ACB5] pt-2 border-t border-[#242A32]/60">
-                    <span>Решено обращений:</span>
-                    <span className="font-bold text-emerald-400">{adminAnalyticsQuery.data.support_metrics.resolved_tickets}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Dynamic Revenue & Volume Micro-Chart */}
-              <div className="rounded-2xl border border-[#242A32] bg-gradient-to-b from-[#15191F] via-[#11151B] to-[#0B0D10] p-5 shadow-xl">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="size-2 rounded-full bg-[#00F0FF] animate-pulse" />
-                      <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-white">
-                        ДИНАМИКА ВЫРУЧКИ И ОБЪЁМА ЗАКАЗОВ (TJS)
-                      </h3>
-                    </div>
-                    <p className="font-mono text-[11px] text-[#A5ACB5] mt-0.5">
-                      Ежедневное распределение входящих заказов по реальным транзакциям
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-3 font-mono text-[10px] text-[#A5ACB5]">
-                    <span className="flex items-center gap-1.5">
-                      <span className="size-2 rounded-sm bg-gradient-to-t from-[#0080FF] to-[#00F0FF]" />
-                      Выручка (TJS)
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <span className="size-2 rounded-full bg-[#E32636]" />
-                      Пиковые дни
-                    </span>
-                  </div>
-                </div>
-
-                {adminAnalyticsQuery.data.revenue_chart.length === 0 ? (
-                  <div className="py-8 text-center font-mono text-xs text-[#A5ACB5]">
-                    Нет данных о выручке за выбранный период
-                  </div>
-                ) : (
-                  <div className="pt-2">
-                    {/* SVG / CSS Bar Chart with compact 140px height */}
-                    <div className="h-36 w-full flex items-end gap-2 pb-2 border-b border-[#242A32] overflow-x-auto scrollbar-none">
-                      {(() => {
-                        const maxRev = Math.max(
-                          ...adminAnalyticsQuery.data.revenue_chart.map((d) => Number(d.revenue)),
-                          1
-                        )
-                        return adminAnalyticsQuery.data.revenue_chart.map((item) => {
-                          const revNum = Number(item.revenue)
-                          const heightPct = Math.max(8, Math.round((revNum / maxRev) * 100))
-                          const isPeak = revNum > maxRev * 0.75 && revNum > 0
-
-                          return (
-                            <div
-                              key={item.date}
-                              className="group relative flex-1 min-w-[28px] flex flex-col items-center justify-end h-full"
-                            >
-                              {/* Floating Telemetry Glass Tooltip */}
-                              <div className="absolute -top-12 z-30 hidden group-hover:flex flex-col items-center pointer-events-none rounded-xl bg-[#0B0D10]/95 border border-[#00F0FF]/40 px-2.5 py-1 text-[10px] font-mono shadow-2xl backdrop-blur-md whitespace-nowrap">
-                                <span className="font-bold text-white text-[11px]">
-                                  {revNum.toLocaleString('ru-RU')} TJS
-                                </span>
-                                <span className="text-[#00F0FF] text-[9px]">
-                                  {item.orders_count} зак. • {item.date}
-                                </span>
-                              </div>
-
-                              {/* Dot indicator for orders volume */}
-                              {item.orders_count > 0 && (
-                                <div className="mb-1 size-1.5 rounded-full bg-[#00F0FF] shadow-[0_0_6px_#00F0FF]" />
-                              )}
-
-                              {/* Bar */}
-                              <div
-                                style={{ height: `${heightPct}%` }}
-                                className={`w-full rounded-t-md transition-all duration-300 ${
-                                  isPeak
-                                    ? 'bg-gradient-to-t from-[#B71D2B] via-[#E32636] to-[#FF2A3D] shadow-[0_0_12px_rgba(227,38,54,0.4)]'
-                                    : 'bg-gradient-to-t from-[#0080FF]/30 via-[#0080FF]/60 to-[#00F0FF] hover:brightness-125'
-                                }`}
-                              />
-
-                              <span className="mt-2 font-mono text-[9px] text-[#A5ACB5] truncate max-w-full">
-                                {item.date.slice(5)}
-                              </span>
-                            </div>
-                          )
-                        })
-                      })()}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Two Column Grid: Top Selling Products & Client Garage Fleet */}
-              <div className="grid gap-5 lg:grid-cols-2">
-                {/* 1. Top Selling Products (Compact Leaderboard) */}
-                <div className="rounded-2xl border border-[#242A32] bg-gradient-to-b from-[#15191F] to-[#0B0D10] p-5 shadow-xl">
-                  <div className="flex items-center justify-between mb-3 border-b border-[#242A32] pb-3">
-                    <div className="flex items-center gap-2">
-                      <Package className="size-4 text-[#00F0FF]" />
-                      <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-white">
-                        ТОП-5 ПРОДАВАЕМЫХ ДЕТАЛЕЙ
-                      </h3>
-                    </div>
-                    <span className="font-mono text-[10px] text-[#A5ACB5]">По выручке</span>
-                  </div>
-
-                  {adminAnalyticsQuery.data.top_products.length === 0 ? (
-                    <p className="font-mono text-xs text-[#A5ACB5] py-6 text-center">Нет продаж за указанный период</p>
-                  ) : (
-                    <div className="divide-y divide-[#242A32]/60">
-                      {adminAnalyticsQuery.data.top_products.map((item, idx) => {
-                        const rankColors = [
-                          'bg-[#F59E0B] text-black shadow-[0_0_8px_#F59E0B]',
-                          'bg-[#00F0FF] text-black shadow-[0_0_8px_#00F0FF]',
-                          'bg-slate-300 text-black',
-                          'bg-[#242A32] text-white',
-                          'bg-[#242A32] text-white',
-                        ]
-                        return (
-                          <div key={item.id} className="py-2.5 flex items-center justify-between text-xs">
-                            <div className="flex items-center gap-2.5 min-w-0 pr-3">
-                              <span className={`flex size-5 shrink-0 items-center justify-center rounded-md font-mono text-[10px] font-black ${rankColors[idx] || 'bg-[#242A32] text-white'}`}>
-                                {idx + 1}
-                              </span>
-                              <div className="min-w-0">
-                                <p className="truncate font-bold text-white text-xs">{item.name}</p>
-                                <p className="font-mono text-[10px] text-[#A5ACB5] mt-0.5">{item.sku}</p>
-                              </div>
-                            </div>
-                            <div className="text-right shrink-0 font-mono">
-                              <span className="font-bold text-white text-xs">
-                                {Number(item.revenue).toLocaleString('ru-RU')} TJS
-                              </span>
-                              <p className="text-[10px] text-[#00F0FF] font-semibold">{item.units_sold} шт.</p>
-                            </div>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  )}
-                </div>
-
-                {/* 2. Client Garage Fleet (Colorful Brand Distribution) */}
-                <div className="rounded-2xl border border-[#242A32] bg-gradient-to-b from-[#15191F] to-[#0B0D10] p-5 shadow-xl">
-                  <div className="flex items-center justify-between mb-3 border-b border-[#242A32] pb-3">
-                    <div className="flex items-center gap-2">
-                      <FolderTree className="size-4 text-[#E32636]" />
-                      <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-white">
-                        АВТОПАРК КЛИЕНТОВ (ГАРАЖИ AU)
-                      </h3>
-                    </div>
-                    <span className="font-mono text-[10px] text-[#A5ACB5]">Доля марок</span>
-                  </div>
-
-                  {adminAnalyticsQuery.data.popular_makes.length === 0 ? (
-                    <p className="font-mono text-xs text-[#A5ACB5] py-6 text-center">Нет данных об авто клиентов</p>
-                  ) : (
-                    <div className="space-y-3 pt-1">
-                      {(() => {
-                        const totalCars = adminAnalyticsQuery.data.popular_makes.reduce((acc, cur) => acc + cur.vehicles_count, 0) || 1
-                        const brandGradients = [
-                          'from-blue-600 to-cyan-400',
-                          'from-emerald-600 to-teal-400',
-                          'from-amber-600 to-yellow-400',
-                          'from-red-600 to-rose-400',
-                          'from-purple-600 to-indigo-400',
-                        ]
-
-                        return adminAnalyticsQuery.data.popular_makes.map((item, idx) => {
-                          const pct = Math.round((item.vehicles_count / totalCars) * 100)
-                          const grad = brandGradients[idx % brandGradients.length]
-
-                          return (
-                            <div key={item.make_name} className="space-y-1 font-mono text-xs">
-                              <div className="flex justify-between items-center text-xs">
-                                <span className="font-bold text-white">{item.make_name}</span>
-                                <span className="text-[11px] text-[#A5ACB5]">
-                                  <span className="text-white font-bold">{item.vehicles_count}</span> авто ({pct}%)
-                                </span>
-                              </div>
-                              <div className="h-1.5 w-full rounded-full bg-[#0B0D10] overflow-hidden border border-[#242A32]">
-                                <div
-                                  className={`h-full rounded-full bg-gradient-to-r ${grad}`}
-                                  style={{ width: `${Math.max(6, pct)}%` }}
-                                />
-                              </div>
-                            </div>
-                          )
-                        })
-                      })()}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Bottom Operational Matrix (3 Compact Micro-Cards) */}
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {/* Loyalty */}
-                <div className="rounded-2xl border border-[#242A32] bg-[#12161D] p-4 shadow-lg">
-                  <div className="flex items-center gap-2 font-mono text-xs font-bold text-white mb-2.5">
-                    <Coins className="size-4 text-[#F59E0B]" />
-                    <span>AU CLUB ЛОЯЛЬНОСТЬ</span>
-                  </div>
-                  <div className="space-y-1.5 font-mono text-xs">
-                    <div className="flex justify-between py-1 border-b border-[#242A32]/60">
-                      <span className="text-[#A5ACB5]">Участников клуба:</span>
-                      <span className="font-bold text-white">{adminAnalyticsQuery.data.loyalty_metrics.total_accounts}</span>
-                    </div>
-                    <div className="flex justify-between py-1 border-b border-[#242A32]/60">
-                      <span className="text-[#A5ACB5]">Баланс бонусов:</span>
-                      <span className="font-bold text-emerald-400">
-                        {Number(adminAnalyticsQuery.data.loyalty_metrics.total_points_balance).toLocaleString('ru-RU')} TJS
-                      </span>
-                    </div>
-                    <div className="flex justify-between py-1">
-                      <span className="text-[#A5ACB5]">Использовано скидок:</span>
-                      <span className="font-bold text-amber-400">
-                        -{Number(adminAnalyticsQuery.data.loyalty_metrics.total_points_redeemed).toLocaleString('ru-RU')} TJS
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Stock Breakdown */}
-                <div className="rounded-2xl border border-[#242A32] bg-[#12161D] p-4 shadow-lg">
-                  <div className="flex items-center gap-2 font-mono text-xs font-bold text-white mb-2.5">
-                    <Warehouse className="size-4 text-[#00F0FF]" />
-                    <span>СТАТУС СКЛАДСКИХ ПОЗИЦИЙ</span>
-                  </div>
-                  <div className="space-y-1.5 font-mono text-xs">
-                    <div className="flex justify-between py-1 border-b border-[#242A32]/60">
-                      <span className="text-[#A5ACB5]">В наличии:</span>
-                      <span className="font-bold text-emerald-400">{adminAnalyticsQuery.data.stock_health.in_stock} SKU</span>
-                    </div>
-                    <div className="flex justify-between py-1 border-b border-[#242A32]/60">
-                      <span className="text-[#A5ACB5]">Заканчивается (&le;3 шт.):</span>
-                      <span className="font-bold text-amber-400">{adminAnalyticsQuery.data.stock_health.low_stock} SKU</span>
-                    </div>
-                    <div className="flex justify-between py-1">
-                      <span className="text-[#A5ACB5]">Под заказ (0 шт.):</span>
-                      <span className="font-bold text-red-400">{adminAnalyticsQuery.data.stock_health.out_of_stock} SKU</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Support SLA */}
-                <div className="rounded-2xl border border-[#242A32] bg-[#12161D] p-4 shadow-lg sm:col-span-2 lg:col-span-1">
-                  <div className="flex items-center gap-2 font-mono text-xs font-bold text-white mb-2.5">
-                    <CheckCircle2 className="size-4 text-[#10B981]" />
-                    <span>ЭФФЕКТИВНОСТЬ ТЕХПОДДЕРЖКИ</span>
-                  </div>
-                  <div className="space-y-1.5 font-mono text-xs">
-                    <div className="flex justify-between py-1 border-b border-[#242A32]/60">
-                      <span className="text-[#A5ACB5]">Всего обращений:</span>
-                      <span className="font-bold text-white">{adminAnalyticsQuery.data.support_metrics.total_tickets}</span>
-                    </div>
-                    <div className="flex justify-between py-1 border-b border-[#242A32]/60">
-                      <span className="text-[#A5ACB5]">Плотность диалога:</span>
-                      <span className="font-bold text-white">{adminAnalyticsQuery.data.support_metrics.avg_messages_per_ticket} сообщ.</span>
-                    </div>
-                    <div className="flex justify-between py-1">
-                      <span className="text-[#A5ACB5]">Успешное закрытие:</span>
-                      <span className="font-bold text-emerald-400">
-                        {Math.round(
-                          (adminAnalyticsQuery.data.support_metrics.resolved_tickets /
-                            Math.max(1, adminAnalyticsQuery.data.support_metrics.total_tickets)) *
-                            100
-                        )}%
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
+          <ExecutiveCockpit embedded={true} />
         </div>
       )}
 
@@ -1440,7 +1011,7 @@ export default function Admin() {
               <button
                 type="button"
                 onClick={openCreateProduct}
-                className="flex items-center justify-center gap-2 rounded-lg bg-premium px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition hover:opacity-90"
+                className="flex items-center justify-center gap-2 rounded-lg bg-premium px-5 py-2.5 text-sm font-semibold text-ink shadow-lg transition hover:opacity-90"
               >
                 <Plus className="size-4" /> Добавить товар
               </button>
@@ -1484,7 +1055,7 @@ export default function Admin() {
               </p>
               <button
                 onClick={openCreateProduct}
-                className="mt-5 rounded-lg bg-premium px-5 py-2 text-sm font-semibold text-white hover:opacity-90"
+                className="mt-5 rounded-lg bg-premium px-5 py-2 text-sm font-semibold text-ink hover:opacity-90"
               >
                 Создать первый товар
               </button>
@@ -1686,7 +1257,7 @@ export default function Admin() {
                 type="button"
                 disabled={!categoryForm.name.trim() || createCategoryMutation.isPending}
                 onClick={() => createCategoryMutation.mutate()}
-                className="w-full rounded-lg bg-premium py-2.5 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-40"
+                className="w-full rounded-lg bg-premium py-2.5 text-sm font-semibold text-ink transition hover:opacity-90 disabled:opacity-40"
               >
                 {createCategoryMutation.isPending ? 'Сохранение...' : 'Создать категорию'}
               </button>
@@ -1775,7 +1346,7 @@ export default function Admin() {
                 type="button"
                 disabled={!brandForm.name.trim() || createBrandMutation.isPending}
                 onClick={() => createBrandMutation.mutate()}
-                className="w-full rounded-lg bg-premium py-2.5 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-40"
+                className="w-full rounded-lg bg-premium py-2.5 text-sm font-semibold text-ink transition hover:opacity-90 disabled:opacity-40"
               >
                 {createBrandMutation.isPending ? 'Сохранение...' : 'Создать бренд'}
               </button>
@@ -1867,7 +1438,7 @@ export default function Admin() {
                   <button
                     type="button"
                     onClick={() => setSelectedOrderId(order.id)}
-                    className="flex items-center gap-1 rounded-md border px-2.5 py-1 text-xs font-semibold text-muted hover:border-premium hover:text-white transition"
+                    className="flex items-center gap-1 rounded-md border px-2.5 py-1 text-xs font-semibold text-muted hover:border-premium hover:text-ink transition"
                     style={{ borderColor: 'var(--border)', background: 'var(--surface)' }}
                     title="Открыть детали заказа и историю статусов"
                   >
@@ -1944,7 +1515,7 @@ export default function Admin() {
                 type="button"
                 disabled={!couponForm.code.trim() || !couponForm.value || createCoupon.isPending}
                 onClick={() => createCoupon.mutate()}
-                className="w-full rounded-lg bg-premium py-2.5 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-40"
+                className="w-full rounded-lg bg-premium py-2.5 text-sm font-semibold text-ink transition hover:opacity-90 disabled:opacity-40"
               >
                 {createCoupon.isPending ? 'Создание...' : 'Создать промокод'}
               </button>
@@ -2015,7 +1586,7 @@ export default function Admin() {
                 type="button"
                 disabled={!zoneForm.city.trim() || !zoneForm.fee || createZone.isPending}
                 onClick={() => createZone.mutate()}
-                className="w-full rounded-lg bg-premium py-2.5 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-40"
+                className="w-full rounded-lg bg-premium py-2.5 text-sm font-semibold text-ink transition hover:opacity-90 disabled:opacity-40"
               >
                 {createZone.isPending ? 'Добавление...' : 'Добавить зону'}
               </button>
@@ -2068,7 +1639,7 @@ export default function Admin() {
               <button
                 type="button"
                 onClick={() => void warehousesQuery.refetch()}
-                className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold text-muted hover:text-white"
+                className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold text-muted hover:text-ink"
                 style={{ borderColor: 'var(--border)' }}
               >
                 <RefreshCw className={`size-3.5 ${warehousesQuery.isFetching ? 'animate-spin' : ''}`} />
@@ -2102,14 +1673,14 @@ export default function Admin() {
                             </span>
                           )}
                         </div>
-                        <h3 className="mt-2 text-base font-bold text-white">{w.name}</h3>
+                        <h3 className="mt-2 text-base font-bold text-ink">{w.name}</h3>
                         <p className="text-xs text-muted mt-1">{w.city || 'Душанбе'}{w.address ? `, ${w.address}` : ''}</p>
                       </div>
                     </div>
 
                     <div className="mt-4 pt-3 border-t flex items-center justify-between text-xs" style={{ borderColor: 'var(--border)' }}>
                       <span className="text-muted">Номенклатура в наличии:</span>
-                      <span className="font-bold text-white font-mono">{w.items_count ?? 0} позиций</span>
+                      <span className="font-bold text-ink font-mono">{w.items_count ?? 0} позиций</span>
                     </div>
                   </div>
                 ))}
@@ -2130,7 +1701,7 @@ export default function Admin() {
               <button
                 type="button"
                 onClick={() => void movementsQuery.refetch()}
-                className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold text-muted hover:text-white"
+                className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold text-muted hover:text-ink"
                 style={{ borderColor: 'var(--border)' }}
               >
                 <RefreshCw className={`size-3.5 ${movementsQuery.isFetching ? 'animate-spin' : ''}`} />
@@ -2176,7 +1747,7 @@ export default function Admin() {
                               })}
                             </td>
                             <td className="px-4 py-3">
-                              <div className="font-semibold text-white max-w-[260px] truncate" title={m.product_name}>
+                              <div className="font-semibold text-ink max-w-[260px] truncate" title={m.product_name}>
                                 {m.product_name || 'Товар'}
                               </div>
                               <div className="font-mono text-[11px] text-muted">{m.product_sku || m.product_id}</div>
@@ -2192,7 +1763,7 @@ export default function Admin() {
                             <td className={`px-4 py-3 text-right font-mono font-bold whitespace-nowrap ${isPositive ? 'text-emerald-400' : 'text-rose-400'}`}>
                               {isPositive ? `+${m.quantity_delta}` : m.quantity_delta}
                             </td>
-                            <td className="px-4 py-3 text-right font-mono font-semibold text-white whitespace-nowrap">
+                            <td className="px-4 py-3 text-right font-mono font-semibold text-ink whitespace-nowrap">
                               {m.balance_after}
                             </td>
                             <td className="px-4 py-3 text-muted max-w-[220px] truncate" title={m.reason || m.reference_type}>
@@ -2245,7 +1816,7 @@ export default function Admin() {
             <button
               type="button"
               onClick={() => void usersQuery.refetch()}
-              className="flex items-center gap-1.5 rounded-lg border px-3 py-2 text-xs font-semibold text-muted hover:text-white"
+              className="flex items-center gap-1.5 rounded-lg border px-3 py-2 text-xs font-semibold text-muted hover:text-ink"
               style={{ borderColor: 'var(--border)' }}
             >
               <RefreshCw className={`size-3.5 ${usersQuery.isFetching ? 'animate-spin' : ''}`} />
@@ -2278,11 +1849,11 @@ export default function Admin() {
                     {(usersQuery.data ?? []).map((u: any) => (
                       <tr key={u.id} className="hover:bg-white/5 transition">
                         <td className="px-4 py-3">
-                          <div className="font-semibold text-white">{u.first_name ? `${u.first_name} ${u.last_name || ''}`.trim() : (u.email || 'Без имени')}</div>
+                          <div className="font-semibold text-ink">{u.first_name ? `${u.first_name} ${u.last_name || ''}`.trim() : (u.email || 'Без имени')}</div>
                           <div className="font-mono text-[10px] text-muted">{u.id}</div>
                         </td>
                         <td className="px-4 py-3">
-                          <div className="text-white">{u.email}</div>
+                          <div className="text-ink">{u.email}</div>
                           {u.phone && <div className="text-[11px] text-muted">{u.phone}</div>}
                         </td>
                         <td className="px-4 py-3">
@@ -2384,7 +1955,7 @@ export default function Admin() {
                 href="/sitemap.xml"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-xs font-semibold text-muted hover:text-white"
+                className="inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-xs font-semibold text-muted hover:text-ink"
                 style={{ borderColor: 'var(--border)' }}
                 title="Открыть актуальный файл sitemap.xml"
               >
@@ -2396,7 +1967,7 @@ export default function Admin() {
                 href="/robots.txt"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-xs font-semibold text-muted hover:text-white"
+                className="inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-xs font-semibold text-muted hover:text-ink"
                 style={{ borderColor: 'var(--border)' }}
                 title="Открыть robots.txt"
               >
@@ -2407,7 +1978,7 @@ export default function Admin() {
               <button
                 type="button"
                 onClick={openCreateArticle}
-                className="flex items-center gap-1.5 rounded-lg bg-premium px-4 py-2 text-xs font-semibold text-white hover:opacity-90 shadow-md"
+                className="flex items-center gap-1.5 rounded-lg bg-premium px-4 py-2 text-xs font-semibold text-ink hover:opacity-90 shadow-md"
               >
                 <Plus className="size-4" />
                 Написать статью
@@ -2461,7 +2032,7 @@ export default function Admin() {
                               <Link
                                 to={`/blog/${art.slug}`}
                                 target="_blank"
-                                className="font-semibold text-white hover:text-premium line-clamp-1 flex items-center gap-1"
+                                className="font-semibold text-ink hover:text-premium line-clamp-1 flex items-center gap-1"
                               >
                                 {art.title}
                                 <ExternalLink className="size-3 text-muted shrink-0" />
@@ -2473,7 +2044,7 @@ export default function Admin() {
                           </div>
                         </td>
                         <td className="px-5 py-3.5">
-                          <span className="rounded px-2 py-0.5 text-[11px] font-bold uppercase bg-white/5 border border-white/10 text-zinc-300">
+                          <span className="rounded px-2 py-0.5 text-[11px] font-bold uppercase bg-white/5 border border-white/10 text-muted">
                             {art.category}
                           </span>
                         </td>
@@ -2503,7 +2074,7 @@ export default function Admin() {
                             <button
                               type="button"
                               onClick={() => toggleArticlePublishMutation.mutate(art.id)}
-                              className="rounded-lg border px-2.5 py-1 text-[11px] font-medium hover:text-white"
+                              className="rounded-lg border px-2.5 py-1 text-[11px] font-medium hover:text-ink"
                               style={{ borderColor: 'var(--border)' }}
                               title={art.is_published ? 'Снять с публикации' : 'Опубликовать'}
                             >
@@ -2578,7 +2149,7 @@ export default function Admin() {
             <button
               type="button"
               onClick={() => void adminTicketsQuery.refetch()}
-              className="flex items-center gap-1.5 rounded-lg border px-3 py-2 text-xs font-semibold text-muted hover:text-white"
+              className="flex items-center gap-1.5 rounded-lg border px-3 py-2 text-xs font-semibold text-muted hover:text-ink"
               style={{ borderColor: 'var(--border)' }}
             >
               <RefreshCw className={`size-3.5 ${adminTicketsQuery.isFetching ? 'animate-spin' : ''}`} />
@@ -2612,24 +2183,24 @@ export default function Admin() {
                       <tr key={t.id} className={`hover:bg-white/5 transition ${t.unread ? 'bg-premium/5' : ''}`}>
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-2">
-                            <span className="font-mono font-bold text-white">{t.number}</span>
+                            <span className="font-mono font-bold text-ink">{t.number}</span>
                             {t.unread && (
                               <span className="rounded bg-premium/20 px-1.5 py-0.2 text-[9px] font-bold text-premium">
                                 Новое
                               </span>
                             )}
                           </div>
-                          <div className="font-semibold text-zinc-300 mt-0.5 line-clamp-1">{t.subject}</div>
+                          <div className="font-semibold text-muted mt-0.5 line-clamp-1">{t.subject}</div>
                           {t.order_number && (
                             <span className="text-[10px] text-premium font-mono">Заказ #{t.order_number}</span>
                           )}
                         </td>
                         <td className="px-4 py-3">
-                          <div className="font-semibold text-white">{t.customer_name}</div>
+                          <div className="font-semibold text-ink">{t.customer_name}</div>
                           <div className="text-[11px] text-muted">{t.customer_email}</div>
                         </td>
                         <td className="px-4 py-3">
-                          <span className="rounded border px-2 py-0.5 text-[11px] text-zinc-300 font-medium" style={{ borderColor: 'var(--border)' }}>
+                          <span className="rounded border px-2 py-0.5 text-[11px] text-muted font-medium" style={{ borderColor: 'var(--border)' }}>
                             {t.category}
                           </span>
                         </td>
@@ -2650,7 +2221,7 @@ export default function Admin() {
                           <button
                             type="button"
                             onClick={() => setSelectedTicketId(t.id)}
-                            className="inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold text-white hover:border-premium hover:text-premium transition"
+                            className="inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold text-ink hover:border-premium hover:text-premium transition"
                             style={{ borderColor: 'var(--border)', background: 'var(--surface)' }}
                           >
                             <MessageSquare className="size-3.5" />
@@ -2683,14 +2254,14 @@ export default function Admin() {
                     {adminTicketDetailQuery.data.status}
                   </span>
                 </div>
-                <h2 className="text-lg font-bold text-white mt-1">{adminTicketDetailQuery.data.subject}</h2>
+                <h2 className="text-lg font-bold text-ink mt-1">{adminTicketDetailQuery.data.subject}</h2>
                 <div className="text-xs text-muted mt-0.5">
                   Клиент: {adminTicketDetailQuery.data.customer_name} ({adminTicketDetailQuery.data.customer_email})
                 </div>
               </div>
               <button
                 onClick={() => setSelectedTicketId(null)}
-                className="rounded-lg p-1.5 text-muted hover:text-white"
+                className="rounded-lg p-1.5 text-muted hover:text-ink"
               >
                 <X className="size-5" />
               </button>
@@ -2729,7 +2300,7 @@ export default function Admin() {
               {adminTicketDetailQuery.data.messages.map((m) => (
                 <div key={m.id} className={`flex flex-col ${m.is_staff ? 'items-end' : 'items-start'}`}>
                   <div className="flex items-center gap-2 mb-1 text-[11px] text-muted">
-                    <span className={m.is_staff ? 'text-premium font-bold' : 'text-white font-medium'}>
+                    <span className={m.is_staff ? 'text-premium font-bold' : 'text-ink font-medium'}>
                       {m.author_name}
                     </span>
                     <span className="font-mono text-[10px]">
@@ -2739,8 +2310,8 @@ export default function Admin() {
                   <div
                     className={`rounded-2xl px-4 py-2.5 text-xs max-w-[85%] leading-relaxed ${
                       m.is_staff
-                        ? 'bg-premium text-white rounded-tr-sm shadow-md'
-                        : 'bg-[#1C222B] border border-white/10 text-white rounded-tl-sm'
+                        ? 'bg-premium text-ink rounded-tr-sm shadow-md'
+                        : 'bg-[#1C222B] border border-white/10 text-ink rounded-tl-sm'
                     }`}
                   >
                     <p className="whitespace-pre-wrap">{m.body}</p>
@@ -2770,7 +2341,7 @@ export default function Admin() {
                       body: staffReplyText.trim(),
                     })
                   }}
-                  className="rounded-xl bg-premium px-5 text-xs font-bold text-white transition hover:brightness-110 disabled:opacity-40 shrink-0"
+                  className="rounded-xl bg-premium px-5 text-xs font-bold text-ink transition hover:brightness-110 disabled:opacity-40 shrink-0"
                 >
                   {staffReplyMutation.isPending ? 'Отправка...' : 'Отправить'}
                 </button>
@@ -2808,7 +2379,7 @@ export default function Admin() {
                   setTargetOrderStatus('')
                   setStatusChangeNote('')
                 }}
-                className="rounded-lg p-1.5 text-muted hover:text-white"
+                className="rounded-lg p-1.5 text-muted hover:text-ink"
               >
                 <X className="size-5" />
               </button>
@@ -2824,7 +2395,7 @@ export default function Admin() {
                 <div className="grid gap-4 sm:grid-cols-2 text-xs">
                   <div className="rounded-xl border p-4" style={{ borderColor: 'var(--border)', background: 'var(--surface)' }}>
                     <div className="font-bold text-muted uppercase mb-2">Клиент и контакты</div>
-                    <div className="text-sm font-semibold text-white">{orderDetailQuery.data.contact_name}</div>
+                    <div className="text-sm font-semibold text-ink">{orderDetailQuery.data.contact_name}</div>
                     <div className="text-muted mt-1">📞 {orderDetailQuery.data.contact_phone || 'Не указан'}</div>
                     <div className="text-muted">✉️ {orderDetailQuery.data.contact_email || 'Не указан'}</div>
                     {orderDetailQuery.data.customer_note && (
@@ -2835,10 +2406,10 @@ export default function Admin() {
                   </div>
                   <div className="rounded-xl border p-4" style={{ borderColor: 'var(--border)', background: 'var(--surface)' }}>
                     <div className="font-bold text-muted uppercase mb-2">Доставка и оплата</div>
-                    <div className="text-sm font-semibold text-white">{orderDetailQuery.data.shipping_city || 'Душанбе'}</div>
+                    <div className="text-sm font-semibold text-ink">{orderDetailQuery.data.shipping_city || 'Душанбе'}</div>
                     <div className="text-muted mt-1">{orderDetailQuery.data.shipping_street || 'Самовывоз / офис'}</div>
-                    <div className="mt-2 text-muted">Способ доставки: <span className="text-white font-medium">{orderDetailQuery.data.shipping_method}</span></div>
-                    <div className="text-muted">Оплата: <span className="text-white font-medium">{orderDetailQuery.data.payment_method}</span></div>
+                    <div className="mt-2 text-muted">Способ доставки: <span className="text-ink font-medium">{orderDetailQuery.data.shipping_method}</span></div>
+                    <div className="text-muted">Оплата: <span className="text-ink font-medium">{orderDetailQuery.data.payment_method}</span></div>
                   </div>
                 </div>
 
@@ -2860,7 +2431,7 @@ export default function Admin() {
                     <tbody className="divide-y" style={{ borderColor: 'var(--border)' }}>
                       {(orderDetailQuery.data.items ?? []).map((it: any) => (
                         <tr key={it.id}>
-                          <td className="px-4 py-2.5 font-semibold text-white">{it.product_name}</td>
+                          <td className="px-4 py-2.5 font-semibold text-ink">{it.product_name}</td>
                           <td className="px-4 py-2.5 font-mono text-muted">{it.product_sku}</td>
                           <td className="px-4 py-2.5 text-center font-mono">{it.quantity} шт</td>
                           <td className="px-4 py-2.5 text-right font-mono">{Number(it.unit_price).toFixed(2)} TJS</td>
@@ -2893,7 +2464,7 @@ export default function Admin() {
                         <span className="font-mono">-{Number(orderDetailQuery.data.points_discount).toFixed(2)} TJS</span>
                       </div>
                     )}
-                    <div className="flex justify-between text-base font-black text-white pt-2 border-t" style={{ borderColor: 'var(--border)' }}>
+                    <div className="flex justify-between text-base font-black text-ink pt-2 border-t" style={{ borderColor: 'var(--border)' }}>
                       <span>Итого к оплате:</span>
                       <span className="text-premium font-mono">{Number(orderDetailQuery.data.total).toFixed(2)} TJS</span>
                     </div>
@@ -2914,7 +2485,7 @@ export default function Admin() {
                         <div key={h.id} className="relative text-xs">
                           <div className="absolute -left-[21px] top-1.5 size-2 rounded-full bg-premium" />
                           <div className="flex items-center gap-2">
-                            <span className="font-bold text-white">
+                            <span className="font-bold text-ink">
                               {STATUS_LABELS[h.to_status] ?? h.to_status}
                             </span>
                             {h.from_status && (
@@ -2975,7 +2546,7 @@ export default function Admin() {
                             setTargetOrderStatus('')
                           }
                         }}
-                        className="rounded-lg bg-premium px-4 py-2 text-xs font-bold text-white transition hover:opacity-90 disabled:opacity-40"
+                        className="rounded-lg bg-premium px-4 py-2 text-xs font-bold text-ink transition hover:opacity-90 disabled:opacity-40"
                       >
                         {advanceStatus.isPending ? 'Обновление...' : 'Применить'}
                       </button>
@@ -3002,14 +2573,14 @@ export default function Admin() {
               </div>
               <button
                 onClick={() => setAdjustPointsModalUser(null)}
-                className="rounded-lg p-1 text-muted hover:text-white"
+                className="rounded-lg p-1 text-muted hover:text-ink"
               >
                 <X className="size-5" />
               </button>
             </div>
 
             <div className="text-xs text-muted">
-              Пользователь: <span className="font-semibold text-white">{adjustPointsModalUser.first_name ? `${adjustPointsModalUser.first_name} ${adjustPointsModalUser.last_name || ''}`.trim() : adjustPointsModalUser.email}</span>
+              Пользователь: <span className="font-semibold text-ink">{adjustPointsModalUser.first_name ? `${adjustPointsModalUser.first_name} ${adjustPointsModalUser.last_name || ''}`.trim() : adjustPointsModalUser.email}</span>
             </div>
 
             <div className="space-y-3.5">
@@ -3040,7 +2611,7 @@ export default function Admin() {
               <button
                 type="button"
                 onClick={() => setAdjustPointsModalUser(null)}
-                className="rounded-lg border px-4 py-2 text-xs font-semibold text-muted hover:text-white"
+                className="rounded-lg border px-4 py-2 text-xs font-semibold text-muted hover:text-ink"
                 style={{ borderColor: 'var(--border)' }}
               >
                 Отмена
@@ -3055,7 +2626,7 @@ export default function Admin() {
                     description: adjustPointsReason.trim(),
                   })
                 }}
-                className="rounded-lg bg-premium px-5 py-2 text-xs font-bold text-white transition hover:opacity-90 disabled:opacity-40"
+                className="rounded-lg bg-premium px-5 py-2 text-xs font-bold text-ink transition hover:opacity-90 disabled:opacity-40"
               >
                 {adjustLoyaltyMutation.isPending ? 'Проведение...' : 'Сохранить проводку'}
               </button>
@@ -3252,7 +2823,7 @@ export default function Admin() {
               <button
                 type="button"
                 onClick={() => setIsProductModalOpen(false)}
-                className="rounded-lg border px-4 py-2 text-sm font-semibold text-muted hover:text-white"
+                className="rounded-lg border px-4 py-2 text-sm font-semibold text-muted hover:text-ink"
                 style={{ borderColor: 'var(--border)' }}
               >
                 Отмена
@@ -3266,7 +2837,7 @@ export default function Admin() {
                   saveProductMutation.isPending
                 }
                 onClick={() => saveProductMutation.mutate()}
-                className="rounded-lg bg-premium px-6 py-2 text-sm font-semibold text-white shadow-lg transition hover:opacity-90 disabled:opacity-40"
+                className="rounded-lg bg-premium px-6 py-2 text-sm font-semibold text-ink shadow-lg transition hover:opacity-90 disabled:opacity-40"
               >
                 {saveProductMutation.isPending ? 'Сохранение...' : 'Сохранить товар'}
               </button>
@@ -3292,7 +2863,7 @@ export default function Admin() {
               </div>
               <button
                 onClick={() => setIsArticleModalOpen(false)}
-                className="rounded-lg p-1.5 text-muted hover:text-white"
+                className="rounded-lg p-1.5 text-muted hover:text-ink"
               >
                 <X className="size-5" />
               </button>
@@ -3438,7 +3009,7 @@ export default function Admin() {
                   checked={articleForm.is_published}
                   onChange={(e) => setArticleForm({ ...articleForm, is_published: e.target.checked })}
                 />
-                <label htmlFor="art_pub" className="text-xs font-semibold text-white cursor-pointer">
+                <label htmlFor="art_pub" className="text-xs font-semibold text-ink cursor-pointer">
                   Опубликовать статью сразу (если выключено — останется в черновиках)
                 </label>
               </div>
@@ -3454,7 +3025,7 @@ export default function Admin() {
               <button
                 type="button"
                 onClick={() => setIsArticleModalOpen(false)}
-                className="rounded-lg border px-4 py-2 text-sm font-semibold text-muted hover:text-white"
+                className="rounded-lg border px-4 py-2 text-sm font-semibold text-muted hover:text-ink"
                 style={{ borderColor: 'var(--border)' }}
               >
                 Отмена
@@ -3468,7 +3039,7 @@ export default function Admin() {
                   saveArticleMutation.isPending
                 }
                 onClick={() => saveArticleMutation.mutate()}
-                className="rounded-lg bg-premium px-6 py-2 text-sm font-semibold text-white shadow-lg transition hover:opacity-90 disabled:opacity-40"
+                className="rounded-lg bg-premium px-6 py-2 text-sm font-semibold text-ink shadow-lg transition hover:opacity-90 disabled:opacity-40"
               >
                 {saveArticleMutation.isPending ? 'Сохранение...' : 'Сохранить статью'}
               </button>
@@ -3482,7 +3053,7 @@ export default function Admin() {
 
 function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
-    <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#12161D] p-5 shadow-lg transition-all duration-300 hover:border-[#00F0FF]/40 hover:shadow-[0_0_20px_rgba(0,240,255,0.1)]">
+    <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#12161D] p-5 shadow-lg transition-all duration-300 hover:border-premium/40 hover:shadow-[0_0_20px_rgba(0,240,255,0.1)]">
       <div className="pointer-events-none absolute -right-6 -top-6 size-20 rounded-full bg-white/5 blur-xl" />
       <div className="flex items-center gap-2.5 font-mono text-[11px] font-bold uppercase tracking-wider text-slate-400">
         <div className="grid size-7 place-items-center rounded-lg bg-white/5 border border-white/10">
@@ -3490,7 +3061,7 @@ function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string
         </div>
         <span>{label}</span>
       </div>
-      <div className="mt-3 text-2xl font-black tracking-tight text-white font-mono">{value}</div>
+      <div className="mt-3 text-2xl font-black tracking-tight text-ink font-mono">{value}</div>
     </div>
   )
 }

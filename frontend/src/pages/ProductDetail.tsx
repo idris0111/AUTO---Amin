@@ -23,6 +23,7 @@ import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import ProductCard, { FitmentBadge } from '../components/product/ProductCard'
+import ProductMedia from '../components/product/ProductMedia'
 import QuickOrderModal from '../components/common/QuickOrderModal'
 import Reviews from '../components/product/Reviews'
 import { api } from '../lib/api'
@@ -196,17 +197,17 @@ export default function ProductDetail() {
 
   if (product.isLoading) {
     return (
-      <div className="min-h-screen bg-[#0B0D10] text-slate-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-[var(--canvas)] text-ink py-12 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl animate-pulse space-y-8">
-          <div className="h-6 w-72 rounded bg-[#15191F]" />
+          <div className="h-6 w-72 rounded bg-[var(--surface)]" />
           <div className="grid gap-10 lg:grid-cols-2">
-            <div className="aspect-square rounded-2xl bg-[#15191F] border border-[#242A32]" />
+            <div className="aspect-square rounded-2xl bg-[var(--surface)] border border-[var(--border)]" />
             <div className="space-y-6">
               <div className="h-4 w-28 rounded bg-[#242A32]" />
-              <div className="h-10 w-4/5 rounded bg-[#15191F]" />
+              <div className="h-10 w-4/5 rounded bg-[var(--surface)]" />
               <div className="h-6 w-1/3 rounded bg-[#242A32]" />
-              <div className="h-28 rounded-xl bg-[#15191F] border border-[#242A32]" />
-              <div className="h-14 rounded-xl bg-[#15191F]" />
+              <div className="h-28 rounded-xl bg-[var(--surface)] border border-[var(--border)]" />
+              <div className="h-14 rounded-xl bg-[var(--surface)]" />
             </div>
           </div>
         </div>
@@ -216,18 +217,18 @@ export default function ProductDetail() {
 
   if (product.isError || !product.data) {
     return (
-      <div className="min-h-[70vh] bg-[#0B0D10] grid place-items-center px-4 text-center">
-        <div className="max-w-md rounded-2xl border border-[#242A32] bg-[#15191F] p-8 shadow-2xl">
-          <div className="inline-flex size-14 items-center justify-center rounded-xl bg-[#E32636]/10 text-[#E32636] mb-4">
+      <div className="min-h-[70vh] bg-[var(--canvas)] grid place-items-center px-4 text-center">
+        <div className="max-w-md rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-8 shadow-2xl">
+          <div className="inline-flex size-14 items-center justify-center rounded-xl bg-premium/10 text-premium mb-4">
             <Wrench className="size-7" />
           </div>
-          <h1 className="text-2xl font-black text-white">{t('notFound')}</h1>
-          <p className="mt-2 text-sm text-[#A5ACB5]">
+          <h1 className="text-2xl font-black text-ink">{t('notFound')}</h1>
+          <p className="mt-2 text-sm text-muted">
             Запрашиваемая запчасть не найдена или перемещена в архив каталога.
           </p>
           <Link
             to="/catalog"
-            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#E32636] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#D91F32]"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-premium px-6 py-3 text-sm font-bold text-ink transition hover:bg-[#D91F32]"
           >
             {t('backHome')}
             <ArrowRight className="size-4" />
@@ -266,67 +267,57 @@ export default function ProductDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0B0D10] text-slate-100 pb-24 selection:bg-[#E32636] selection:text-white">
+    <div className="market-product-detail min-h-screen bg-[var(--canvas)] text-ink pb-24 selection:bg-premium selection:text-ink">
       {/* Background Architectural Grid Lines */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(227,38,54,0.06),rgba(255,255,255,0))] opacity-50" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
         {/* Monospace Telemetry Breadcrumb */}
         <nav
-          className="mb-8 flex flex-wrap items-center gap-2 font-mono text-xs uppercase tracking-wider text-[#A5ACB5]"
+          className="mb-8 flex flex-wrap items-center gap-2 font-mono text-xs uppercase tracking-wider text-muted"
           aria-label="Breadcrumbs"
         >
-          <Link to="/" className="transition hover:text-white">AU-HOME</Link>
+          <Link to="/" className="transition hover:text-ink">Главная</Link>
           <ChevronRight className="size-3 text-[#242A32]" />
-          <Link to="/catalog" className="transition hover:text-white">{t('explore')}</Link>
+          <Link to="/catalog" className="transition hover:text-ink">{t('explore')}</Link>
           <ChevronRight className="size-3 text-[#242A32]" />
           <Link
             to={`/catalog?category_id=${item.category.id}`}
-            className="text-white hover:text-[#E32636] transition"
+            className="text-ink hover:text-premium transition"
           >
             {item.category.name}
           </Link>
           <ChevronRight className="size-3 text-[#242A32]" />
-          <span className="text-[#E32636] font-semibold truncate max-w-xs">{item.sku}</span>
+          <span className="text-premium font-semibold truncate max-w-xs">{item.sku}</span>
         </nav>
 
         {/* Primary Showcase Grid (Apple / Porsche Luxury Layout) */}
         <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
           {/* Left Column: Oversized Studio Gallery (7 cols) */}
           <div className="lg:col-span-7 space-y-4">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[#242A32] bg-gradient-to-b from-[#15191F] via-[#101317] to-[#0B0D10] p-6 shadow-2xl flex items-center justify-center group">
+            <div className="product-gallery-stage relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[var(--border)] p-6 flex items-center justify-center group">
               {/* Subtle ambient lighting */}
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.04),transparent_70%)]" />
 
               {/* Status Badges */}
               <div className="absolute left-4 top-4 z-10 flex flex-col gap-2">
                 {discount > 0 && (
-                  <span className="rounded bg-[#E32636] px-2.5 py-1 font-mono text-xs font-black uppercase tracking-wider text-white shadow-lg">
+                  <span className="rounded bg-premium px-2.5 py-1 font-mono text-xs font-black uppercase tracking-wider text-ink shadow-lg">
                     -{discount}%
                   </span>
                 )}
                 {item.oem_numbers && item.oem_numbers.length > 0 && (
-                  <span className="rounded bg-[#242A32]/90 backdrop-blur-md px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-white border border-white/10">
-                    OEM ORIGINAL
+                  <span className="rounded bg-[#242A32]/90 backdrop-blur-md px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-ink border border-white/10">
+                    OEM-номера
                   </span>
                 )}
               </div>
 
               {/* Image Frame with hover zoom */}
-              {images[activeImage]?.url ? (
-                <img
-                  src={images[activeImage].url}
-                  alt={images[activeImage].alt ?? item.name}
-                  className="size-full max-h-[500px] object-contain transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-              ) : (
-                <div className="grid size-full place-items-center">
-                  <span className="font-mono text-7xl font-black text-[#242A32] tracking-widest">AU</span>
-                </div>
-              )}
+              <ProductMedia src={images[activeImage]?.url} alt={images[activeImage]?.alt || item.name} categorySlug={item.category.slug} categoryName={item.category.name} priority />
 
               {/* Monospace Index Overlay */}
-              <div className="absolute bottom-4 right-4 rounded-md border border-[#242A32] bg-[#0B0D10]/80 px-2.5 py-1 font-mono text-[11px] text-[#A5ACB5] backdrop-blur-md">
+              <div className="absolute bottom-4 right-4 rounded-md border border-[var(--border)] bg-[var(--canvas)]/80 px-2.5 py-1 font-mono text-[11px] text-muted backdrop-blur-md">
                 {String(activeImage + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
               </div>
             </div>
@@ -343,16 +334,12 @@ export default function ProductDetail() {
                       onClick={() => setActiveImage(index)}
                       className={`relative size-20 shrink-0 overflow-hidden rounded-xl border p-1 transition-all ${
                         isActive
-                          ? 'border-[#E32636] bg-[#15191F] shadow-[0_0_12px_rgba(227,38,54,0.3)]'
-                          : 'border-[#242A32] bg-[#15191F]/40 hover:border-slate-500'
+                          ? 'border-[#E32636] bg-[var(--surface)] shadow-[0_0_12px_rgba(227,38,54,0.3)]'
+                          : 'border-[var(--border)] bg-[var(--surface)]/40 hover:border-slate-500'
                       }`}
                       aria-label={`Фото ${index + 1}`}
                     >
-                      {image.url ? (
-                        <img src={image.url} alt="" className="size-full object-contain rounded-lg" />
-                      ) : (
-                        <div className="grid size-full place-items-center font-mono text-xs text-[#A5ACB5]">AU</div>
-                      )}
+                      <ProductMedia src={image.url} alt={`Фото ${index+1}`} categorySlug={item.category.slug} categoryName={item.category.name} />
                     </button>
                   )
                 })}
@@ -361,27 +348,27 @@ export default function ProductDetail() {
 
             {/* Engineering Highlights Bar */}
             <div className="grid grid-cols-2 gap-3 pt-2 sm:grid-cols-4">
-              <div className="rounded-xl border border-[#242A32] bg-[#15191F]/50 p-3 text-center backdrop-blur-sm">
-                <ShieldCheck className="mx-auto size-5 text-[#E32636] mb-1" />
-                <div className="font-mono text-[10px] uppercase tracking-wider text-[#A5ACB5]">Гарантия</div>
-                <div className="text-xs font-bold text-white mt-0.5">
-                  {item.warranty_months ? `${item.warranty_months} мес.` : '24 месяца'}
+              <div className="rounded-xl border border-[var(--border)] bg-[var(--surface)]/50 p-3 text-center backdrop-blur-sm">
+                <ShieldCheck className="mx-auto size-5 text-premium mb-1" />
+                <div className="font-mono text-[10px] uppercase tracking-wider text-muted">Гарантия</div>
+                <div className="text-xs font-bold text-ink mt-0.5">
+                  {item.warranty_months ? `${item.warranty_months} мес.` : 'Уточните условия'}
                 </div>
               </div>
-              <div className="rounded-xl border border-[#242A32] bg-[#15191F]/50 p-3 text-center backdrop-blur-sm">
-                <Truck className="mx-auto size-5 text-[#E32636] mb-1" />
-                <div className="font-mono text-[10px] uppercase tracking-wider text-[#A5ACB5]">Доставка</div>
-                <div className="text-xs font-bold text-white mt-0.5">Душанбе 2ч / РТ 24ч</div>
+              <div className="rounded-xl border border-[var(--border)] bg-[var(--surface)]/50 p-3 text-center backdrop-blur-sm">
+                <Truck className="mx-auto size-5 text-premium mb-1" />
+                <div className="font-mono text-[10px] uppercase tracking-wider text-muted">Доставка</div>
+                <div className="text-xs font-bold text-ink mt-0.5">Расчёт при оформлении</div>
               </div>
-              <div className="rounded-xl border border-[#242A32] bg-[#15191F]/50 p-3 text-center backdrop-blur-sm">
-                <RotateCcw className="mx-auto size-5 text-[#E32636] mb-1" />
-                <div className="font-mono text-[10px] uppercase tracking-wider text-[#A5ACB5]">Возврат</div>
-                <div className="text-xs font-bold text-white mt-0.5">14 дней без споров</div>
+              <div className="rounded-xl border border-[var(--border)] bg-[var(--surface)]/50 p-3 text-center backdrop-blur-sm">
+                <RotateCcw className="mx-auto size-5 text-premium mb-1" />
+                <div className="font-mono text-[10px] uppercase tracking-wider text-muted">Возврат</div>
+                <div className="text-xs font-bold text-ink mt-0.5">Через поддержку</div>
               </div>
-              <div className="rounded-xl border border-[#242A32] bg-[#15191F]/50 p-3 text-center backdrop-blur-sm">
-                <Sparkles className="mx-auto size-5 text-[#E32636] mb-1" />
-                <div className="font-mono text-[10px] uppercase tracking-wider text-[#A5ACB5]">Качество</div>
-                <div className="text-xs font-bold text-white mt-0.5">100% Сертификат</div>
+              <div className="rounded-xl border border-[var(--border)] bg-[var(--surface)]/50 p-3 text-center backdrop-blur-sm">
+                <Sparkles className="mx-auto size-5 text-premium mb-1" />
+                <div className="font-mono text-[10px] uppercase tracking-wider text-muted">Качество</div>
+                <div className="text-xs font-bold text-ink mt-0.5">Характеристики ниже</div>
               </div>
             </div>
           </div>
@@ -391,68 +378,68 @@ export default function ProductDetail() {
             {/* Monospace Brand Pill & Header */}
             <div>
               <div className="flex items-center justify-between">
-                <span className="inline-flex items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-widest text-[#E32636]">
-                  <span className="size-1.5 rounded-full bg-[#E32636]" />
+                <span className="inline-flex items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-widest text-premium">
+                  <span className="size-1.5 rounded-full bg-premium" />
                   {item.brand.name}
                 </span>
-                <span className="font-mono text-[11px] text-[#A5ACB5] uppercase">
+                <span className="font-mono text-[11px] text-muted uppercase">
                   {item.category.name}
                 </span>
               </div>
 
-              <h1 className="mt-2 text-2xl sm:text-3xl font-black tracking-tight text-white leading-tight">
+              <h1 className="mt-2 text-2xl sm:text-3xl font-black tracking-tight text-ink leading-tight">
                 {item.name}
               </h1>
 
               {/* Monospace Technical HUD Strip */}
-              <div className="mt-4 flex flex-wrap items-center gap-2 pt-1 border-t border-[#242A32]/60">
+              <div className="mt-4 flex flex-wrap items-center gap-2 pt-1 border-t border-[var(--border)]/60">
                 {/* SKU badge with copy */}
                 <button
                   type="button"
                   onClick={() => handleCopySku(item.sku)}
-                  className="group inline-flex items-center gap-1.5 rounded-md border border-[#242A32] bg-[#15191F] px-2.5 py-1 font-mono text-xs text-[#A5ACB5] transition hover:border-[#E32636] hover:text-white"
+                  className="group inline-flex items-center gap-1.5 rounded-md border border-[var(--border)] bg-[var(--surface)] px-2.5 py-1 font-mono text-xs text-muted transition hover:border-[#E32636] hover:text-ink"
                   title="Скопировать артикул"
                 >
                   <span className="text-[10px] text-slate-500">АРТ:</span>
-                  <span className="font-bold text-slate-200">{item.sku}</span>
+                  <span className="font-bold text-ink">{item.sku}</span>
                   {copiedSku ? (
                     <Check className="size-3 text-emerald-400" />
                   ) : (
-                    <Copy className="size-3 text-slate-500 group-hover:text-white" />
+                    <Copy className="size-3 text-slate-500 group-hover:text-ink" />
                   )}
                 </button>
 
                 {/* Primary OEM */}
                 {item.oem_numbers[0] && (
-                  <div className="inline-flex items-center gap-1.5 rounded-md border border-[#242A32] bg-[#15191F] px-2.5 py-1 font-mono text-xs text-[#A5ACB5]">
+                  <div className="inline-flex items-center gap-1.5 rounded-md border border-[var(--border)] bg-[var(--surface)] px-2.5 py-1 font-mono text-xs text-muted">
                     <span className="text-[10px] text-slate-500">OEM:</span>
-                    <span className="font-bold text-white">{item.oem_numbers[0].number}</span>
+                    <span className="font-bold text-ink">{item.oem_numbers[0].number}</span>
                   </div>
                 )}
 
                 {/* Star Rating */}
-                <div className="inline-flex items-center gap-1 rounded-md border border-[#242A32] bg-[#15191F] px-2.5 py-1 text-xs text-white">
+                {item.rating_count > 0 && <div className="inline-flex items-center gap-1 rounded-md border border-[var(--border)] bg-[var(--surface)] px-2.5 py-1 text-xs text-ink">
                   <Star className="size-3.5 fill-amber-400 text-amber-400" />
                   <span className="font-mono font-bold">
-                    {Number(item.rating_avg) > 0 ? Number(item.rating_avg).toFixed(1) : '5.0'}
+                    {Number(item.rating_avg).toFixed(1)}
                   </span>
                   <span className="text-[11px] text-slate-500">({item.rating_count})</span>
-                </div>
+                </div>}
               </div>
             </div>
 
             {/* Price Presentation (Apple / Monochromatic Titanium) */}
-            <div className="rounded-2xl border border-[#242A32] bg-[#15191F] p-6 shadow-xl">
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 shadow-xl">
               <div className="flex items-baseline justify-between">
                 <div>
-                  <div className="font-mono text-[10px] uppercase tracking-wider text-[#A5ACB5]">
+                  <div className="font-mono text-[10px] uppercase tracking-wider text-muted">
                     Розничная цена (TJS)
                   </div>
                   <div className="mt-1 flex items-baseline gap-3">
-                    <span className="text-3xl sm:text-4xl font-black tracking-tight text-white font-mono">
+                    <span className="text-3xl sm:text-4xl font-black tracking-tight text-ink font-mono">
                       {Number(item.price).toLocaleString('ru-RU', { minimumFractionDigits: 2 })}
                     </span>
-                    <span className="text-sm font-bold text-[#E32636] font-mono">TJS</span>
+                    <span className="text-sm font-bold text-premium font-mono">TJS</span>
 
                     {item.old_price && (
                       <span className="text-sm line-through text-slate-500 font-mono">
@@ -467,44 +454,44 @@ export default function ProductDetail() {
                   <div className="flex items-center justify-end gap-1.5">
                     <span
                       className={`size-2 rounded-full ${
-                        item.stock_quantity > 0 ? 'bg-emerald-500 shadow-[0_0_8px_#10B981]' : 'bg-[#E32636]'
+                        item.stock_quantity > 0 ? 'bg-emerald-500 shadow-[0_0_8px_#10B981]' : 'bg-premium'
                       }`}
                     />
                     <span
                       className={`font-mono text-xs font-bold uppercase tracking-wider ${
-                        item.stock_quantity > 0 ? 'text-emerald-400' : 'text-[#E32636]'
+                        item.stock_quantity > 0 ? 'text-emerald-400' : 'text-premium'
                       }`}
                     >
                       {item.stock_quantity > 0 ? 'В НАЛИЧИИ' : 'ПОД ЗАКАЗ'}
                     </span>
                   </div>
                   <div className="font-mono text-[11px] text-slate-400 mt-1">
-                    {item.stock_quantity > 0 ? `${item.stock_quantity} шт. на складе AU-1` : 'Доставка 2-3 дня'}
+                    {item.stock_quantity > 0 ? `${item.stock_quantity} шт. на складе` : 'Уточните срок поступления'}
                   </div>
                 </div>
               </div>
 
               {/* Dynamic Vehicle Fitment HUD Banner */}
-              <div className="mt-5 rounded-xl border border-[#242A32] bg-[#0B0D10]/80 p-3.5">
+              <div className="mt-5 rounded-xl border border-[var(--border)] bg-[var(--canvas)]/80 p-3.5">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5">
                     <FitmentBadge status={item.fitment} />
                     {selectedVehicleObj ? (
                       <div className="text-xs">
-                        <span className="text-slate-400 font-medium">Проверено для: </span>
-                        <span className="font-bold text-white">
+                        <span className="text-slate-400 font-medium">Выбрано авто: </span>
+                        <span className="font-bold text-ink">
                           {selectedVehicleObj.name} ({selectedVehicleObj.make.name} {selectedVehicleObj.model?.name})
                         </span>
                       </div>
                     ) : (
-                      <div className="text-xs text-[#A5ACB5]">
+                      <div className="text-xs text-muted">
                         Выберите авто в гараже для автоматической проверки совместимости.
                       </div>
                     )}
                   </div>
                   <Link
                     to="/garage"
-                    className="font-mono text-[11px] font-bold text-[#E32636] hover:underline shrink-0"
+                    className="font-mono text-[11px] font-bold text-premium hover:underline shrink-0"
                   >
                     Гараж →
                   </Link>
@@ -515,20 +502,20 @@ export default function ProductDetail() {
               <div ref={buySectionRef} className="mt-6 space-y-3">
                 <div className="flex items-center gap-3">
                   {/* Quantity selector */}
-                  <div className="flex items-center rounded-xl border border-[#242A32] bg-[#0B0D10] p-1 font-mono">
+                  <div className="flex items-center rounded-xl border border-[var(--border)] bg-[var(--canvas)] p-1 font-mono">
                     <button
                       type="button"
-                      className="grid size-9 place-items-center rounded-lg text-slate-400 transition hover:bg-[#15191F] hover:text-white disabled:opacity-30"
+                      className="grid size-9 place-items-center rounded-lg text-slate-400 transition hover:bg-[var(--surface)] hover:text-ink disabled:opacity-30"
                       onClick={() => setQuantity((v) => Math.max(1, v - 1))}
                       disabled={quantity <= 1}
                       aria-label="Уменьшить количество"
                     >
                       <Minus className="size-4" />
                     </button>
-                    <span className="w-10 text-center font-bold text-white text-sm">{quantity}</span>
+                    <span className="w-10 text-center font-bold text-ink text-sm">{quantity}</span>
                     <button
                       type="button"
-                      className="grid size-9 place-items-center rounded-lg text-slate-400 transition hover:bg-[#15191F] hover:text-white disabled:opacity-30"
+                      className="grid size-9 place-items-center rounded-lg text-slate-400 transition hover:bg-[var(--surface)] hover:text-ink disabled:opacity-30"
                       onClick={() => setQuantity((v) => Math.min(item.stock_quantity || 99, v + 1))}
                       disabled={quantity >= item.stock_quantity}
                       aria-label="Увеличить количество"
@@ -542,7 +529,7 @@ export default function ProductDetail() {
                     type="button"
                     disabled={item.stock_quantity <= 0 || addMutation.isPending}
                     onClick={() => addMutation.mutate()}
-                    className="flex-1 flex items-center justify-center gap-2.5 rounded-xl bg-[#E32636] px-6 py-3.5 font-bold text-white shadow-[0_4px_20px_rgba(227,38,54,0.35)] transition-all hover:bg-[#D91F32] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40"
+                    className="flex-1 flex items-center justify-center gap-2.5 rounded-xl bg-premium px-6 py-3.5 font-bold text-ink shadow-[0_4px_20px_rgba(227,38,54,0.35)] transition-all hover:bg-[#D91F32] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     {added ? (
                       <>
@@ -563,7 +550,7 @@ export default function ProductDetail() {
                   type="button"
                   onClick={() => setIsQuickOrderOpen(true)}
                   disabled={item.stock_quantity <= 0}
-                  className="w-full flex items-center justify-center gap-2 rounded-xl border border-[#E32636]/60 bg-[#E32636]/10 px-6 py-3.5 font-bold text-[#E32636] transition-all hover:bg-[#E32636]/20 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40"
+                  className="w-full flex items-center justify-center gap-2 rounded-xl border border-[#E32636]/60 bg-premium/10 px-6 py-3.5 font-bold text-premium transition-all hover:bg-premium/20 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   <Zap className="size-4 fill-current" />
                   <span>КУПИТЬ В 1 КЛИК (TELEGRAM / WHATSAPP / ЗВОНОК)</span>
@@ -576,8 +563,8 @@ export default function ProductDetail() {
                     onClick={() => toggleCompare(item.id)}
                     className={`flex-1 flex items-center justify-center gap-2 rounded-xl border py-2.5 text-xs font-semibold transition ${
                       inCompare
-                        ? 'border-[#E32636] bg-[#E32636]/10 text-[#E32636]'
-                        : 'border-[#242A32] bg-[#0B0D10]/50 text-[#A5ACB5] hover:border-slate-500 hover:text-white'
+                        ? 'border-[#E32636] bg-premium/10 text-premium'
+                        : 'border-[var(--border)] bg-[var(--canvas)]/50 text-muted hover:border-slate-500 hover:text-ink'
                     }`}
                   >
                     <GitCompare className="size-4" />
@@ -590,11 +577,11 @@ export default function ProductDetail() {
                       onClick={() => void toggleFavorite()}
                       className={`flex-1 flex items-center justify-center gap-2 rounded-xl border py-2.5 text-xs font-semibold transition ${
                         favorite
-                          ? 'border-[#E32636] bg-[#E32636]/10 text-[#E32636]'
-                          : 'border-[#242A32] bg-[#0B0D10]/50 text-[#A5ACB5] hover:border-slate-500 hover:text-white'
+                          ? 'border-[#E32636] bg-premium/10 text-premium'
+                          : 'border-[var(--border)] bg-[var(--canvas)]/50 text-muted hover:border-slate-500 hover:text-ink'
                       }`}
                     >
-                      <Heart className={`size-4 ${favorite ? 'fill-[#E32636] text-[#E32636]' : ''}`} />
+                      <Heart className={`size-4 ${favorite ? 'fill-[#E32636] text-premium' : ''}`} />
                       <span>{favorite ? 'В избранном' : 'В избранное'}</span>
                     </button>
                   )}
@@ -606,18 +593,18 @@ export default function ProductDetail() {
 
         {/* Frequently Bought Together Bundle (AU Engineered Kits) */}
         {fbt.data && fbt.data.items.length > 0 && (
-          <section className="mt-16 rounded-2xl border border-[#242A32] bg-gradient-to-b from-[#15191F] to-[#0B0D10] p-6 sm:p-8 shadow-2xl relative overflow-hidden">
-            <div className="pointer-events-none absolute right-0 top-0 size-72 bg-[#E32636]/5 blur-3xl rounded-full" />
+          <section className="mt-16 rounded-2xl border border-[var(--border)] bg-gradient-to-b from-[var(--surface)] to-[var(--canvas)] p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+            <div className="pointer-events-none absolute right-0 top-0 size-72 bg-premium/5 blur-3xl rounded-full" />
 
             <div className="relative">
-              <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-[#E32636]">
+              <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-premium">
                 <Sparkles className="size-4" />
                 <span>AU PERFORMANCE BUNDLE</span>
               </div>
-              <h2 className="mt-1 text-xl sm:text-2xl font-black text-white">
+              <h2 className="mt-1 text-xl sm:text-2xl font-black text-ink">
                 Рекомендуемый инженерный комплект для узла
               </h2>
-              <p className="mt-1 text-sm text-[#A5ACB5]">
+              <p className="mt-1 text-sm text-muted">
                 Замените сопутствующие компоненты одновременно, чтобы сохранить гарантию и ресурс узла.
               </p>
 
@@ -625,30 +612,30 @@ export default function ProductDetail() {
                 {/* Bundle Items Chain */}
                 <div className="flex flex-wrap items-center gap-3">
                   {/* Main Product Card */}
-                  <div className="w-40 rounded-xl border border-[#242A32] bg-[#0B0D10] p-3 text-xs">
-                    <div className="aspect-square w-full overflow-hidden rounded-lg bg-[#15191F] p-2 flex items-center justify-center">
+                  <div className="w-40 rounded-xl border border-[var(--border)] bg-[var(--canvas)] p-3 text-xs">
+                    <div className="aspect-square w-full overflow-hidden rounded-lg bg-[var(--surface)] p-2 flex items-center justify-center">
                       {images[0]?.url ? (
                         <img src={images[0].url} alt="" className="size-full object-contain" />
                       ) : (
-                        <div className="font-mono text-xs font-black text-[#A5ACB5]">AU</div>
+                        <div className="font-mono text-xs font-black text-muted">AU</div>
                       )}
                     </div>
-                    <div className="mt-2 line-clamp-1 font-bold text-white">{item.name}</div>
-                    <div className="font-mono font-black text-[#E32636] mt-0.5">
+                    <div className="mt-2 line-clamp-1 font-bold text-ink">{item.name}</div>
+                    <div className="font-mono font-black text-premium mt-0.5">
                       {Number(item.price).toFixed(2)} TJS
                     </div>
                   </div>
 
-                  <span className="font-mono text-2xl font-black text-[#E32636]">+</span>
+                  <span className="font-mono text-2xl font-black text-premium">+</span>
 
                   {/* Complementary Products */}
                   {fbt.data.items.map((bItem, idx) => (
                     <div key={bItem.id} className="flex items-center gap-3">
                       <Link
                         to={`/product/${bItem.slug}`}
-                        className="w-40 rounded-xl border border-[#242A32] bg-[#0B0D10] p-3 text-xs transition hover:border-[#E32636] group"
+                        className="w-40 rounded-xl border border-[var(--border)] bg-[var(--canvas)] p-3 text-xs transition hover:border-[#E32636] group"
                       >
-                        <div className="aspect-square w-full overflow-hidden rounded-lg bg-[#15191F] p-2 flex items-center justify-center">
+                        <div className="aspect-square w-full overflow-hidden rounded-lg bg-[var(--surface)] p-2 flex items-center justify-center">
                           {bItem.image_url ? (
                             <img
                               src={bItem.image_url}
@@ -656,13 +643,13 @@ export default function ProductDetail() {
                               className="size-full object-contain transition-transform group-hover:scale-105"
                             />
                           ) : (
-                            <div className="font-mono text-xs font-black text-[#A5ACB5]">AU</div>
+                            <div className="font-mono text-xs font-black text-muted">AU</div>
                           )}
                         </div>
-                        <div className="mt-2 line-clamp-1 font-bold text-white group-hover:text-[#E32636] transition">
+                        <div className="mt-2 line-clamp-1 font-bold text-ink group-hover:text-premium transition">
                           {bItem.name}
                         </div>
-                        <div className="font-mono font-black text-white mt-0.5">
+                        <div className="font-mono font-black text-ink mt-0.5">
                           {Number(bItem.price).toFixed(2)} TJS
                         </div>
                       </Link>
@@ -675,11 +662,11 @@ export default function ProductDetail() {
                 </div>
 
                 {/* Total & Action Box */}
-                <div className="rounded-xl border border-[#242A32] bg-[#0B0D10] p-5 lg:ml-auto min-w-[240px]">
-                  <div className="font-mono text-xs uppercase tracking-wider text-[#A5ACB5]">
+                <div className="rounded-xl border border-[var(--border)] bg-[var(--canvas)] p-5 lg:ml-auto min-w-[240px]">
+                  <div className="font-mono text-xs uppercase tracking-wider text-muted">
                     Итого за комплект:
                   </div>
-                  <div className="mt-1 text-2xl font-black text-white font-mono">
+                  <div className="mt-1 text-2xl font-black text-ink font-mono">
                     {Number(fbt.data.total_bundle_price).toFixed(2)} TJS
                   </div>
                   {Number(fbt.data.total_savings) > 0 && (
@@ -691,7 +678,7 @@ export default function ProductDetail() {
                   <button
                     type="button"
                     onClick={handleBuyBundle}
-                    className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[#E32636] px-4 py-3 font-mono text-xs font-bold text-white transition hover:bg-[#D91F32]"
+                    className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-premium px-4 py-3 font-mono text-xs font-bold text-ink transition hover:bg-[#D91F32]"
                   >
                     <ShoppingCart className="size-4" />
                     <span>{bundleAdded ? 'КОМПЛЕКТ В КОРЗИНЕ' : 'КУПИТЬ КОМПЛЕКТ'}</span>
@@ -706,8 +693,8 @@ export default function ProductDetail() {
         <div className="mt-16 grid gap-10 lg:grid-cols-12">
           {/* Description & Overview (7 cols) */}
           <section className="lg:col-span-7 space-y-6">
-            <div className="rounded-2xl border border-[#242A32] bg-[#15191F] p-6 sm:p-8">
-              <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-[#E32636] mb-3">
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8">
+              <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-premium mb-3">
                 // ИНЖЕНЕРНОЕ ОПИСАНИЕ
               </h2>
               <div className="text-sm leading-relaxed text-slate-300 space-y-3">
@@ -723,22 +710,22 @@ export default function ProductDetail() {
 
             {/* Specifications Table */}
             {item.specifications.length > 0 && (
-              <div className="rounded-2xl border border-[#242A32] bg-[#15191F] p-6 sm:p-8">
-                <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-[#E32636] mb-4">
+              <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8">
+                <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-premium mb-4">
                   // ТЕХНИЧЕСКИЕ СПЕЦИФИКАЦИИ
                 </h2>
-                <div className="overflow-hidden rounded-xl border border-[#242A32]">
+                <div className="overflow-hidden rounded-xl border border-[var(--border)]">
                   <table className="w-full text-left text-sm font-mono">
                     <tbody>
                       {item.specifications.map((spec, index) => (
                         <tr
                           key={spec.id}
-                          className={`border-b border-[#242A32]/60 last:border-b-0 ${
-                            index % 2 === 0 ? 'bg-[#0B0D10]/40' : 'bg-[#15191F]'
+                          className={`border-b border-[var(--border)]/60 last:border-b-0 ${
+                            index % 2 === 0 ? 'bg-[var(--canvas)]/40' : 'bg-[var(--surface)]'
                           }`}
                         >
-                          <td className="w-1/2 px-4 py-3 text-xs text-[#A5ACB5]">{spec.name}</td>
-                          <td className="px-4 py-3 text-xs font-bold text-white">
+                          <td className="w-1/2 px-4 py-3 text-xs text-muted">{spec.name}</td>
+                          <td className="px-4 py-3 text-xs font-bold text-ink">
                             {spec.value} {spec.unit ?? ''}
                           </td>
                         </tr>
@@ -754,18 +741,18 @@ export default function ProductDetail() {
           <section className="lg:col-span-5 space-y-6">
             {/* Cross references */}
             {item.cross_references.length > 0 && (
-              <div className="rounded-2xl border border-[#242A32] bg-[#15191F] p-6 sm:p-8">
-                <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-[#E32636] mb-3">
+              <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8">
+                <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-premium mb-3">
                   // КРОСС-НОМЕРА И АНАЛОГИ
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {item.cross_references.map((cross) => (
                     <span
                       key={cross.id}
-                      className="rounded-lg border border-[#242A32] bg-[#0B0D10] px-3 py-1.5 font-mono text-xs text-white"
+                      className="rounded-lg border border-[var(--border)] bg-[var(--canvas)] px-3 py-1.5 font-mono text-xs text-ink"
                     >
                       <span className="font-bold">{cross.number}</span>
-                      {cross.brand_name && <span className="text-[#A5ACB5] ml-1.5">· {cross.brand_name}</span>}
+                      {cross.brand_name && <span className="text-muted ml-1.5">· {cross.brand_name}</span>}
                     </span>
                   ))}
                 </div>
@@ -773,37 +760,37 @@ export default function ProductDetail() {
             )}
 
             {/* Fitment Status Card */}
-            <div className="rounded-2xl border border-[#242A32] bg-[#15191F] p-6 sm:p-8">
-              <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-[#E32636] mb-3">
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8">
+              <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-premium mb-3">
                 // СОВМЕСТИМОСТЬ
               </h2>
-              <div className="rounded-xl border border-[#242A32] bg-[#0B0D10] p-4 text-sm">
+              <div className="rounded-xl border border-[var(--border)] bg-[var(--canvas)] p-4 text-sm">
                 {item.fitment === 'compatible' && (
                   <div className="flex items-start gap-3">
                     <CheckCircle2 className="size-5 text-emerald-400 shrink-0 mt-0.5" />
                     <div>
-                      <div className="font-bold text-emerald-400">100% подтвержденная совместимость</div>
-                      <p className="mt-1 text-xs text-[#A5ACB5]">
-                        Деталь идеально подходит по геометрии посадочных мест и нагрузочным характеристикам.
+                      <div className="font-bold text-emerald-400">Совместимость по данным каталога</div>
+                      <p className="mt-1 text-xs text-muted">
+                        Для выбранной модификации есть запись о совместимости. Сверьте артикул перед заказом.
                       </p>
                     </div>
                   </div>
                 )}
                 {item.fitment === 'not_compatible' && (
                   <div className="flex items-start gap-3">
-                    <span className="size-2 rounded-full bg-[#E32636] shrink-0 mt-2" />
+                    <span className="size-2 rounded-full bg-premium shrink-0 mt-2" />
                     <div>
-                      <div className="font-bold text-[#E32636]">Не подходит к текущему авто</div>
-                      <p className="mt-1 text-xs text-[#A5ACB5]">
+                      <div className="font-bold text-premium">Не подходит к текущему авто</div>
+                      <p className="mt-1 text-xs text-muted">
                         Для вашего автомобиля требуются другие артикулы. Воспользуйтесь подбором в гараже.
                       </p>
                     </div>
                   </div>
                 )}
                 {!item.fitment && (
-                  <div className="text-xs text-[#A5ACB5]">
+                  <div className="text-xs text-muted">
                     Для проверки совместимости с вашим автомобилем укажите марку, модель и год выпуска в{' '}
-                    <Link to="/garage" className="text-[#E32636] underline">
+                    <Link to="/garage" className="text-premium underline">
                       Моём гараже
                     </Link>{' '}
                     или проконсультируйтесь с нашим AI Механиком.
@@ -824,14 +811,14 @@ export default function ProductDetail() {
           <section className="mt-20">
             <div className="mb-6 flex items-center justify-between">
               <div>
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#E32636]">
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-premium">
                   AU PERFORMANCE
                 </span>
-                <h2 className="text-2xl font-black text-white mt-1">Сопутствующие компоненты</h2>
+                <h2 className="text-2xl font-black text-ink mt-1">Сопутствующие компоненты</h2>
               </div>
               <Link
                 to="/catalog"
-                className="flex items-center gap-1.5 font-mono text-xs font-bold text-[#E32636] hover:underline"
+                className="flex items-center gap-1.5 font-mono text-xs font-bold text-premium hover:underline"
               >
                 <span>ВЕСЬ КАТАЛОГ</span>
                 <ArrowRight className="size-3.5" />
@@ -847,17 +834,17 @@ export default function ProductDetail() {
 
         {/* Recently Viewed Products */}
         {otherRecentItems.length > 0 && (
-          <section className="mt-20 border-t border-[#242A32] pt-12">
+          <section className="mt-20 border-t border-[var(--border)] pt-12">
             <div className="mb-6 flex items-center justify-between">
               <div>
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#A5ACB5]">
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-muted">
                   ИСТОРИЯ ПРОСМОТРА
                 </span>
-                <h2 className="text-2xl font-black text-white mt-1">{t('recentlyViewed')}</h2>
+                <h2 className="text-2xl font-black text-ink mt-1">{t('recentlyViewed')}</h2>
               </div>
               <Link
                 to="/catalog"
-                className="flex items-center gap-1.5 font-mono text-xs font-bold text-[#E32636] hover:underline"
+                className="flex items-center gap-1.5 font-mono text-xs font-bold text-premium hover:underline"
               >
                 <span>{t('explore')}</span>
                 <ArrowRight className="size-3.5" />
@@ -876,24 +863,20 @@ export default function ProductDetail() {
       {showStickyBar && (
         <aside
           aria-label="Панель покупки"
-          className="fixed bottom-0 left-0 right-0 z-40 border-t border-[#242A32] bg-[#0B0D10]/95 backdrop-blur-xl px-4 py-3 shadow-[0_-10px_30px_rgba(0,0,0,0.8)] transition-all animate-fade-in"
+          className="fixed bottom-0 left-0 right-0 z-40 border-t border-[var(--border)] bg-[var(--canvas)]/95 backdrop-blur-xl px-4 py-3 shadow-[0_-10px_30px_rgba(0,0,0,0.8)] transition-all animate-fade-in"
         >
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
             {/* Left: Product Thumbnail & Title */}
             <div className="flex items-center gap-3 min-w-0">
-              <div className="size-12 shrink-0 overflow-hidden rounded-lg border border-[#242A32] bg-[#15191F] p-1">
-                {images[0]?.url ? (
-                  <img src={images[0].url} alt="" className="size-full object-contain" />
-                ) : (
-                  <div className="grid size-full place-items-center font-mono text-[10px] text-slate-500">AU</div>
-                )}
+              <div className="size-12 shrink-0 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)] p-1">
+                <ProductMedia src={images[0]?.url} alt={item.name} categorySlug={item.category.slug} categoryName={item.category.name} />
               </div>
               <div className="min-w-0">
-                <div className="truncate font-bold text-white text-sm">{item.name}</div>
-                <div className="flex items-center gap-2 font-mono text-xs text-[#A5ACB5]">
+                <div className="truncate font-bold text-ink text-sm">{item.name}</div>
+                <div className="flex items-center gap-2 font-mono text-xs text-muted">
                   <span>{item.brand.name}</span>
                   <span>·</span>
-                  <span className="text-[#E32636]">{item.sku}</span>
+                  <span className="text-premium">{item.sku}</span>
                 </div>
               </div>
             </div>
@@ -901,8 +884,8 @@ export default function ProductDetail() {
             {/* Right: Price & Quick Action Buttons */}
             <div className="flex items-center gap-3 shrink-0">
               <div className="hidden sm:block text-right">
-                <div className="font-mono text-xs text-[#A5ACB5]">Цена:</div>
-                <div className="font-mono text-lg font-black text-white">
+                <div className="font-mono text-xs text-muted">Цена:</div>
+                <div className="font-mono text-lg font-black text-ink">
                   {Number(item.price).toLocaleString('ru-RU', { minimumFractionDigits: 2 })} TJS
                 </div>
               </div>
@@ -911,7 +894,7 @@ export default function ProductDetail() {
                 type="button"
                 onClick={() => setIsQuickOrderOpen(true)}
                 disabled={item.stock_quantity <= 0}
-                className="hidden md:flex items-center gap-1.5 rounded-xl border border-[#E32636] bg-[#E32636]/15 px-4 py-2.5 font-mono text-xs font-bold text-[#E32636] transition hover:bg-[#E32636]/25"
+                className="hidden md:flex items-center gap-1.5 rounded-xl border border-[#E32636] bg-premium/15 px-4 py-2.5 font-mono text-xs font-bold text-premium transition hover:bg-premium/25"
               >
                 <Zap className="size-3.5 fill-current" />
                 <span>1 КЛИК</span>
@@ -921,7 +904,7 @@ export default function ProductDetail() {
                 type="button"
                 disabled={item.stock_quantity <= 0 || addMutation.isPending}
                 onClick={() => addMutation.mutate()}
-                className="flex items-center gap-2 rounded-xl bg-[#E32636] px-5 py-2.5 font-mono text-xs font-bold text-white shadow-lg transition hover:bg-[#D91F32]"
+                className="flex items-center gap-2 rounded-xl bg-premium px-5 py-2.5 font-mono text-xs font-bold text-ink shadow-lg transition hover:bg-[#D91F32]"
               >
                 {added ? <CheckCircle2 className="size-4" /> : <ShoppingCart className="size-4" />}
                 <span>{added ? 'В КОРЗИНЕ' : 'В КОРЗИНУ'}</span>

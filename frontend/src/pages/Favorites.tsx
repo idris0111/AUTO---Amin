@@ -24,7 +24,7 @@ export default function Favorites() {
         <Heart className="mx-auto size-12 muted" />
         <h1 className="mt-4 text-2xl font-black">Избранное</h1>
         <p className="mt-3 muted">{t('authRequired')} избранное.</p>
-        <Link to="/login" className="mt-6 inline-block rounded-lg bg-premium px-6 py-3 font-semibold text-white">{t('login')}</Link>
+        <Link to="/login" className="mt-6 inline-block rounded-lg bg-premium px-6 py-3 font-semibold text-ink">{t('login')}</Link>
       </div>
     )
   }

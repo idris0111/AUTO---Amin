@@ -15,7 +15,7 @@ function applyTheme(theme: Theme) {
 }
 
 const initialTheme: Theme =
-  (localStorage.getItem('au_theme') as Theme | null) ?? 'dark'
+  localStorage.getItem('au_theme') === 'dark' ? 'dark' : 'light'
 
 export const useApp = create<AppState>((set) => ({
   theme: initialTheme,

@@ -1,5 +1,6 @@
 import uuid
 from decimal import Decimal
+from datetime import datetime
 from typing import Any
 
 from pydantic import BaseModel, ConfigDict
@@ -63,4 +64,32 @@ class AnalyticsDashboardResponse(BaseModel):
     stock_health: StockHealth
     support_metrics: SupportMetrics
     loyalty_metrics: LoyaltyMetrics
+    period_days: int = 7
+    new_customers: int = 0
+    units_sold: int = 0
+    sales_by_category: list["CategorySales"] = []
+    low_stock_products: list["InventoryAlert"] = []
+    recent_orders: list["RecentAnalyticsOrder"] = []
+
+
+class CategorySales(BaseModel):
+    name: str
+    units_sold: int
+    revenue: Decimal
+
+
+class InventoryAlert(BaseModel):
+    id: uuid.UUID
+    name: str
+    sku: str
+    stock_quantity: int
+    low_stock_threshold: int
+
+
+class RecentAnalyticsOrder(BaseModel):
+    id: uuid.UUID
+    number: str
+    status: str
+    total: Decimal
+    created_at: datetime
 

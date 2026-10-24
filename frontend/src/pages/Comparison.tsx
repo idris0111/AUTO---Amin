@@ -91,7 +91,7 @@ export default function Comparison() {
         <div className="mx-auto grid size-20 place-items-center rounded-3xl bg-[var(--surface-2)] text-premium shadow-[var(--shadow-glow)]">
           <GitCompare className="size-10" />
         </div>
-        <h1 className="mt-6 text-2xl font-black text-white sm:text-3xl">
+        <h1 className="mt-6 text-2xl font-black text-ink sm:text-3xl">
           {t('compareEmpty')}
         </h1>
         <p className="mx-auto mt-2 max-w-md text-sm muted">
@@ -115,7 +115,7 @@ export default function Comparison() {
         <ChevronRight className="size-3" />
         <Link to="/catalog" className="hover:text-premium">{t('explore')}</Link>
         <ChevronRight className="size-3" />
-        <span className="text-white font-medium">{t('comparison')}</span>
+        <span className="text-ink font-medium">{t('comparison')}</span>
       </nav>
 
       <div className="flex flex-col gap-4 border-b pb-6 sm:flex-row sm:items-center sm:justify-between" style={{ borderColor: 'var(--border)' }}>
@@ -124,7 +124,7 @@ export default function Comparison() {
             <span className="grid size-9 place-items-center rounded-xl bg-premium/15 text-premium">
               <GitCompare className="size-5" />
             </span>
-            <h1 className="text-2xl font-black text-white sm:text-3xl">
+            <h1 className="text-2xl font-black text-ink sm:text-3xl">
               {t('comparison')}
             </h1>
             <span className="rounded-full bg-[var(--surface-2)] px-2.5 py-0.5 text-xs font-bold text-slate-300">
@@ -144,7 +144,7 @@ export default function Comparison() {
               type="button"
               onClick={() => setOnlyDifferences(false)}
               className={`rounded-lg px-3 py-1.5 transition ${
-                !onlyDifferences ? 'bg-premium text-white font-bold shadow' : 'muted hover:text-white'
+                !onlyDifferences ? 'bg-premium text-ink font-bold shadow' : 'muted hover:text-ink'
               }`}
             >
               {t('allParameters')}
@@ -153,7 +153,7 @@ export default function Comparison() {
               type="button"
               onClick={() => setOnlyDifferences(true)}
               className={`rounded-lg px-3 py-1.5 transition ${
-                onlyDifferences ? 'bg-premium text-white font-bold shadow' : 'muted hover:text-white'
+                onlyDifferences ? 'bg-premium text-ink font-bold shadow' : 'muted hover:text-ink'
               }`}
             >
               {t('onlyDifferences')}
@@ -170,10 +170,10 @@ export default function Comparison() {
                   setSelectedVehicleOverride(e.target.value)
                   selectVehicle(e.target.value)
                 }}
-                className="bg-transparent text-xs font-semibold text-white outline-none"
+                className="bg-transparent text-xs font-semibold text-ink outline-none"
               >
                 {vehicles.map((v) => (
-                  <option key={v.id} value={v.id} className="bg-slate-900 text-white">
+                  <option key={v.id} value={v.id} className="bg-slate-900 text-ink">
                     {v.name} ({v.make?.name} {v.model?.name})
                   </option>
                 ))}
@@ -217,7 +217,7 @@ export default function Comparison() {
           <button
             type="button"
             onClick={() => refetch()}
-            className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-rose-500 px-4 py-2 text-xs font-bold text-white hover:bg-rose-600"
+            className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-rose-500 px-4 py-2 text-xs font-bold text-ink hover:bg-rose-600"
           >
             <RotateCcw className="size-3.5" />
             <span>Повторить</span>
@@ -254,7 +254,7 @@ export default function Comparison() {
                       type="button"
                       onClick={() => remove(product.id)}
                       title={t('compareRemove')}
-                      className="absolute right-3 top-3 z-10 grid size-7 place-items-center rounded-lg bg-black/40 text-slate-400 transition hover:bg-rose-500 hover:text-white"
+                      className="absolute right-3 top-3 z-10 grid size-7 place-items-center rounded-lg bg-black/40 text-slate-400 transition hover:bg-rose-500 hover:text-ink"
                     >
                       <X className="size-3.5" />
                     </button>
@@ -283,7 +283,7 @@ export default function Comparison() {
                         </span>
                         <Link
                           to={`/product/${product.slug}`}
-                          className="mt-1 block line-clamp-2 text-sm font-bold text-white transition hover:text-premium"
+                          className="mt-1 block line-clamp-2 text-sm font-bold text-ink transition hover:text-premium"
                         >
                           {product.name}
                         </Link>
@@ -318,7 +318,7 @@ export default function Comparison() {
                     {/* Price and Cart */}
                     <div className="mt-4 border-t pt-3" style={{ borderColor: 'var(--border)' }}>
                       <div className="flex items-baseline justify-between">
-                        <div className="text-xl font-black text-white">
+                        <div className="text-xl font-black text-ink">
                           {Number(product.price).toFixed(2)} TJS
                         </div>
                         {product.old_price && (
@@ -343,7 +343,7 @@ export default function Comparison() {
                         onClick={() => handleAddToCart(product)}
                         disabled={product.stock_quantity <= 0}
                         className={`mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl py-2 text-xs font-bold transition ${
-                          isAdded ? 'bg-emerald-600 text-white' : 'btn-premium'
+                          isAdded ? 'bg-emerald-600 text-ink' : 'btn-premium'
                         } disabled:cursor-not-allowed disabled:opacity-50`}
                       >
                         <ShoppingCart className="size-3.5" />
@@ -375,7 +375,7 @@ export default function Comparison() {
                     )}
                   </div>
                   {data.products.map((p) => (
-                    <div key={p.id} className="font-bold text-white">
+                    <div key={p.id} className="font-bold text-ink">
                       {Number(p.price).toFixed(2)} TJS
                     </div>
                   ))}
@@ -396,7 +396,7 @@ export default function Comparison() {
                     )}
                   </div>
                   {data.products.map((p) => (
-                    <div key={p.id} className="font-medium text-slate-200">
+                    <div key={p.id} className="font-medium text-ink">
                       {p.brand.name}
                     </div>
                   ))}
@@ -450,7 +450,7 @@ export default function Comparison() {
                 <div className="grid grid-cols-[220px_repeat(auto-fit,minmax(220px,1fr))] items-center gap-4 rounded-xl px-2 py-3 text-sm">
                   <div className="font-semibold muted">Рейтинг</div>
                   {data.products.map((p) => (
-                    <div key={p.id} className="flex items-center gap-1.5 text-slate-200">
+                    <div key={p.id} className="flex items-center gap-1.5 text-ink">
                       <Star className="size-3.5 fill-amber-400 text-amber-400" />
                       <span>{Number(p.rating_avg) > 0 ? Number(p.rating_avg).toFixed(1) : '—'}</span>
                       <span className="text-xs muted">({p.rating_count})</span>
@@ -485,7 +485,7 @@ export default function Comparison() {
                     {data.products.map((p) => {
                       const val = specRow.values[p.id]
                       return (
-                        <div key={p.id} className="font-medium text-slate-200">
+                        <div key={p.id} className="font-medium text-ink">
                           {val || '—'}
                         </div>
                       )

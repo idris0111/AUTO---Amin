@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import {
   AlertCircle,
   ArrowRight,
@@ -22,6 +22,7 @@ import { useAuth } from '../stores/auth'
 import { useGarage } from '../stores/garage'
 
 export default function Garage() {
+  const [selection] = useSearchParams()
   const { t } = useTranslation()
   const { user } = useAuth()
   const {
@@ -37,15 +38,15 @@ export default function Garage() {
 
   const [form, setForm] = useState({
     name: '',
-    make_id: '',
-    model_id: '',
+    make_id: selection.get('make_id') || '',
+    model_id: selection.get('model_id') || '',
     generation_id: '',
     year: '',
     vin: '',
     is_primary: false,
   })
   const [error, setError] = useState('')
-  const [isAddingMode, setIsAddingMode] = useState(false)
+  const [isAddingMode, setIsAddingMode] = useState(Boolean(selection.get('make_id')))
   const [successToast, setSuccessToast] = useState<string | null>(null)
 
   const tree = useQuery({
@@ -106,31 +107,31 @@ export default function Garage() {
 
   if (!user) {
     return (
-      <div className="min-h-[75vh] bg-[#0B0D10] text-slate-100 flex items-center justify-center px-4 py-16">
-        <div className="relative max-w-lg w-full rounded-2xl border border-[#242A32] bg-gradient-to-b from-[#15191F] to-[#0B0D10] p-8 sm:p-10 text-center shadow-2xl overflow-hidden">
-          <div className="pointer-events-none absolute -right-20 -top-20 size-60 bg-[#E32636]/10 blur-3xl rounded-full" />
-          <div className="mx-auto grid size-16 place-items-center rounded-2xl border border-[#242A32] bg-[#0B0D10] text-[#E32636] shadow-xl">
+      <div className="min-h-[75vh] bg-[var(--canvas)] text-ink flex items-center justify-center px-4 py-16">
+        <div className="relative max-w-lg w-full rounded-2xl border border-[var(--border)] bg-gradient-to-b from-[var(--surface)] to-[var(--canvas)] p-8 sm:p-10 text-center shadow-2xl overflow-hidden">
+          <div className="pointer-events-none absolute -right-20 -top-20 size-60 bg-premium/10 blur-3xl rounded-full" />
+          <div className="mx-auto grid size-16 place-items-center rounded-2xl border border-[var(--border)] bg-[var(--canvas)] text-premium shadow-xl">
             <Car className="size-8" />
           </div>
-          <div className="mt-6 font-mono text-xs uppercase tracking-widest text-[#E32636]">
+          <div className="mt-6 font-mono text-xs uppercase tracking-widest text-premium">
             AU GARAGE HANGAR
           </div>
-          <h1 className="mt-2 text-2xl sm:text-3xl font-black text-white">
+          <h1 className="mt-2 text-2xl sm:text-3xl font-black text-ink">
             {t('myGarage')}
           </h1>
-          <p className="mt-3 text-sm leading-relaxed text-[#A5ACB5]">
-            Добавьте свой автомобиль, чтобы каталог автоматически фильтровал совместимые запчасти, исключая ошибки подбора на 100%.
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            Добавьте автомобиль и проверяйте доступные данные о совместимости запчастей с вашей модификацией.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
             <Link
-              to="/login"
-              className="flex-1 rounded-xl bg-[#E32636] px-6 py-3.5 font-mono text-xs font-bold text-white transition hover:bg-[#D91F32]"
+              to={`/login?next=${encodeURIComponent(`/garage?${selection.toString()}`)}`}
+              className="flex-1 rounded-xl bg-premium px-6 py-3.5 font-mono text-xs font-bold text-ink transition hover:bg-[#D91F32]"
             >
               ВОЙТИ В АККАУНТ
             </Link>
             <Link
               to="/register"
-              className="flex-1 rounded-xl border border-[#242A32] bg-[#15191F] px-6 py-3.5 font-mono text-xs font-bold text-[#A5ACB5] transition hover:border-slate-500 hover:text-white"
+              className="flex-1 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-6 py-3.5 font-mono text-xs font-bold text-muted transition hover:border-slate-500 hover:text-ink"
             >
               РЕГИСТРАЦИЯ
             </Link>
@@ -141,24 +142,24 @@ export default function Garage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0B0D10] text-slate-100 pb-24 selection:bg-[#E32636] selection:text-white">
+    <div className="min-h-screen bg-[var(--canvas)] text-ink pb-24 selection:bg-premium selection:text-ink">
       {/* Background Architectural Grid Lines */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(227,38,54,0.06),rgba(255,255,255,0))] opacity-50" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
         {/* Monospace Telemetry Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#242A32] pb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--border)] pb-6">
           <div>
-            <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-[#E32636]">
-              <span className="size-2 rounded-full bg-[#E32636] animate-pulse" />
+            <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-premium">
+              <span className="size-2 rounded-full bg-premium animate-pulse" />
               <span>AU PERFORMANCE GARAGE</span>
               <span className="text-[#242A32]">/</span>
-              <span className="text-[#A5ACB5]">HANGAR TELEMETRY</span>
+              <span className="text-muted">HANGAR TELEMETRY</span>
             </div>
-            <h1 className="mt-2 text-3xl font-black text-white tracking-tight">
+            <h1 className="mt-2 text-3xl font-black text-ink tracking-tight">
               Мой гараж
             </h1>
-            <p className="mt-1 text-sm text-[#A5ACB5]">
+            <p className="mt-1 text-sm text-muted">
               Интеллектуальная система контроля совместимости и профиль ваших автомобилей.
             </p>
           </div>
@@ -167,7 +168,7 @@ export default function Garage() {
             <button
               type="button"
               onClick={() => setIsAddingMode(!isAddingMode)}
-              className="flex items-center gap-2 rounded-xl bg-[#E32636] px-5 py-3 font-mono text-xs font-bold text-white shadow-lg transition hover:bg-[#D91F32]"
+              className="flex items-center gap-2 rounded-xl bg-premium px-5 py-3 font-mono text-xs font-bold text-ink shadow-lg transition hover:bg-[#D91F32]"
             >
               <Plus className="size-4" />
               <span>{isAddingMode ? 'СКРЫТЬ КОНФИГУРАТОР' : 'ДОБАВИТЬ АВТОМОБИЛЬ'}</span>
@@ -185,8 +186,8 @@ export default function Garage() {
 
         {/* Active Vehicle Hero Card (if user has vehicles) */}
         {activeVehicle && (
-          <section className="mt-8 rounded-2xl border border-[#242A32] bg-gradient-to-b from-[#15191F] via-[#101317] to-[#0B0D10] p-6 sm:p-8 shadow-2xl relative overflow-hidden">
-            <div className="pointer-events-none absolute right-0 top-0 size-80 bg-[#E32636]/5 blur-3xl rounded-full" />
+          <section className="mt-8 rounded-2xl border border-[var(--border)] bg-gradient-to-b from-[var(--surface)] via-[#101317] to-[var(--canvas)] p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+            <div className="pointer-events-none absolute right-0 top-0 size-80 bg-premium/5 blur-3xl rounded-full" />
 
             <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               {/* Vehicle Title & Specs */}
@@ -203,21 +204,21 @@ export default function Garage() {
                   )}
                 </div>
 
-                <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
+                <h2 className="text-2xl sm:text-4xl font-black text-ink tracking-tight">
                   {activeVehicle.name || `${activeVehicle.make.name} ${activeVehicle.model?.name || ''}`}
                 </h2>
 
-                <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-[#A5ACB5]">
-                  <span className="text-white font-bold">{activeVehicle.make.name}</span>
+                <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-muted">
+                  <span className="text-ink font-bold">{activeVehicle.make.name}</span>
                   {activeVehicle.model && <span>/ {activeVehicle.model.name}</span>}
                   {activeVehicle.generation && <span>/ {activeVehicle.generation.name}</span>}
                   {activeVehicle.year && (
-                    <span className="rounded bg-[#242A32] px-2 py-0.5 text-white">
+                    <span className="rounded bg-[#242A32] px-2 py-0.5 text-ink">
                       ГОД: {activeVehicle.year}
                     </span>
                   )}
                   {activeVehicle.vin && (
-                    <span className="rounded bg-[#242A32] px-2 py-0.5 text-[#E32636] font-bold">
+                    <span className="rounded bg-[#242A32] px-2 py-0.5 text-premium font-bold">
                       VIN: {activeVehicle.vin}
                     </span>
                   )}
@@ -233,7 +234,7 @@ export default function Garage() {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
                 <Link
                   to={`/catalog?vehicle_id=${activeVehicle.id}`}
-                  className="flex items-center justify-center gap-2 rounded-xl bg-[#E32636] px-6 py-3.5 font-mono text-xs font-bold text-white shadow-[0_4px_20px_rgba(227,38,54,0.35)] transition hover:bg-[#D91F32]"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-premium px-6 py-3.5 font-mono text-xs font-bold text-ink shadow-[0_4px_20px_rgba(227,38,54,0.35)] transition hover:bg-[#D91F32]"
                 >
                   <Wrench className="size-4" />
                   <span>ПОДХОДЯЩИЕ ДЕТАЛИ</span>
@@ -242,9 +243,9 @@ export default function Garage() {
 
                 <Link
                   to="/ai-mechanic"
-                  className="flex items-center justify-center gap-2 rounded-xl border border-[#242A32] bg-[#15191F] px-5 py-3.5 font-mono text-xs font-bold text-slate-200 transition hover:border-[#E32636] hover:text-white"
+                  className="flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-3.5 font-mono text-xs font-bold text-ink transition hover:border-[#E32636] hover:text-ink"
                 >
-                  <Bot className="size-4 text-[#E32636]" />
+                  <Bot className="size-4 text-premium" />
                   <span>AI МЕХАНИК</span>
                 </Link>
               </div>
@@ -254,20 +255,20 @@ export default function Garage() {
 
         {/* Vehicle Configurator Section (Collapsible or Triggered) */}
         {isAddingMode && (
-          <section className="mt-8 rounded-2xl border border-[#242A32] bg-[#15191F] p-6 sm:p-8 shadow-2xl animate-fade-in">
-            <div className="flex items-center justify-between border-b border-[#242A32] pb-4">
+          <section className="mt-8 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8 shadow-2xl animate-fade-in">
+            <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
               <div>
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#E32636]">
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-premium">
                   CONFIGURATOR
                 </span>
-                <h3 className="text-xl font-black text-white mt-0.5">
+                <h3 className="text-xl font-black text-ink mt-0.5">
                   Конфигуратор автомобиля
                 </h3>
               </div>
               <button
                 type="button"
                 onClick={() => setIsAddingMode(false)}
-                className="font-mono text-xs text-[#A5ACB5] hover:text-white"
+                className="font-mono text-xs text-muted hover:text-ink"
               >
                 Закрыть [×]
               </button>
@@ -276,7 +277,7 @@ export default function Garage() {
             {/* Popular makes quick select chips */}
             {popularMakes.length > 0 && (
               <div className="mt-6">
-                <div className="font-mono text-xs uppercase tracking-wider text-[#A5ACB5] mb-2">
+                <div className="font-mono text-xs uppercase tracking-wider text-muted mb-2">
                   Быстрый выбор популярной марки:
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -295,8 +296,8 @@ export default function Garage() {
                       }
                       className={`rounded-xl border px-3.5 py-2 font-mono text-xs font-bold transition ${
                         form.make_id === m.id
-                          ? 'border-[#E32636] bg-[#E32636]/15 text-[#E32636]'
-                          : 'border-[#242A32] bg-[#0B0D10] text-[#A5ACB5] hover:border-slate-500 hover:text-white'
+                          ? 'border-[#E32636] bg-premium/15 text-premium'
+                          : 'border-[var(--border)] bg-[var(--canvas)] text-muted hover:border-slate-500 hover:text-ink'
                       }`}
                     >
                       {m.name}
@@ -316,8 +317,8 @@ export default function Garage() {
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 {/* Make Select */}
                 <div>
-                  <label className="block font-mono text-xs uppercase tracking-wider text-[#A5ACB5] mb-2">
-                    Марка авто <span className="text-[#E32636]">*</span>
+                  <label className="block font-mono text-xs uppercase tracking-wider text-muted mb-2">
+                    Марка авто <span className="text-premium">*</span>
                   </label>
                   <select
                     required
@@ -333,7 +334,7 @@ export default function Garage() {
                         name: m ? m.name : form.name,
                       })
                     }}
-                    className="w-full rounded-xl border border-[#242A32] bg-[#0B0D10] px-4 py-3 font-mono text-xs text-white outline-none focus:border-[#E32636]"
+                    className="w-full rounded-xl border border-[var(--border)] bg-[var(--canvas)] px-4 py-3 font-mono text-xs text-ink outline-none focus:border-[#E32636]"
                   >
                     <option value="">Выберите марку</option>
                     {vehicleTree.map((item) => (
@@ -346,7 +347,7 @@ export default function Garage() {
 
                 {/* Model Select */}
                 <div>
-                  <label className="block font-mono text-xs uppercase tracking-wider text-[#A5ACB5] mb-2">
+                  <label className="block font-mono text-xs uppercase tracking-wider text-muted mb-2">
                     Модель
                   </label>
                   <select
@@ -362,7 +363,7 @@ export default function Garage() {
                         name: selectedMake && mod ? `${selectedMake.name} ${mod.name}` : form.name,
                       })
                     }}
-                    className="w-full rounded-xl border border-[#242A32] bg-[#0B0D10] px-4 py-3 font-mono text-xs text-white outline-none focus:border-[#E32636] disabled:opacity-40"
+                    className="w-full rounded-xl border border-[var(--border)] bg-[var(--canvas)] px-4 py-3 font-mono text-xs text-ink outline-none focus:border-[#E32636] disabled:opacity-40"
                   >
                     <option value="">
                       {selectedMake ? 'Выберите модель' : 'Сначала выберите марку'}
@@ -377,14 +378,14 @@ export default function Garage() {
 
                 {/* Generation Select */}
                 <div>
-                  <label className="block font-mono text-xs uppercase tracking-wider text-[#A5ACB5] mb-2">
+                  <label className="block font-mono text-xs uppercase tracking-wider text-muted mb-2">
                     Поколение / Кузов
                   </label>
                   <select
                     disabled={!selectedModel || selectedModel.generations.length === 0}
                     value={form.generation_id}
                     onChange={(e) => setForm({ ...form, generation_id: e.target.value })}
-                    className="w-full rounded-xl border border-[#242A32] bg-[#0B0D10] px-4 py-3 font-mono text-xs text-white outline-none focus:border-[#E32636] disabled:opacity-40"
+                    className="w-full rounded-xl border border-[var(--border)] bg-[var(--canvas)] px-4 py-3 font-mono text-xs text-ink outline-none focus:border-[#E32636] disabled:opacity-40"
                   >
                     <option value="">Все поколения</option>
                     {selectedModel?.generations.map((item) => (
@@ -398,7 +399,7 @@ export default function Garage() {
 
                 {/* Year */}
                 <div>
-                  <label className="block font-mono text-xs uppercase tracking-wider text-[#A5ACB5] mb-2">
+                  <label className="block font-mono text-xs uppercase tracking-wider text-muted mb-2">
                     Год выпуска
                   </label>
                   <input
@@ -408,7 +409,7 @@ export default function Garage() {
                     placeholder="напр. 2021"
                     value={form.year}
                     onChange={(e) => setForm({ ...form, year: e.target.value })}
-                    className="w-full rounded-xl border border-[#242A32] bg-[#0B0D10] px-4 py-3 font-mono text-xs text-white placeholder-slate-600 outline-none focus:border-[#E32636]"
+                    className="w-full rounded-xl border border-[var(--border)] bg-[var(--canvas)] px-4 py-3 font-mono text-xs text-ink placeholder-slate-600 outline-none focus:border-[#E32636]"
                   />
                 </div>
               </div>
@@ -416,7 +417,7 @@ export default function Garage() {
               {/* Row 2: VIN and Custom Vehicle Name */}
               <div className="grid gap-6 sm:grid-cols-2">
                 <div>
-                  <label className="block font-mono text-xs uppercase tracking-wider text-[#A5ACB5] mb-2">
+                  <label className="block font-mono text-xs uppercase tracking-wider text-muted mb-2">
                     Название в гараже
                   </label>
                   <input
@@ -425,12 +426,12 @@ export default function Garage() {
                     placeholder="напр. Мой W213 на каждый день"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full rounded-xl border border-[#242A32] bg-[#0B0D10] px-4 py-3 font-mono text-xs text-white placeholder-slate-600 outline-none focus:border-[#E32636]"
+                    className="w-full rounded-xl border border-[var(--border)] bg-[var(--canvas)] px-4 py-3 font-mono text-xs text-ink placeholder-slate-600 outline-none focus:border-[#E32636]"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-mono text-xs uppercase tracking-wider text-[#A5ACB5] mb-2">
+                  <label className="block font-mono text-xs uppercase tracking-wider text-muted mb-2">
                     VIN-код (17 символов, опционально)
                   </label>
                   <input
@@ -439,7 +440,7 @@ export default function Garage() {
                     placeholder="напр. WBA3A5C50DF123456"
                     value={form.vin}
                     onChange={(e) => setForm({ ...form, vin: e.target.value.toUpperCase() })}
-                    className="w-full rounded-xl border border-[#242A32] bg-[#0B0D10] px-4 py-3 font-mono text-xs text-white uppercase placeholder-slate-600 outline-none focus:border-[#E32636]"
+                    className="w-full rounded-xl border border-[var(--border)] bg-[var(--canvas)] px-4 py-3 font-mono text-xs text-ink uppercase placeholder-slate-600 outline-none focus:border-[#E32636]"
                   />
                 </div>
               </div>
@@ -461,7 +462,7 @@ export default function Garage() {
               </div>
 
               {error && (
-                <div className="flex items-center gap-2 rounded-xl border border-[#E32636]/40 bg-[#E32636]/10 px-4 py-3 text-xs font-mono text-[#E32636]">
+                <div className="flex items-center gap-2 rounded-xl border border-[#E32636]/40 bg-premium/10 px-4 py-3 text-xs font-mono text-premium">
                   <AlertCircle className="size-4" />
                   <span>{error}</span>
                 </div>
@@ -471,14 +472,14 @@ export default function Garage() {
                 <button
                   type="button"
                   onClick={() => setIsAddingMode(false)}
-                  className="rounded-xl border border-[#242A32] bg-[#0B0D10] px-6 py-3 font-mono text-xs font-bold text-[#A5ACB5] transition hover:text-white"
+                  className="rounded-xl border border-[var(--border)] bg-[var(--canvas)] px-6 py-3 font-mono text-xs font-bold text-muted transition hover:text-ink"
                 >
                   ОТМЕНА
                 </button>
                 <button
                   type="submit"
                   disabled={createMutation.isPending || !form.make_id}
-                  className="flex items-center gap-2 rounded-xl bg-[#E32636] px-8 py-3 font-mono text-xs font-bold text-white shadow-lg transition hover:bg-[#D91F32] disabled:opacity-40"
+                  className="flex items-center gap-2 rounded-xl bg-premium px-8 py-3 font-mono text-xs font-bold text-ink shadow-lg transition hover:bg-[#D91F32] disabled:opacity-40"
                 >
                   {createMutation.isPending ? (
                     <RotateCcw className="size-4 animate-spin" />
@@ -496,29 +497,29 @@ export default function Garage() {
         <section className="mt-12">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#A5ACB5]">
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-muted">
                 SAVED FLEET
               </span>
-              <h2 className="text-xl font-black text-white mt-0.5">
+              <h2 className="text-xl font-black text-ink mt-0.5">
                 Автомобили в вашем ангаре ({vehicles.length})
               </h2>
             </div>
             {tree.isLoading && (
-              <span className="font-mono text-xs text-[#A5ACB5]">Загрузка каталога...</span>
+              <span className="font-mono text-xs text-muted">Загрузка каталога...</span>
             )}
           </div>
 
           {vehicles.length === 0 ? (
-            <div className="rounded-2xl border border-[#242A32] bg-[#15191F] p-12 text-center shadow-xl">
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-12 text-center shadow-xl">
               <Car className="mx-auto size-12 text-[#242A32]" />
-              <h3 className="mt-4 text-lg font-bold text-white">Гараж пуст</h3>
-              <p className="mt-2 text-sm text-[#A5ACB5] max-w-md mx-auto">
+              <h3 className="mt-4 text-lg font-bold text-ink">Гараж пуст</h3>
+              <p className="mt-2 text-sm text-muted max-w-md mx-auto">
                 Добавьте свой первый автомобиль, чтобы активировать персональный фильтр совместимости в каталоге деталей.
               </p>
               <button
                 type="button"
                 onClick={() => setIsAddingMode(true)}
-                className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#E32636] px-6 py-3 font-mono text-xs font-bold text-white hover:bg-[#D91F32] transition"
+                className="mt-6 inline-flex items-center gap-2 rounded-xl bg-premium px-6 py-3 font-mono text-xs font-bold text-ink hover:bg-[#D91F32] transition"
               >
                 <Plus className="size-4" />
                 <span>ДОБАВИТЬ ПЕРВЫЙ АВТОМОБИЛЬ</span>
@@ -533,22 +534,22 @@ export default function Garage() {
                     key={vehicle.id}
                     className={`rounded-2xl border p-5 transition-all flex flex-col justify-between ${
                       isSelected
-                        ? 'border-[#E32636] bg-[#15191F] shadow-[0_0_20px_rgba(227,38,54,0.15)]'
-                        : 'border-[#242A32] bg-[#15191F]/60 hover:border-slate-500'
+                        ? 'border-[#E32636] bg-[var(--surface)] shadow-[0_0_20px_rgba(227,38,54,0.15)]'
+                        : 'border-[var(--border)] bg-[var(--surface)]/60 hover:border-slate-500'
                     }`}
                   >
                     <div>
                       <div className="flex items-start justify-between gap-3">
                         <div>
                           <div className="flex items-center gap-2">
-                            <h3 className="font-bold text-white text-base">
+                            <h3 className="font-bold text-ink text-base">
                               {vehicle.name}
                             </h3>
                             {vehicle.is_primary && (
-                              <Star className="size-3.5 fill-[#E32636] text-[#E32636]" />
+                              <Star className="size-3.5 fill-[#E32636] text-premium" />
                             )}
                           </div>
-                          <div className="mt-1 font-mono text-xs text-[#A5ACB5]">
+                          <div className="mt-1 font-mono text-xs text-muted">
                             {vehicle.make.name}
                             {vehicle.model ? ` ${vehicle.model.name}` : ''}
                             {vehicle.generation ? ` · ${vehicle.generation.name}` : ''}
@@ -559,7 +560,7 @@ export default function Garage() {
                           type="button"
                           aria-label={t('remove')}
                           onClick={() => void removeVehicle(vehicle.id)}
-                          className="rounded-lg border border-[#242A32] p-2 text-slate-500 hover:border-[#E32636] hover:text-[#E32636] transition"
+                          className="rounded-lg border border-[var(--border)] p-2 text-slate-500 hover:border-[#E32636] hover:text-premium transition"
                           title="Удалить из гаража"
                         >
                           <Trash2 className="size-4" />
@@ -567,25 +568,25 @@ export default function Garage() {
                       </div>
 
                       {vehicle.year && (
-                        <div className="mt-3 font-mono text-[11px] text-[#A5ACB5]">
-                          Год выпуска: <span className="text-white font-bold">{vehicle.year}</span>
+                        <div className="mt-3 font-mono text-[11px] text-muted">
+                          Год выпуска: <span className="text-ink font-bold">{vehicle.year}</span>
                         </div>
                       )}
                       {vehicle.vin && (
-                        <div className="mt-1 font-mono text-[11px] text-[#A5ACB5]">
-                          VIN: <span className="text-[#E32636] font-bold">{vehicle.vin}</span>
+                        <div className="mt-1 font-mono text-[11px] text-muted">
+                          VIN: <span className="text-premium font-bold">{vehicle.vin}</span>
                         </div>
                       )}
                     </div>
 
-                    <div className="mt-6 pt-4 border-t border-[#242A32] flex items-center justify-between gap-2">
+                    <div className="mt-6 pt-4 border-t border-[var(--border)] flex items-center justify-between gap-2">
                       <button
                         type="button"
                         onClick={() => selectVehicle(isSelected ? null : vehicle.id)}
                         className={`rounded-xl border px-3.5 py-2 font-mono text-xs font-bold transition ${
                           isSelected
                             ? 'border-emerald-500 bg-emerald-500/10 text-emerald-400'
-                            : 'border-[#242A32] bg-[#0B0D10] text-[#A5ACB5] hover:text-white'
+                            : 'border-[var(--border)] bg-[var(--canvas)] text-muted hover:text-ink'
                         }`}
                       >
                         {isSelected ? '✓ ВЫБРАН' : 'ВЫБРАТЬ'}
@@ -593,7 +594,7 @@ export default function Garage() {
 
                       <Link
                         to={`/catalog?vehicle_id=${vehicle.id}`}
-                        className="font-mono text-xs font-bold text-[#E32636] hover:underline flex items-center gap-1"
+                        className="font-mono text-xs font-bold text-premium hover:underline flex items-center gap-1"
                       >
                         <span>Запчасти</span>
                         <ChevronRight className="size-3" />

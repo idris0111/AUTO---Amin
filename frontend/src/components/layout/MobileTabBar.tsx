@@ -80,7 +80,7 @@ export default function MobileTabBar() {
               className={`group relative flex min-h-[52px] flex-col items-center justify-center gap-0.5 rounded-lg py-1 transition-all ${
                 item.isActive
                   ? 'text-premium font-semibold'
-                  : 'text-muted hover:text-white'
+                  : 'text-muted hover:text-ink'
               }`}
             >
               <div className="relative flex items-center justify-center">
@@ -102,7 +102,7 @@ export default function MobileTabBar() {
                 {/* Cart Badge */}
                 {item.badge && (
                   <span
-                    className="absolute -top-1.5 -right-2.5 flex min-w-4 h-4 items-center justify-center rounded-full bg-premium px-1 text-[10px] font-bold text-white shadow-sm"
+                    className="absolute -top-1.5 -right-2.5 flex min-w-4 h-4 items-center justify-center rounded-full bg-premium px-1 text-[10px] font-bold text-ink shadow-sm"
                     aria-hidden="true"
                   >
                     {item.badge}

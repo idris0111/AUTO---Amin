@@ -36,7 +36,7 @@ export default function ComparisonFloatingBar() {
           </span>
 
           <div className="flex flex-col pr-1">
-            <span className="text-xs font-bold text-white">
+            <span className="text-xs font-bold text-ink">
               {t('comparison')}
             </span>
             <span className="text-[11px] muted">
@@ -56,7 +56,7 @@ export default function ComparisonFloatingBar() {
             type="button"
             onClick={clear}
             title={t('compareClear')}
-            className="grid size-7 place-items-center rounded-lg text-slate-400 transition hover:bg-white/10 hover:text-white"
+            className="grid size-7 place-items-center rounded-lg text-slate-400 transition hover:bg-white/10 hover:text-ink"
           >
             <X className="size-4" />
           </button>

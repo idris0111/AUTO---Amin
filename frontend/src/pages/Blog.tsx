@@ -93,7 +93,7 @@ export default function Blog() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0B0D10] text-gray-200 py-10 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[var(--canvas)] text-gray-200 py-10 px-4 sm:px-6 lg:px-8">
       <SeoHead
         title="База знаний & Блог автолюбителей"
         description="Экспертные руководства, советы инженеров, регламенты ТО и обзоры автозапчастей для условий Таджикистана."
@@ -104,11 +104,11 @@ export default function Blog() {
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Hero Header */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E32636]/10 border border-[#E32636]/30 text-[#E32636] text-xs font-semibold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-premium/10 border border-[#E32636]/30 text-premium text-xs font-semibold uppercase tracking-wider">
             <Compass className="w-3.5 h-3.5" />
             Экспертная экспертиза Auto Universe
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-ink tracking-tight">
             База знаний & Технический блог
           </h1>
           <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
@@ -125,12 +125,12 @@ export default function Blog() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Поиск по статьям (например: колодки, масло 5w40, подвеска, свечи)..."
-                className="w-full bg-[#15191F] border border-[#252B33] rounded-xl pl-11 pr-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#E32636] transition shadow-inner"
+                className="w-full bg-[var(--surface)] border border-[#252B33] rounded-xl pl-11 pr-4 py-3 text-sm text-ink placeholder-gray-500 focus:outline-none focus:border-[#E32636] transition shadow-inner"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-gray-400 hover:text-white"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-gray-400 hover:text-ink"
                 >
                   Очистить
                 </button>
@@ -145,8 +145,8 @@ export default function Blog() {
             onClick={() => handleCategoryClick('')}
             className={`px-4 py-2 rounded-xl text-xs font-medium transition flex items-center gap-2 border ${
               !activeCategory
-                ? 'bg-[#E32636] text-white border-[#E32636] shadow-lg shadow-[#E32636]/20'
-                : 'bg-[#15191F] text-gray-400 border-[#252B33] hover:border-gray-600 hover:text-white'
+                ? 'bg-premium text-ink border-[#E32636] shadow-lg shadow-[#E32636]/20'
+                : 'bg-[var(--surface)] text-gray-400 border-[#252B33] hover:border-gray-600 hover:text-ink'
             }`}
           >
             <span>Все статьи</span>
@@ -164,8 +164,8 @@ export default function Blog() {
                 onClick={() => handleCategoryClick(c.category)}
                 className={`px-4 py-2 rounded-xl text-xs font-medium transition flex items-center gap-2 border ${
                   isSelected
-                    ? 'bg-[#E32636] text-white border-[#E32636] shadow-lg shadow-[#E32636]/20'
-                    : 'bg-[#15191F] text-gray-400 border-[#252B33] hover:border-gray-600 hover:text-white'
+                    ? 'bg-premium text-ink border-[#E32636] shadow-lg shadow-[#E32636]/20'
+                    : 'bg-[var(--surface)] text-gray-400 border-[#252B33] hover:border-gray-600 hover:text-ink'
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -185,9 +185,9 @@ export default function Blog() {
             <p className="mt-3 text-xs text-gray-400">Загрузка материалов базы знаний...</p>
           </div>
         ) : articles.length === 0 ? (
-          <div className="py-20 text-center bg-[#15191F] rounded-2xl border border-[#252B33] p-8 max-w-lg mx-auto">
+          <div className="py-20 text-center bg-[var(--surface)] rounded-2xl border border-[#252B33] p-8 max-w-lg mx-auto">
             <BookOpen className="w-12 h-12 text-gray-500 mx-auto mb-3" />
-            <h3 className="text-lg font-bold text-white">Статьи не найдены</h3>
+            <h3 className="text-lg font-bold text-ink">Статьи не найдены</h3>
             <p className="text-sm text-gray-400 mt-1">
               Попробуйте изменить поисковый запрос или выбрать другую категорию.
             </p>
@@ -196,7 +196,7 @@ export default function Blog() {
                 setSearchQuery('')
                 handleCategoryClick('')
               }}
-              className="mt-4 px-4 py-2 rounded-lg bg-[#252B33] text-sm text-white hover:bg-gray-700 transition"
+              className="mt-4 px-4 py-2 rounded-lg bg-[#252B33] text-sm text-ink hover:bg-gray-700 transition"
             >
               Сбросить фильтры
             </button>
@@ -205,7 +205,7 @@ export default function Blog() {
           <div className="space-y-10">
             {/* Featured Hero Article */}
             {featuredArticle && !searchQuery && !activeCategory && (
-              <div className="bg-gradient-to-r from-[#15191F] via-[#1a1f27] to-[#15191F] border border-[#252B33] hover:border-[#E32636]/40 transition rounded-2xl overflow-hidden shadow-2xl group">
+              <div className="bg-gradient-to-r from-[var(--surface)] via-[#1a1f27] to-[#15191F] border border-[#252B33] hover:border-[#E32636]/40 transition rounded-2xl overflow-hidden shadow-2xl group">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                   {featuredArticle.cover_image && (
                     <div className="lg:col-span-6 relative overflow-hidden aspect-video lg:aspect-auto min-h-[260px]">
@@ -216,7 +216,7 @@ export default function Blog() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent lg:hidden" />
                       <div className="absolute top-4 left-4">
-                        <span className="px-2.5 py-1 rounded-md text-xs font-semibold bg-[#E32636] text-white uppercase tracking-wider shadow">
+                        <span className="px-2.5 py-1 rounded-md text-xs font-semibold bg-premium text-ink uppercase tracking-wider shadow">
                           Главный материал
                         </span>
                       </div>
@@ -229,7 +229,7 @@ export default function Blog() {
                   >
                     <div className="space-y-3">
                       <div className="flex flex-wrap items-center gap-3 text-xs text-gray-400">
-                        <span className="text-[#E32636] font-medium uppercase tracking-wider">
+                        <span className="text-premium font-medium uppercase tracking-wider">
                           {CATEGORY_NAMES[featuredArticle.category]?.label || featuredArticle.category}
                         </span>
                         <span>•</span>
@@ -244,7 +244,7 @@ export default function Blog() {
                         </span>
                       </div>
                       <Link to={`/blog/${featuredArticle.slug}`}>
-                        <h2 className="text-2xl sm:text-3xl font-bold text-white group-hover:text-[#E32636] transition leading-tight">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-ink group-hover:text-premium transition leading-tight">
                           {featuredArticle.title}
                         </h2>
                       </Link>
@@ -266,7 +266,7 @@ export default function Blog() {
                       </div>
                       <Link
                         to={`/blog/${featuredArticle.slug}`}
-                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#E32636] text-white text-xs font-semibold hover:bg-red-700 transition shadow-lg shadow-[#E32636]/20"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-premium text-ink text-xs font-semibold hover:bg-red-700 transition shadow-lg shadow-[#E32636]/20"
                       >
                         Читать материал
                       </Link>
@@ -287,7 +287,7 @@ export default function Blog() {
                 return (
                   <article
                     key={article.id}
-                    className="bg-[#15191F] border border-[#252B33] hover:border-[#E32636]/50 rounded-2xl overflow-hidden transition flex flex-col group shadow-md hover:shadow-xl hover:shadow-black/40"
+                    className="bg-[var(--surface)] border border-[#252B33] hover:border-[#E32636]/50 rounded-2xl overflow-hidden transition flex flex-col group shadow-md hover:shadow-xl hover:shadow-black/40"
                   >
                     {article.cover_image && (
                       <div className="relative aspect-video overflow-hidden bg-black/40">
@@ -297,8 +297,8 @@ export default function Blog() {
                           className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                         />
                         <div className="absolute top-3 left-3">
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-medium bg-[#0B0D10]/80 backdrop-blur-md text-gray-200 border border-white/10">
-                            <CatIcon className="w-3 h-3 text-[#E32636]" />
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-medium bg-[var(--canvas)]/80 backdrop-blur-md text-gray-200 border border-white/10">
+                            <CatIcon className="w-3 h-3 text-premium" />
                             {catMeta.label}
                           </span>
                         </div>
@@ -330,7 +330,7 @@ export default function Blog() {
                           )}
                         </div>
                         <Link to={`/blog/${article.slug}`}>
-                          <h3 className="font-bold text-white text-base group-hover:text-[#E32636] transition line-clamp-2 leading-snug">
+                          <h3 className="font-bold text-ink text-base group-hover:text-premium transition line-clamp-2 leading-snug">
                             {article.title}
                           </h3>
                         </Link>
@@ -352,7 +352,7 @@ export default function Blog() {
                         </div>
                         <Link
                           to={`/blog/${article.slug}`}
-                          className="text-xs font-semibold text-[#E32636] group-hover:translate-x-0.5 transition inline-flex items-center gap-1"
+                          className="text-xs font-semibold text-premium group-hover:translate-x-0.5 transition inline-flex items-center gap-1"
                         >
                           Подробнее →
                         </Link>
@@ -367,27 +367,27 @@ export default function Blog() {
 
         {/* Interactive Helper CTAs */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-10">
-          <div className="bg-gradient-to-br from-[#15191F] to-[#1f1a1a] p-6 rounded-2xl border border-[#252B33] space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-[#E32636]/10 border border-[#E32636]/20 flex items-center justify-center text-[#E32636]">
+          <div className="bg-gradient-to-br from-[var(--surface)] to-[#1f1a1a] p-6 rounded-2xl border border-[#252B33] space-y-3">
+            <div className="w-10 h-10 rounded-xl bg-premium/10 border border-[#E32636]/20 flex items-center justify-center text-premium">
               <Cpu className="w-5 h-5" />
             </div>
-            <h4 className="font-bold text-white text-base">Интеллектуальный AI Механик</h4>
+            <h4 className="font-bold text-ink text-base">Интеллектуальный AI Механик</h4>
             <p className="text-xs text-gray-400 leading-relaxed">
               Опишите подозрительный стук или код ошибки OBD-II и получите мгновенный анализ узла с перечнем необходимых запчастей.
             </p>
             <Link
               to="/ai-mechanic"
-              className="inline-block pt-1 text-xs font-semibold text-[#E32636] hover:underline"
+              className="inline-block pt-1 text-xs font-semibold text-premium hover:underline"
             >
               Запустить онлайн-диагностику →
             </Link>
           </div>
 
-          <div className="bg-gradient-to-br from-[#15191F] to-[#151c24] p-6 rounded-2xl border border-[#252B33] space-y-3">
+          <div className="bg-gradient-to-br from-[var(--surface)] to-[#151c24] p-6 rounded-2xl border border-[#252B33] space-y-3">
             <div className="w-10 h-10 rounded-xl bg-premium/10 border border-premium/20 flex items-center justify-center text-premium">
               <Truck className="w-5 h-5" />
             </div>
-            <h4 className="font-bold text-white text-base">Мой гараж & Спецификации</h4>
+            <h4 className="font-bold text-ink text-base">Мой гараж & Спецификации</h4>
             <p className="text-xs text-gray-400 leading-relaxed">
               Сохраните автомобиль в персональный гараж для мгновенной 100% проверки совместимости запчастей и регламентов ТО.
             </p>
@@ -399,11 +399,11 @@ export default function Blog() {
             </Link>
           </div>
 
-          <div className="bg-gradient-to-br from-[#15191F] to-[#181f18] p-6 rounded-2xl border border-[#252B33] space-y-3">
+          <div className="bg-gradient-to-br from-[var(--surface)] to-[#181f18] p-6 rounded-2xl border border-[#252B33] space-y-3">
             <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
               <HelpCircle className="w-5 h-5" />
             </div>
-            <h4 className="font-bold text-white text-base">Служба заботы & Поддержка</h4>
+            <h4 className="font-bold text-ink text-base">Служба заботы & Поддержка</h4>
             <p className="text-xs text-gray-400 leading-relaxed">
               Специалисты Auto Universe помогут подобрать деталь по VIN-коду и ответят на любые вопросы по доставке.
             </p>

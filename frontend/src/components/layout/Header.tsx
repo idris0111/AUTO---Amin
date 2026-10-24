@@ -13,6 +13,7 @@ import { useGarage } from '../../stores/garage'
 import { useComparison } from '../../stores/comparison'
 import { useLoyalty } from '../../stores/loyalty'
 import { useNotifications } from '../../stores/notifications'
+import CatalogMenu from './CatalogMenu'
 
 export default function Header() {
   const { t, i18n } = useTranslation()
@@ -105,7 +106,7 @@ export default function Header() {
       }
     }
     function onKey(event: KeyboardEvent) {
-      if (event.key === 'Escape') setSuggestionsOpen(false)
+      if (event.key === 'Escape') { setSuggestionsOpen(false); setNotifsOpen(false); setMobileOpen(false) }
     }
     document.addEventListener('mousedown', onDocClick)
     document.addEventListener('keydown', onKey)
@@ -144,13 +145,11 @@ export default function Header() {
 
   const navLinks = (
     <>
-      <Link className="transition hover:text-premium" to="/catalog" onClick={() => setMobileOpen(false)}>
-        Каталог
-      </Link>
+      <CatalogMenu onNavigate={() => setMobileOpen(false)} />
       <Link className="transition hover:text-premium" to="/garage" onClick={() => setMobileOpen(false)}>
         Подбор по авто
       </Link>
-      <Link className="transition hover:text-premium" to="/catalog?sort=popular" onClick={() => setMobileOpen(false)}>
+      <Link className="transition hover:text-premium" to="/#brands" onClick={() => setMobileOpen(false)}>
         Бренды
       </Link>
       <Link className="transition hover:text-premium" to="/catalog?has_discount=true" onClick={() => setMobileOpen(false)}>
@@ -174,24 +173,18 @@ export default function Header() {
   )
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-all duration-300 border-b ${
-        scrolled
-          ? 'bg-[#0B0D10]/95 backdrop-blur-xl border-[#242A32] shadow-2xl py-2.5'
-          : 'bg-[#0B0D10]/85 backdrop-blur-md border-white/5 py-3.5'
-      }`}
-    >
+    <header className={`commerce-header sticky top-0 z-50 ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-4">
         <Link to="/" className="group flex items-center gap-2.5">
-          <span className="grid size-9 place-items-center rounded-lg bg-gradient-to-br from-premium to-red-700 text-sm font-black text-white shadow-[0_0_20px_rgba(227,38,54,0.45)] transition group-hover:scale-105">
+          <span className="au-monogram">
             AU
           </span>
           <div className="flex flex-col">
-            <span className="text-base font-black tracking-[-0.04em] text-white">
+            <span className="brand-wordmark">
               AUTO<span className="text-premium">UNIVERSE</span>
             </span>
             <span className="font-mono text-[9px] tracking-[0.22em] uppercase text-silver/60">
-              PERFORMANCE LUXURY
+              PRECISION IN EVERY PART
             </span>
           </div>
         </Link>
@@ -211,7 +204,7 @@ export default function Header() {
                 aria-label={t('search')}
                 className="w-full bg-transparent text-sm outline-none"
               />
-              <button type="submit" className="shrink-0 rounded-lg bg-premium px-3 py-1 text-sm font-semibold text-white transition hover:brightness-110">
+              <button type="submit" className="shrink-0 rounded-lg bg-premium px-3 py-1 text-sm font-semibold text-ink transition hover:brightness-110">
                 {t('searchShort')}
               </button>
             </div>
@@ -291,7 +284,7 @@ export default function Header() {
           >
             <GitCompare className="size-4" />
             {comparisonIds.length > 0 && (
-              <span className="absolute -right-2 -top-2 grid min-w-4 place-items-center rounded-full bg-premium px-1 text-[10px] font-bold text-white">
+              <span className="absolute -right-2 -top-2 grid min-w-4 place-items-center rounded-full bg-premium px-1 text-[10px] font-bold text-ink">
                 {comparisonIds.length}
               </span>
             )}
@@ -304,9 +297,9 @@ export default function Header() {
           >
             <Heart className="size-4" />
           </Link>
-          {(user?.role === 'admin' || user?.role === 'manager') && (
+          {user?.role && ['admin', 'super_admin', 'manager', 'order_manager'].includes(user.role) && (
             <Link
-              to="/admin"
+              to={user.role === 'order_manager' ? '/cockpit' : '/admin'}
               aria-label="Admin"
               className="rounded-lg border px-3 py-2 text-xs font-bold transition hover:border-premium hover:text-premium"
               style={{ borderColor: 'var(--border)' }}
@@ -324,7 +317,7 @@ export default function Header() {
             {cart && cart.count > 0 && (
               <span
                 key={cart.count}
-                className={`absolute -right-2 -top-2 grid min-w-5 place-items-center rounded-full bg-premium px-1 text-[10px] font-bold text-white ${badgePop ? 'pop-badge' : ''}`}
+                className={`absolute -right-2 -top-2 grid min-w-5 place-items-center rounded-full bg-premium px-1 text-[10px] font-bold text-ink ${badgePop ? 'pop-badge' : ''}`}
               >
                 {cart.count}
               </span>
@@ -346,7 +339,7 @@ export default function Header() {
               >
                 <Bell className="size-4" />
                 {unreadCount > 0 && (
-                  <span className="absolute -right-1.5 -top-1.5 grid min-w-4 place-items-center rounded-full bg-premium px-1 text-[10px] font-bold text-white shadow-sm">
+                  <span className="absolute -right-1.5 -top-1.5 grid min-w-4 place-items-center rounded-full bg-premium px-1 text-[10px] font-bold text-ink shadow-sm">
                     {unreadCount > 99 ? '99+' : unreadCount}
                   </span>
                 )}
@@ -359,7 +352,7 @@ export default function Header() {
                 >
                   <div className="flex items-center justify-between border-b px-4 py-3" style={{ borderColor: 'var(--border)' }}>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-bold text-white">Уведомления</span>
+                      <span className="text-sm font-bold text-ink">Уведомления</span>
                       {unreadCount > 0 && (
                         <span className="rounded-full bg-premium/20 px-2 py-0.5 text-[10px] font-bold text-premium">
                           {unreadCount} новых
@@ -370,7 +363,7 @@ export default function Header() {
                       <button
                         type="button"
                         onClick={() => void markAllAsRead()}
-                        className="flex items-center gap-1 text-xs text-muted hover:text-white transition"
+                        className="flex items-center gap-1 text-xs text-muted hover:text-ink transition"
                         title="Отметить все прочитанными"
                       >
                         <CheckCheck className="size-3.5" />
@@ -388,6 +381,9 @@ export default function Header() {
                       notifications.map((it) => (
                         <div
                           key={it.id}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.currentTarget.click() } }}
                           onClick={() => {
                             if (!it.is_read) void markAsRead(it.id)
                             if (it.link) {
@@ -410,7 +406,7 @@ export default function Header() {
                           </div>
                           <div className="min-w-0 flex-1">
                             <div className="flex items-center justify-between gap-1">
-                              <span className={`font-semibold truncate ${!it.is_read ? 'text-white' : 'text-zinc-300'}`}>
+                              <span className={`font-semibold truncate ${!it.is_read ? 'text-ink' : 'text-muted'}`}>
                                 {it.title}
                               </span>
                               {!it.is_read && (
@@ -455,8 +451,8 @@ export default function Header() {
                 className="inline-flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-bold text-amber-400 hover:border-amber-400 transition"
                 title="Бонусные баллы AU Loyalty (1 балл = 1 TJS)"
               >
-                <span>🪙</span>
-                <span>{loyaltyAccount?.points_balance ?? 100}</span>
+                <Coins className="size-3.5" />
+                <span>{loyaltyAccount?.points_balance ?? '—'}</span>
               </Link>
               <Link to="/profile" className="max-w-32 truncate hover:text-premium">
                 <UserIcon className="mr-1 inline size-4" aria-hidden />
@@ -471,7 +467,7 @@ export default function Header() {
               <Link to="/login" className="transition hover:text-premium">
                 {t('login')}
               </Link>
-              <Link to="/register" className="rounded-lg bg-premium px-3 py-1.5 font-semibold text-white transition hover:brightness-110">
+              <Link to="/register" className="rounded-lg bg-premium px-3 py-1.5 font-semibold text-ink transition hover:brightness-110">
                 {t('register')}
               </Link>
             </div>
@@ -490,6 +486,8 @@ export default function Header() {
         </button>
       </div>
 
+      <form onSubmit={submitSearch} className="commerce-mobile-search md:hidden" role="search"><Search size={19} aria-hidden /><input value={query} onChange={e => setQuery(e.target.value)} aria-label={t('search')} placeholder="Найти запчасть или артикул" /><button type="submit" aria-label="Найти запчасть"><Search size={18} /></button></form>
+      <div className="commerce-nav-wrap hidden lg:block"><nav className="commerce-container commerce-nav" aria-label="Основная навигация">{navLinks}</nav></div>
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -514,7 +512,8 @@ export default function Header() {
                 </button>
               </form>
               <nav className="flex flex-col gap-3 text-sm font-medium">{navLinks}</nav>
-              <div className="mt-4 flex items-center justify-between text-sm">
+              <div className="mobile-tools mt-4 text-sm">
+                <select aria-label="Язык интерфейса" value={locale} onChange={e => { const value = e.target.value as 'ru' | 'tg' | 'en'; setLocale(value); void i18n.changeLanguage(value) }}><option value="ru">RU</option><option value="tg">TG</option><option value="en">EN</option></select>
                 <button type="button" onClick={toggleTheme} className="flex items-center gap-2">
                   {theme === 'dark' ? <Sun className="size-4" /> : <Moon className="size-4" />}{' '}
                   {theme === 'dark' ? 'Light' : 'Dark'}
@@ -523,6 +522,7 @@ export default function Header() {
                   <Link to="/compare" onClick={() => setMobileOpen(false)} className="flex items-center gap-1.5">
                     <GitCompare className="size-4" /> {t('compare')} {comparisonIds.length > 0 ? `(${comparisonIds.length})` : ''}
                   </Link>
+                  <Link to="/favorites" onClick={() => setMobileOpen(false)} aria-label="Избранное"><Heart className="size-5" /></Link>
                   <Link to="/cart" onClick={() => setMobileOpen(false)} className="flex items-center gap-1.5">
                     <ShoppingCart className="size-4" /> {t('cart')} {cart && cart.count > 0 ? `(${cart.count})` : ''}
                   </Link>
@@ -541,7 +541,7 @@ export default function Header() {
                     <Link to="/login" className="rounded-lg border px-3 py-1.5" style={{ borderColor: 'var(--border)' }}>
                       {t('login')}
                     </Link>
-                    <Link to="/register" className="rounded-lg bg-premium px-3 py-1.5 font-semibold text-white">
+                    <Link to="/register" className="rounded-lg bg-premium px-3 py-1.5 font-semibold text-ink">
                       {t('register')}
                     </Link>
                   </>

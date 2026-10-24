@@ -596,6 +596,12 @@ export interface AnalyticsDashboardResponse {
   stock_health: StockHealth
   support_metrics: SupportMetrics
   loyalty_metrics: LoyaltyMetrics
+  period_days: number
+  new_customers: number
+  units_sold: number
+  sales_by_category: { name: string; units_sold: number; revenue: string | number }[]
+  low_stock_products: { id: string; name: string; sku: string; stock_quantity: number; low_stock_threshold: number }[]
+  recent_orders: { id: string; number: string; status: string; total: string | number; created_at: string }[]
 }
 
 

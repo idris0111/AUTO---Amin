@@ -4,6 +4,8 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import './i18n'
 import './index.css'
+import './commerce.css'
+import './marketplace.css'
 import Footer from './components/layout/Footer'
 import Header from './components/layout/Header'
 import MobileTabBar from './components/layout/MobileTabBar'
@@ -31,6 +33,7 @@ const AiMechanic = lazy(() => import('./pages/AiMechanic'))
 const Support = lazy(() => import('./pages/Support'))
 const Blog = lazy(() => import('./pages/Blog'))
 const ArticleDetail = lazy(() => import('./pages/ArticleDetail'))
+const Cockpit = lazy(() => import('./pages/Cockpit'))
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { retry: 1, staleTime: 30_000, refetchOnWindowFocus: false } },
@@ -38,7 +41,7 @@ const queryClient = new QueryClient({
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="storefront flex min-h-dvh flex-col">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-premium focus:px-4 focus:py-2.5 focus:text-sm focus:font-bold focus:text-white focus:shadow-2xl focus:outline-none"
@@ -104,6 +107,8 @@ export default function App() {
           <Route path="/blog" element={<Shell><Blog /></Shell>} />
           <Route path="/blog/:slug" element={<Shell><ArticleDetail /></Shell>} />
           <Route path="/admin" element={<Shell><Admin /></Shell>} />
+          <Route path="/cockpit" element={<Cockpit />} />
+          <Route path="/admin/cockpit" element={<Cockpit />} />
           <Route path="*" element={<Shell><NotFound /></Shell>} />
         </Routes>
       </BrowserRouter>

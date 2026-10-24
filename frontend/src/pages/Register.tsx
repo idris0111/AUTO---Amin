@@ -56,7 +56,7 @@ export default function Register() {
           <span className="mt-1 block text-xs muted">Минимум 10 символов</span>
         </label>
         {error && <div className="rounded-md border border-premium/40 bg-premium/10 px-3 py-2 text-sm text-premium">{error}</div>}
-        <button type="submit" disabled={loading} className="w-full rounded-lg bg-premium py-3 font-semibold text-white disabled:opacity-50">
+        <button type="submit" disabled={loading} className="w-full rounded-lg bg-premium py-3 font-semibold text-ink disabled:opacity-50">
           {loading ? t('loading') : t('register')}
         </button>
       </form>

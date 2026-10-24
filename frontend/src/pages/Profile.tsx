@@ -114,10 +114,10 @@ export default function Profile() {
   if (!user) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-24 text-center">
-        <div className="mx-auto grid size-16 place-items-center rounded-2xl border border-white/10 bg-[#12161D] text-[#00F0FF] shadow-2xl">
+        <div className="mx-auto grid size-16 place-items-center rounded-2xl border border-white/10 bg-[#12161D] text-premium shadow-2xl">
           <UserIcon className="size-8" />
         </div>
-        <h1 className="mt-6 text-3xl font-black text-white">Личный кабинет AU</h1>
+        <h1 className="mt-6 text-3xl font-black text-ink">Личный кабинет AU</h1>
         <p className="mt-3 text-sm text-slate-400">Требуется авторизация для входа в панель управления профилем.</p>
         <Link
           to="/login"
@@ -209,7 +209,7 @@ export default function Profile() {
   const unreadCount = notifHistory.filter((n) => !n.is_read).length
 
   return (
-    <div className="min-h-screen bg-[#07090C] text-slate-100 pb-24 selection:bg-[#00F0FF] selection:text-black">
+    <div className="min-h-screen bg-[#07090C] text-ink pb-24 selection:bg-premium selection:text-black">
       {/* Background Aurora / Ambient */}
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_-10%,rgba(0,240,255,0.06),transparent_80%)]" />
 
@@ -217,15 +217,15 @@ export default function Profile() {
         {/* Cockpit Status Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
           <div>
-            <div className="flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-widest text-[#00F0FF]">
-              <span className="size-2 rounded-full bg-[#00F0FF] animate-pulse" />
+            <div className="flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-widest text-premium">
+              <span className="size-2 rounded-full bg-premium animate-pulse" />
               <span>AU PERFORMANCE OS</span>
-              <span className="text-white/20">/</span>
+              <span className="text-ink/20">/</span>
               <span>PILOT COCKPIT</span>
-              <span className="text-white/20">/</span>
+              <span className="text-ink/20">/</span>
               <span className="text-slate-400">ID: AU-{user.id.slice(0, 8).toUpperCase()}</span>
             </div>
-            <h1 className="mt-2 text-3xl font-black text-white tracking-tight">
+            <h1 className="mt-2 text-3xl font-black text-ink tracking-tight">
               Личный кабинет
             </h1>
             <p className="mt-1 text-xs text-slate-400">
@@ -281,11 +281,11 @@ export default function Profile() {
               <div>
                 <div className="flex items-center gap-2">
                   <div className="size-8 rounded-lg bg-white/10 border border-white/20 grid place-items-center backdrop-blur-md">
-                    <Sparkles className="size-4 text-[#00F0FF]" />
+                    <Sparkles className="size-4 text-premium" />
                   </div>
                   <div>
-                    <span className="block font-black tracking-widest text-white text-sm">AU PERFORMANCE</span>
-                    <span className="block font-mono text-[9px] uppercase tracking-widest text-[#00F0FF]">EXECUTIVE LUXURY PASS</span>
+                    <span className="block font-black tracking-widest text-ink text-sm">AU PERFORMANCE</span>
+                    <span className="block font-mono text-[9px] uppercase tracking-widest text-premium">EXECUTIVE LUXURY PASS</span>
                   </div>
                 </div>
               </div>
@@ -314,20 +314,20 @@ export default function Profile() {
                 </div>
               </div>
 
-              <div className="font-mono text-lg sm:text-xl font-bold tracking-[0.22em] text-white/90 drop-shadow">
+              <div className="font-mono text-lg sm:text-xl font-bold tracking-[0.22em] text-ink/90 drop-shadow">
                 AU • 9920 • 8472 • {user.id.slice(0, 4).toUpperCase()}
               </div>
 
               <div className="mt-3 flex items-center justify-between text-xs font-mono text-slate-400">
                 <div>
                   <span className="block text-[9px] uppercase tracking-wider text-slate-500">PILOT / HOLDER</span>
-                  <span className="font-bold text-slate-200">
+                  <span className="font-bold text-ink">
                     {user.first_name || user.last_name ? `${user.first_name} ${user.last_name}`.toUpperCase() : 'VIP CLIENT'}
                   </span>
                 </div>
                 <div className="text-right">
                   <span className="block text-[9px] uppercase tracking-wider text-slate-500">ROLE TIER</span>
-                  <span className="font-bold text-[#00F0FF] uppercase">{user.role}</span>
+                  <span className="font-bold text-premium uppercase">{user.role}</span>
                 </div>
               </div>
             </div>
@@ -346,7 +346,7 @@ export default function Profile() {
 
               <div className="text-right">
                 <span className="block font-mono text-[10px] uppercase text-slate-400">Кэшбэк на заказы</span>
-                <div className="inline-flex items-center gap-1.5 rounded-lg border border-[#00F0FF]/40 bg-[#00F0FF]/10 px-2.5 py-1 text-xs font-bold font-mono text-[#00F0FF]">
+                <div className="inline-flex items-center gap-1.5 rounded-lg border border-premium/40 bg-premium/10 px-2.5 py-1 text-xs font-bold font-mono text-premium">
                   <TrendingUp className="size-3.5" />
                   <span>{loyalty?.tier_info.cashback_percent ?? 3}% МГНОВЕННО</span>
                 </div>
@@ -368,7 +368,7 @@ export default function Profile() {
 
               <div className="rounded-xl border border-white/10 bg-[#12161D] p-4 flex flex-col justify-between">
                 <span className="font-mono text-[10px] uppercase tracking-wider text-slate-400">Всего покупок</span>
-                <div className="mt-2 text-2xl font-black text-[#0080FF] font-mono">
+                <div className="mt-2 text-2xl font-black text-premium font-mono">
                   {Number(loyalty?.total_spent ?? 0).toFixed(0)} <span className="text-xs font-normal text-slate-400">TJS</span>
                 </div>
                 <p className="mt-1 text-[11px] text-slate-400">Накопительный объем</p>
@@ -388,7 +388,7 @@ export default function Profile() {
               <div className="flex items-center justify-between text-xs">
                 <div className="flex items-center gap-2">
                   <Award className="size-4 text-amber-400" />
-                  <span className="font-medium text-slate-200">
+                  <span className="font-medium text-ink">
                     {loyalty?.tier_info.next_tier ? (
                       <>
                         Прогресс до статуса <strong className="font-mono uppercase text-amber-400">{loyalty.tier_info.next_tier}</strong>
@@ -400,7 +400,7 @@ export default function Profile() {
                 </div>
                 {loyalty?.tier_info.next_tier && (
                   <span className="font-mono text-xs text-slate-400">
-                    Осталось: <strong className="text-white">{Number(loyalty.tier_info.spent_needed_for_next).toFixed(2)} TJS</strong>
+                    Осталось: <strong className="text-ink">{Number(loyalty.tier_info.spent_needed_for_next).toFixed(2)} TJS</strong>
                   </span>
                 )}
               </div>
@@ -427,7 +427,7 @@ export default function Profile() {
                   Оплата бонусами до 30%
                 </span>
                 <span className="inline-flex items-center gap-1.5 text-slate-300">
-                  <CheckCircle2 className="size-3.5 text-[#00F0FF]" />
+                  <CheckCircle2 className="size-3.5 text-premium" />
                   1 бонус = 1 TJS
                 </span>
                 <span className="inline-flex items-center gap-1.5 text-slate-300">
@@ -437,7 +437,7 @@ export default function Profile() {
               </div>
               <Link
                 to="/catalog"
-                className="font-mono text-xs font-bold text-[#00F0FF] hover:underline flex items-center gap-1"
+                className="font-mono text-xs font-bold text-premium hover:underline flex items-center gap-1"
               >
                 В КАТАЛОГ <ArrowRight className="size-3" />
               </Link>
@@ -456,11 +456,11 @@ export default function Profile() {
           >
             <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-5">
               <div className="flex items-center gap-2.5">
-                <div className="grid size-8 place-items-center rounded-lg bg-[#0080FF]/10 text-[#0080FF] border border-[#0080FF]/30">
+                <div className="grid size-8 place-items-center rounded-lg bg-[#0080FF]/10 text-premium border border-[#0080FF]/30">
                   <UserIcon className="size-4" />
                 </div>
                 <div>
-                  <h2 className="text-base font-bold text-white">Персональные данные</h2>
+                  <h2 className="text-base font-bold text-ink">Персональные данные</h2>
                   <p className="font-mono text-[11px] text-slate-400">{user.email} · {user.role.toUpperCase()}</p>
                 </div>
               </div>
@@ -478,7 +478,7 @@ export default function Profile() {
                   required
                   value={form.first_name}
                   onChange={(e) => setForm({ ...form, first_name: e.target.value })}
-                  className="w-full rounded-xl border border-white/10 bg-[#07090C] px-3.5 py-2.5 text-sm text-white outline-none transition focus:border-[#00F0FF] focus:ring-1 focus:ring-[#00F0FF]"
+                  className="w-full rounded-xl border border-white/10 bg-[#07090C] px-3.5 py-2.5 text-sm text-ink outline-none transition focus:border-premium focus:ring-1 focus:ring-[#00F0FF]"
                 />
               </div>
 
@@ -490,7 +490,7 @@ export default function Profile() {
                   required
                   value={form.last_name}
                   onChange={(e) => setForm({ ...form, last_name: e.target.value })}
-                  className="w-full rounded-xl border border-white/10 bg-[#07090C] px-3.5 py-2.5 text-sm text-white outline-none transition focus:border-[#00F0FF] focus:ring-1 focus:ring-[#00F0FF]"
+                  className="w-full rounded-xl border border-white/10 bg-[#07090C] px-3.5 py-2.5 text-sm text-ink outline-none transition focus:border-premium focus:ring-1 focus:ring-[#00F0FF]"
                 />
               </div>
 
@@ -502,7 +502,7 @@ export default function Profile() {
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
                   placeholder="+992 90 000 00 00"
-                  className="w-full rounded-xl border border-white/10 bg-[#07090C] px-3.5 py-2.5 text-sm font-mono text-white outline-none transition focus:border-[#00F0FF] focus:ring-1 focus:ring-[#00F0FF]"
+                  className="w-full rounded-xl border border-white/10 bg-[#07090C] px-3.5 py-2.5 text-sm font-mono text-ink outline-none transition focus:border-premium focus:ring-1 focus:ring-[#00F0FF]"
                 />
               </div>
 
@@ -527,7 +527,7 @@ export default function Profile() {
                   <Lock className="size-4" />
                 </div>
                 <div>
-                  <h2 className="text-base font-bold text-white">Безопасность учетной записи</h2>
+                  <h2 className="text-base font-bold text-ink">Безопасность учетной записи</h2>
                   <p className="font-mono text-[11px] text-slate-400">Смена мастер-пароля (минимум 8 символов)</p>
                 </div>
               </div>
@@ -543,7 +543,7 @@ export default function Profile() {
                     minLength={8}
                     value={passwords.current_password}
                     onChange={(e) => setPasswords({ ...passwords, current_password: e.target.value })}
-                    className="w-full rounded-xl border border-white/10 bg-[#07090C] px-3.5 py-2.5 text-sm text-white outline-none transition focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                    className="w-full rounded-xl border border-white/10 bg-[#07090C] px-3.5 py-2.5 text-sm text-ink outline-none transition focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
                   />
                 </div>
 
@@ -557,7 +557,7 @@ export default function Profile() {
                     minLength={8}
                     value={passwords.new_password}
                     onChange={(e) => setPasswords({ ...passwords, new_password: e.target.value })}
-                    className="w-full rounded-xl border border-white/10 bg-[#07090C] px-3.5 py-2.5 text-sm text-white outline-none transition focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                    className="w-full rounded-xl border border-white/10 bg-[#07090C] px-3.5 py-2.5 text-sm text-ink outline-none transition focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
                   />
                 </div>
 
@@ -577,13 +577,13 @@ export default function Profile() {
                 <button
                   type="button"
                   onClick={toggleTheme}
-                  className="flex items-center justify-between rounded-xl border border-white/10 bg-[#07090C] px-4 py-3 text-xs hover:border-[#00F0FF]/50 transition"
+                  className="flex items-center justify-between rounded-xl border border-white/10 bg-[#07090C] px-4 py-3 text-xs hover:border-premium/50 transition"
                 >
                   <span className="flex items-center gap-2 text-slate-300">
-                    {theme === 'dark' ? <Moon className="size-4 text-[#00F0FF]" /> : <Sun className="size-4 text-amber-400" />}
+                    {theme === 'dark' ? <Moon className="size-4 text-premium" /> : <Sun className="size-4 text-amber-400" />}
                     Тема оформления
                   </span>
-                  <span className="font-mono font-bold text-white">
+                  <span className="font-mono font-bold text-ink">
                     {theme === 'dark' ? 'Obsidian' : 'Light'}
                   </span>
                 </button>
@@ -600,11 +600,11 @@ export default function Profile() {
                       setLocale(val)
                       void i18n.changeLanguage(val)
                     }}
-                    className="bg-transparent font-mono font-bold text-[#00F0FF] outline-none cursor-pointer"
+                    className="bg-transparent font-mono font-bold text-premium outline-none cursor-pointer"
                   >
-                    <option value="ru" className="bg-[#12161D] text-white">Русский (RU)</option>
-                    <option value="tg" className="bg-[#12161D] text-white">Тоҷикӣ (TG)</option>
-                    <option value="en" className="bg-[#12161D] text-white">English (EN)</option>
+                    <option value="ru" className="bg-[#12161D] text-ink">Русский (RU)</option>
+                    <option value="tg" className="bg-[#12161D] text-ink">Тоҷикӣ (TG)</option>
+                    <option value="en" className="bg-[#12161D] text-ink">English (EN)</option>
                   </select>
                 </div>
               </div>
@@ -614,10 +614,10 @@ export default function Profile() {
                 className="mt-3 flex items-center justify-between rounded-xl border border-white/10 bg-[#07090C] px-4 py-3 text-xs hover:border-[#E32636]/60 transition group"
               >
                 <div className="flex items-center gap-2.5 text-slate-300">
-                  <Car className="size-4 text-[#E32636]" />
+                  <Car className="size-4 text-premium" />
                   <span>Перейти в мой цифровой гараж</span>
                 </div>
-                <span className="font-mono text-xs font-bold text-[#E32636] group-hover:translate-x-1 transition-transform">
+                <span className="font-mono text-xs font-bold text-premium group-hover:translate-x-1 transition-transform">
                   ГАРАЖ →
                 </span>
               </Link>
@@ -631,11 +631,11 @@ export default function Profile() {
         <div className="mt-8 rounded-2xl border border-white/10 bg-[#12161D] p-6 shadow-xl">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
             <div className="flex items-center gap-3">
-              <div className="grid size-9 place-items-center rounded-xl bg-[#00F0FF]/10 text-[#00F0FF] border border-[#00F0FF]/30">
+              <div className="grid size-9 place-items-center rounded-xl bg-premium/10 text-premium border border-premium/30">
                 <Bell className="size-5" />
               </div>
               <div>
-                <h2 className="text-lg font-black text-white">Центр уведомлений & Каналы доставки</h2>
+                <h2 className="text-lg font-black text-ink">Центр уведомлений & Каналы доставки</h2>
                 <p className="text-xs text-slate-400">Настройка каналов информирования для {user.email}</p>
               </div>
             </div>
@@ -646,8 +646,8 @@ export default function Profile() {
                 onClick={() => setNotifFilter(notifFilter === 'all' ? 'unread' : 'all')}
                 className={`rounded-lg border px-3 py-1.5 font-mono text-xs font-bold transition ${
                   notifFilter === 'unread'
-                    ? 'border-[#00F0FF] bg-[#00F0FF]/20 text-[#00F0FF]'
-                    : 'border-white/10 bg-[#07090C] text-slate-400 hover:text-white'
+                    ? 'border-premium bg-premium/20 text-premium'
+                    : 'border-white/10 bg-[#07090C] text-slate-400 hover:text-ink'
                 }`}
               >
                 {notifFilter === 'unread' ? `Только новые (${unreadCount})` : 'Все уведомления'}
@@ -656,7 +656,7 @@ export default function Profile() {
               <button
                 type="button"
                 onClick={() => void loadPreferencesAndHistory()}
-                className="rounded-lg border border-white/10 bg-[#07090C] px-3 py-1.5 font-mono text-xs font-bold text-slate-400 hover:text-white transition"
+                className="rounded-lg border border-white/10 bg-[#07090C] px-3 py-1.5 font-mono text-xs font-bold text-slate-400 hover:text-ink transition"
               >
                 Обновить
               </button>
@@ -667,7 +667,7 @@ export default function Profile() {
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
             {/* Orders */}
             <div className="rounded-xl border border-white/10 bg-[#07090C] p-4">
-              <div className="flex items-center gap-2 text-sm font-bold text-white mb-3">
+              <div className="flex items-center gap-2 text-sm font-bold text-ink mb-3">
                 <Package className="size-4 text-[#10B981]" />
                 Статусы заказов
               </div>
@@ -699,7 +699,7 @@ export default function Profile() {
 
             {/* Loyalty */}
             <div className="rounded-xl border border-white/10 bg-[#07090C] p-4">
-              <div className="flex items-center gap-2 text-sm font-bold text-white mb-3">
+              <div className="flex items-center gap-2 text-sm font-bold text-ink mb-3">
                 <Coins className="size-4 text-amber-400" />
                 Бонусы и кэшбэк
               </div>
@@ -731,7 +731,7 @@ export default function Profile() {
 
             {/* VIP Promotions */}
             <div className="rounded-xl border border-white/10 bg-[#07090C] p-4">
-              <div className="flex items-center gap-2 text-sm font-bold text-white mb-3">
+              <div className="flex items-center gap-2 text-sm font-bold text-ink mb-3">
                 <Crown className="size-4 text-purple-400" />
                 Спецпредложения
               </div>
@@ -781,17 +781,17 @@ export default function Profile() {
                     key={n.id}
                     className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-xl border text-xs transition ${
                       !n.is_read
-                        ? 'border-[#00F0FF]/40 bg-[#00F0FF]/5'
+                        ? 'border-premium/40 bg-premium/5'
                         : 'border-white/5 bg-[#07090C]'
                     }`}
                   >
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
-                        <span className={`font-semibold ${!n.is_read ? 'text-white' : 'text-slate-400'}`}>
+                        <span className={`font-semibold ${!n.is_read ? 'text-ink' : 'text-slate-400'}`}>
                           {n.title}
                         </span>
                         {!n.is_read && (
-                          <span className="rounded bg-[#00F0FF]/20 px-1.5 py-0.5 font-mono text-[9px] font-bold text-[#00F0FF]">
+                          <span className="rounded bg-premium/20 px-1.5 py-0.5 font-mono text-[9px] font-bold text-premium">
                             NEW
                           </span>
                         )}
@@ -809,7 +809,7 @@ export default function Profile() {
                           onClick={() => {
                             if (!n.is_read) void markItemRead(n.id)
                           }}
-                          className="rounded-lg border border-[#00F0FF]/30 bg-[#00F0FF]/10 px-2.5 py-1 text-xs font-mono font-bold text-[#00F0FF] hover:bg-[#00F0FF]/20 transition"
+                          className="rounded-lg border border-premium/30 bg-premium/10 px-2.5 py-1 text-xs font-mono font-bold text-premium hover:bg-premium/20 transition"
                         >
                           Открыть →
                         </Link>
@@ -818,7 +818,7 @@ export default function Profile() {
                         <button
                           type="button"
                           onClick={() => void markItemRead(n.id)}
-                          className="rounded-lg border border-white/10 px-2.5 py-1 text-xs font-mono text-slate-400 hover:text-white transition"
+                          className="rounded-lg border border-white/10 px-2.5 py-1 text-xs font-mono text-slate-400 hover:text-ink transition"
                         >
                           Прочитано
                         </button>
@@ -844,8 +844,8 @@ export default function Profile() {
         {/* ============================================================== */}
         <div className="mt-8 rounded-2xl border border-white/10 bg-[#12161D] p-6 shadow-xl">
           <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
-            <h3 className="flex items-center gap-2 text-sm font-bold text-white uppercase tracking-wider font-mono">
-              <History className="size-4 text-[#00F0FF]" />
+            <h3 className="flex items-center gap-2 text-sm font-bold text-ink uppercase tracking-wider font-mono">
+              <History className="size-4 text-premium" />
               Журнал транзакций AU Club
             </h3>
             <span className="font-mono text-xs text-slate-400">
@@ -889,7 +889,7 @@ export default function Profile() {
                           </span>
                         )}
                         {tx.type === 'refund' && (
-                          <span className="rounded-md border border-[#0080FF]/30 bg-[#0080FF]/10 px-2 py-0.5 text-[#0080FF] font-bold">
+                          <span className="rounded-md border border-[#0080FF]/30 bg-[#0080FF]/10 px-2 py-0.5 text-premium font-bold">
                             Возврат
                           </span>
                         )}

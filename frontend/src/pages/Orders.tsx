@@ -44,7 +44,7 @@ export default function Orders() {
       <div className="mx-auto max-w-2xl px-4 py-20 text-center">
         <h1 className="text-2xl font-black">{t('myOrders')}</h1>
         <p className="mt-3 muted">{t('authRequired')} историю заказов.</p>
-        <Link to="/login" className="mt-6 inline-block rounded-lg bg-premium px-6 py-3 font-semibold text-white">{t('login')}</Link>
+        <Link to="/login" className="mt-6 inline-block rounded-lg bg-premium px-6 py-3 font-semibold text-ink">{t('login')}</Link>
       </div>
     )
   }

@@ -7,32 +7,73 @@
   --color-charcoal: #15191f;
   --color-carbon: #15191f;
   --color-obsidian: #0b0d10;
-  --color-premium: #e32636;
-  --color-racing-red: #e32636;
-  --color-premium-deep: #b71d2b;
-  --color-silver: #a5acb5;
-  --color-titanium: #a5acb5;
+  --color-premium: #e83d4f;
+  --color-racing-red: #e83d4f;
+  --color-brand: #e83d4f;
+  --color-brand-hover: #cf3041;
+  --color-premium-deep: #cf3041;
+  --color-silver: #707887;
+  --color-titanium: #707887;
   --color-hyper-blue: #0080ff;
   --color-electric-cyan: #00f0ff;
   --color-amber-gold: #f59e0b;
   --color-neon-emerald: #10b981;
   --color-neon-purple: #8b5cf6;
+
+  /* Executive Commerce Intelligence tokens (Stitch design system) */
+  --color-surface-dim: #0b1326;
+  --color-surface-bright: #31394d;
+  --color-surface-container-lowest: #060e20;
+  --color-surface-container-low: #131b2e;
+  --color-surface-container: #171f33;
+  --color-surface-container-high: #222a3d;
+  --color-surface-container-highest: #2d3449;
+  --color-on-surface: #dae2fd;
+  --color-on-surface-variant: #bdc8d1;
+  --color-inverse-surface: #dae2fd;
+  --color-inverse-on-surface: #283044;
+  --color-outline: #87929a;
+  --color-outline-variant: #3e484f;
+  --color-surface-tint: #7bd0ff;
+  --color-primary: #8ed5ff;
+  --color-on-primary: #00354a;
+  --color-primary-container: #38bdf8;
+  --color-on-primary-container: #004965;
+  --color-inverse-primary: #00668a;
+  --color-secondary: #4edea3;
+  --color-on-secondary: #003824;
+  --color-secondary-container: #00a572;
+  --color-on-secondary-container: #00311f;
+  --color-tertiary: #ffc174;
+  --color-on-tertiary: #472a00;
+  --color-tertiary-container: #f59e0b;
+  --color-on-tertiary-container: #613b00;
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
   --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
 }
 
 :root {
+  --canvas: #fafbfd;
   --surface: #ffffff;
-  --surface-2: #f7f8fa;
-  --surface-3: #eff1f4;
-  --border: #e4e7ec;
-  --border-strong: #d3d8e0;
-  --text: #111318;
-  --text-muted: #626b78;
-  --shadow-sm: 0 1px 2px rgb(11 13 16 / 0.05);
-  --shadow-md: 0 4px 16px -2px rgb(11 13 16 / 0.08), 0 2px 4px -2px rgb(11 13 16 / 0.04);
-  --shadow-lg: 0 20px 40px -12px rgb(11 13 16 / 0.12), 0 4px 12px -4px rgb(11 13 16 / 0.06);
-  --shadow-glow: 0 8px 30px -8px rgb(227 38 54 / 0.4);
+  --surface-2: #f2f4f8;
+  --surface-3: #e8ecf2;
+  --border: #e6e9ef;
+  --border-strong: #d2d7e0;
+  --text: #171b26;
+  --text-muted: #707887;
+  --color-premium: #e83d4f;
+  --color-brand: #e83d4f;
+  --color-brand-hover: #cf3041;
+  --color-success: #15946a;
+  --color-warning: #e99a22;
+  --shadow-sm: 0 1px 3px rgba(23, 27, 38, 0.04);
+  --shadow-md: 0 4px 16px -2px rgba(23, 27, 38, 0.06), 0 2px 4px -2px rgba(23, 27, 38, 0.03);
+  --shadow-lg: 0 20px 40px -12px rgba(23, 27, 38, 0.08), 0 4px 12px -4px rgba(23, 27, 38, 0.04);
+  --shadow-glow: 0 8px 30px -8px rgba(232, 61, 79, 0.35);
 }
 
 .dark {
@@ -322,4 +363,40 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Material Symbols icon utility styling for Stitch Executive Cockpit */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hairline border and cockpit telemetry glows */
+.cockpit-glow {
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.8), 0 0 1px rgba(56, 189, 248, 0.15);
+}
+
+.accent-bloom {
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
+}
+
+.accent-bloom-green {
+  box-shadow: 0 0 14px rgba(78, 222, 163, 0.35);
+}
+
+/* Tabular number font utilities */
+.font-tabular {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
 }

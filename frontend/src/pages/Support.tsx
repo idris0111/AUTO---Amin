@@ -182,7 +182,7 @@ export default function Support() {
         </p>
         <Link
           to="/login"
-          className="mt-6 inline-block rounded-lg bg-premium px-6 py-3 font-semibold text-white transition hover:opacity-90"
+          className="mt-6 inline-block rounded-lg bg-premium px-6 py-3 font-semibold text-ink transition hover:opacity-90"
         >
           Войти в аккаунт
         </Link>
@@ -203,7 +203,7 @@ export default function Support() {
               <LifeBuoy className="size-3.5" />
               Поддержка AutoUniverse
             </div>
-            <h1 className="mt-2 text-2xl sm:text-3xl font-black text-white">
+            <h1 className="mt-2 text-2xl sm:text-3xl font-black text-ink">
               Центр поддержки & Консультации
             </h1>
             <p className="mt-1 text-sm text-muted">
@@ -215,7 +215,7 @@ export default function Support() {
             <div className="flex items-center gap-2 rounded-xl border px-3.5 py-2 text-xs" style={{ borderColor: 'var(--border)', background: 'var(--surface)' }}>
               <Phone className="size-4 text-emerald-400" />
               <div>
-                <div className="font-mono font-bold text-white">+992 (90) 000-00-00</div>
+                <div className="font-mono font-bold text-ink">+992 (90) 000-00-00</div>
                 <div className="text-[10px] text-muted">Ежедневно 08:00 – 22:00</div>
               </div>
             </div>
@@ -223,7 +223,7 @@ export default function Support() {
             <button
               type="button"
               onClick={() => setIsNewModalOpen(true)}
-              className="flex items-center gap-2 rounded-xl bg-premium px-5 py-2.5 text-sm font-bold text-white shadow-lg transition hover:brightness-110"
+              className="flex items-center gap-2 rounded-xl bg-premium px-5 py-2.5 text-sm font-bold text-ink shadow-lg transition hover:brightness-110"
             >
               <Plus className="size-4" />
               <span>Создать обращение</span>
@@ -247,8 +247,8 @@ export default function Support() {
                   onClick={() => setStatusFilter(filter)}
                   className={`rounded-lg px-3 py-1.5 text-xs font-bold transition ${
                     statusFilter === filter
-                      ? 'bg-premium text-white'
-                      : 'text-muted hover:text-white'
+                      ? 'bg-premium text-ink'
+                      : 'text-muted hover:text-ink'
                   }`}
                 >
                   {filter === 'all' ? 'Все' : filter === 'active' ? 'В работе' : 'Архив'}
@@ -258,7 +258,7 @@ export default function Support() {
 
             <button
               onClick={() => void loadTickets()}
-              className="rounded-lg p-1.5 text-muted hover:text-white"
+              className="rounded-lg p-1.5 text-muted hover:text-ink"
               title="Обновить список"
             >
               <RefreshCw className={`size-3.5 ${loadingTickets ? 'animate-spin' : ''}`} />
@@ -294,7 +294,7 @@ export default function Support() {
                   >
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-xs font-bold text-white">{t.number}</span>
+                        <span className="font-mono text-xs font-bold text-ink">{t.number}</span>
                         {t.unread && (
                           <span className="size-2 rounded-full bg-premium animate-pulse" />
                         )}
@@ -304,7 +304,7 @@ export default function Support() {
                       </span>
                     </div>
 
-                    <h3 className="mt-2 text-sm font-bold text-white line-clamp-1">{t.subject}</h3>
+                    <h3 className="mt-2 text-sm font-bold text-ink line-clamp-1">{t.subject}</h3>
                     <p className="mt-1 text-xs text-muted line-clamp-2 leading-relaxed">
                       {t.last_message_preview || 'Нет сообщений'}
                     </p>
@@ -337,7 +337,7 @@ export default function Support() {
           ) : !activeTicket ? (
             <div className="flex-1 flex flex-col items-center justify-center p-12 text-center text-muted">
               <MessageSquare className="size-10 text-muted/50 mb-3" />
-              <p className="text-sm font-semibold text-white">Выберите обращение для просмотра диалога</p>
+              <p className="text-sm font-semibold text-ink">Выберите обращение для просмотра диалога</p>
               <p className="text-xs text-muted mt-1">Или создайте новое обращение к нашим специалистам.</p>
             </div>
           ) : (
@@ -358,7 +358,7 @@ export default function Support() {
                       {STATUS_CONFIG[activeTicket.status]?.label}
                     </span>
                   </div>
-                  <h2 className="mt-1 text-lg font-bold text-white">{activeTicket.subject}</h2>
+                  <h2 className="mt-1 text-lg font-bold text-ink">{activeTicket.subject}</h2>
                   <div className="mt-1 flex items-center gap-3 text-xs text-muted">
                     <span>Категория: {CATEGORY_LABELS[activeTicket.category]?.label}</span>
                     {activeTicket.order_number && (
@@ -376,7 +376,7 @@ export default function Support() {
                   <button
                     type="button"
                     onClick={handleCloseTicket}
-                    className="rounded-lg border px-3 py-1.5 text-xs font-semibold text-muted hover:text-white transition"
+                    className="rounded-lg border px-3 py-1.5 text-xs font-semibold text-muted hover:text-ink transition"
                     style={{ borderColor: 'var(--border)' }}
                   >
                     Закрыть обращение
@@ -392,7 +392,7 @@ export default function Support() {
                     className={`flex flex-col ${msg.is_staff ? 'items-start' : 'items-end'}`}
                   >
                     <div className="flex items-center gap-2 mb-1 text-[11px] text-muted">
-                      <span className={msg.is_staff ? 'font-bold text-premium' : 'text-zinc-300 font-medium'}>
+                      <span className={msg.is_staff ? 'font-bold text-premium' : 'text-muted font-medium'}>
                         {msg.author_name}
                       </span>
                       <span className="font-mono text-[10px]">
@@ -406,8 +406,8 @@ export default function Support() {
                     <div
                       className={`rounded-2xl px-4 py-3 text-xs max-w-[85%] leading-relaxed ${
                         msg.is_staff
-                          ? 'bg-[#1E242D] border border-[#2E3642] text-white rounded-tl-sm'
-                          : 'bg-premium text-white rounded-tr-sm shadow-md'
+                          ? 'bg-[#1E242D] border border-[#2E3642] text-ink rounded-tl-sm'
+                          : 'bg-premium text-ink rounded-tr-sm shadow-md'
                       }`}
                     >
                       <p className="whitespace-pre-wrap">{msg.body}</p>
@@ -447,7 +447,7 @@ export default function Support() {
                     type="button"
                     disabled={!replyText.trim() || sendingReply}
                     onClick={handleSendReply}
-                    className="rounded-xl bg-premium p-3 text-white transition hover:brightness-110 disabled:opacity-40"
+                    className="rounded-xl bg-premium p-3 text-ink transition hover:brightness-110 disabled:opacity-40"
                     title="Отправить (Enter)"
                   >
                     <Send className="size-4" />
@@ -469,12 +469,12 @@ export default function Support() {
             <div className="flex items-center justify-between border-b pb-4" style={{ borderColor: 'var(--border)' }}>
               <div className="flex items-center gap-2">
                 <LifeBuoy className="size-5 text-premium" />
-                <h2 className="text-lg font-bold text-white">Новое обращение в поддержку</h2>
+                <h2 className="text-lg font-bold text-ink">Новое обращение в поддержку</h2>
               </div>
               <button
                 type="button"
                 onClick={() => setIsNewModalOpen(false)}
-                className="rounded-lg p-1 text-muted hover:text-white"
+                className="rounded-lg p-1 text-muted hover:text-ink"
               >
                 <X className="size-5" />
               </button>
@@ -545,7 +545,7 @@ export default function Support() {
                 <button
                   type="button"
                   onClick={() => setIsNewModalOpen(false)}
-                  className="rounded-lg border px-4 py-2 text-xs font-semibold text-muted hover:text-white"
+                  className="rounded-lg border px-4 py-2 text-xs font-semibold text-muted hover:text-ink"
                   style={{ borderColor: 'var(--border)' }}
                 >
                   Отмена
@@ -553,7 +553,7 @@ export default function Support() {
                 <button
                   type="submit"
                   disabled={!newSubject.trim() || !newMessage.trim() || creatingTicket}
-                  className="rounded-lg bg-premium px-5 py-2 text-xs font-bold text-white transition hover:brightness-110 disabled:opacity-40"
+                  className="rounded-lg bg-premium px-5 py-2 text-xs font-bold text-ink transition hover:brightness-110 disabled:opacity-40"
                 >
                   {creatingTicket ? 'Создание...' : 'Отправить обращение'}
                 </button>

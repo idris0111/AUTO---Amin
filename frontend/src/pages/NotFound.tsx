@@ -8,7 +8,7 @@ export default function NotFound() {
       <div className="text-7xl font-black text-premium">404</div>
       <h1 className="mt-3 text-2xl font-black">{t('notFound')}</h1>
       <p className="mt-2 muted">Страница удалена или адрес указан неверно.</p>
-      <Link to="/" className="mt-6 inline-block rounded-lg bg-premium px-6 py-3 font-semibold text-white">
+      <Link to="/" className="mt-6 inline-block rounded-lg bg-premium px-6 py-3 font-semibold text-ink">
         {t('backHome')}
       </Link>
     </div>
